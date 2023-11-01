@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="addStickerBottomSheetViewModel"
+            type="com.apploop.face.changer.app.viewModels.AddStickerBottomSheetViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cus_bottom_sheet_rounded"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_20sdp">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_bar_gray" />
+
+        <LinearLayout
+            android:id="@+id/lv_beard"
+            style="@style/uCrop_wrapperIconState"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:onClick="@{ ()-> addStickerBottomSheetViewModel.onBeardClick()}"
+            app:layout_constraintEnd_toStartOf="@+id/lv_goggles"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_line">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/cus_rounded_gray_select_suit">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    style="@style/uCrop_imageViewWidgetIcon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/beard" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                style="@style/uCrop_textViewWidget"
+                android:fontFamily="@font/product_sans"
+                android:text="@string/beard" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lv_goggles"
+            style="@style/uCrop_wrapperIconState"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:onClick="@{ ()-> addStickerBottomSheetViewModel.onGogglesClick()}"
+            app:layout_constraintEnd_toStartOf="@+id/lv_hair"
+            app:layout_constraintStart_toEndOf="@+id/lv_beard"
+            app:layout_constraintTop_toBottomOf="@+id/iv_line">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/cus_rounded_gray_select_suit">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    style="@style/uCrop_imageViewWidgetIcon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/glasses" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                style="@style/uCrop_textViewWidget"
+                android:fontFamily="@font/product_sans"
+                android:text="@string/goggles" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lv_hair"
+            style="@style/uCrop_wrapperIconState"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:onClick="@{ ()-> addStickerBottomSheetViewModel.onHairClick()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lv_goggles"
+            app:layout_constraintTop_toBottomOf="@+id/iv_line">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/cus_rounded_gray_select_suit">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    style="@style/uCrop_imageViewWidgetIcon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/hair" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                style="@style/uCrop_textViewWidget"
+                android:fontFamily="@font/product_sans"
+                android:text="@string/hair" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lv_hat"
+            style="@style/uCrop_wrapperIconState"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:onClick="@{ ()-> addStickerBottomSheetViewModel.onHatClick()}"
+            app:layout_constraintEnd_toStartOf="@+id/lv_mustache"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lv_beard">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/cus_rounded_gray_select_suit">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    style="@style/uCrop_imageViewWidgetIcon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/cap" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                style="@style/uCrop_textViewWidget"
+                android:fontFamily="@font/product_sans"
+                android:text="@string/hat" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lv_mustache"
+            style="@style/uCrop_wrapperIconState"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:onClick="@{ ()-> addStickerBottomSheetViewModel.onMustacheClick()}"
+            app:layout_constraintEnd_toStartOf="@+id/lv_tie"
+            app:layout_constraintStart_toEndOf="@+id/lv_hat"
+            app:layout_constraintTop_toBottomOf="@+id/lv_goggles">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/cus_rounded_gray_select_suit">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    style="@style/uCrop_imageViewWidgetIcon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/muooch" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                style="@style/uCrop_textViewWidget"
+                android:fontFamily="@font/product_sans"
+                android:text="@string/mustache" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lv_tie"
+            style="@style/uCrop_wrapperIconState"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:onClick="@{ ()-> addStickerBottomSheetViewModel.onTieClick()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lv_mustache"
+            app:layout_constraintTop_toBottomOf="@+id/lv_hair">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/cus_rounded_gray_select_suit">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    style="@style/uCrop_imageViewWidgetIcon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/tie" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                style="@style/uCrop_textViewWidget"
+                android:fontFamily="@font/product_sans"
+                android:text="@string/tie" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

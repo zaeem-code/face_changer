@@ -1,0 +1,121 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.apploop.face.changer.app"
+        minSdk 23
+        targetSdk 33
+        versionCode 50
+        versionName "5.0.5"
+        resConfigs "en", "US"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding true
+    }
+
+
+
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+    //Android lifecycle
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+
+    //Glide image loader
+    implementation "com.github.bumptech.glide:glide:4.14.2"
+//    kapt "com.github.bumptech.glide:compiler:4.12.0"
+
+    //Sdp library
+    implementation "com.intuit.sdp:sdp-android:1.1.0"
+
+    //Okhttp
+    implementation "com.squareup.okhttp3:okhttp:4.9.3"
+
+    implementation 'com.github.yalantis:ucrop:2.2.6'
+    implementation "io.coil-kt:coil:0.13.0"
+//    //Library
+//    implementation "androidx.exifinterface:exifinterface:1.1.0-beta01"
+//    implementation "androidx.transition:transition:1.1.0"
+//    implementation "androidx.core:core:1.1.0"
+
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:32.0.0')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-messaging'
+
+    //Google Ads
+    implementation 'com.google.android.gms:play-services-ads:22.3.0'
+
+    //Billing
+    implementation 'com.android.billingclient:billing:6.0.1'
+
+    //  in app update
+    implementation 'com.google.android.play:core:1.10.3'
+
+
+    // Lottie dependency
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    //shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+
+    //TODO: retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+
+    implementation 'androidx.palette:palette-ktx:1.0.0'
+
+
+    implementation 'com.google.android.ump:user-messaging-platform:2.1.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    def lifecycle_version = '2.3.1'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+
+
+}

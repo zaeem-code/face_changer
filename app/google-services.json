@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "263172929539",
+    "project_id": "ai-face-changer",
+    "storage_bucket": "ai-face-changer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263172929539:android:d5472defddb5e308233636",
+        "android_client_info": {
+          "package_name": "com.apploop.face.changer.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASbzUluJfzwpca6QmD8Jizhwto5ZI1s-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

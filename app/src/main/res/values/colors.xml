@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="mainColor">#FF0F63</color>
+    <color name="mainColor1">#242752</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="statusBar_color">#FEE8E8</color>
+    <color name="topBar_color">#FFE2E2</color>
+    <color name="black_nav">#212121</color>
+    <color name="version_gray">#757575</color>
+    <color name="nav_row_color">#FFF1F1</color>
+    <color name="orange">#FF6300</color>
+    <color name="ucrop_color_progress_wheel_line">#20242F</color>
+    <color name="ucrop_color_heather">#B3BECE</color>
+    <color name="ucrop_color_default_crop_grid">#80ffffff</color>
+    <color name="ucrop_color_default_crop_frame">#ffffff</color>
+    <color name="ucrop_color_default_dimmed">#8c000000</color>
+    <color name="ucrop_color_default_logo">#4f212121</color>
+    <color name="ucrop_color_statusbar">#f5f5f5</color>
+    <color name="ucrop_color_toolbar">@color/white</color>
+    <color name="icon_color_red">#FF505F</color>
+    <color name="icon_color_black">#212121</color>
+    <color name="background_cus_select_suit">#F2F2F2</color>
+    <color name="blue">#007DFF</color>
+    <color name="green">#4CAF50</color>
+    <color name="yellow">#FF9800</color>
+    <color name="purple">#7B61FF</color>
+    <color name="gray">#616161</color>
+    <color name="pink">#FFEAEC</color>
+    <color name="pink_light">#FFF4F5</color>
+
+
+
+
+    <color name="gray_bg">#F2F2F2</color>
+    <color name="blue_card">#63CAFF</color>
+    <color name="dark_blue_card">#258BF9</color>
+    <color name="yellow_card">#F8BA45</color>
+    <color name="pink_card">#FF2D76</color>
+    <color name="purple_status">#242752</color>
+    <color name="purple_status1">#706EE2</color>
+    <color name="purple_status_topBar_light">#242752</color>
+    <color name="light_red">#FF0000</color>
+    <color name="blue_purple">#755DD5</color>
+    <color name="background">#FAF8FB</color>
+
+
+
+
+    <color name="themecolor">#011F23</color>
+    <color name="themecolorlight">#04272C</color>
+    <color name="colorAccent">#01DCC6</color>
+    <color name="lightest">#8DFFFFFF</color>
+    <color name="bg">#d4d2d2</color>
+    <color name="light_grey">#97A7B7</color>
+
+
+</resources>

@@ -1,0 +1,132 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Man Hairstyle</string>
+    <string name="photo_suit_editor">Man Hairstyle</string>
+    <string name="try_diff_suits">Try different suits with your photo</string>
+    <string name="my_creations">My Creations</string>
+    <string name="label_share">Share</string>
+    <string name="label_rate_us">Rate Us</string>
+    <string name="more_apps">More Apps</string>
+    <string name="version">Version 1.0.0</string>
+    <string name="camera">CAMERA</string>
+    <string name="gallery">GALLERY</string>
+    <string name="hand_crop">Hand Crop</string>
+    <string name="custom">Custom</string>
+    <string name="flip">Flip</string>
+    <string name="crop">Crop</string>
+    <string name="rotate">Rotate</string>
+    <string name="flip_suit">Flip Suit</string>
+    <string name="flip_image">Image Flip</string>
+    <string name="edit">Edit</string>
+    <string name="ucrop_label_original">Original</string>
+    <string name="crop_image">Crop Image</string>
+    <string name="select_suit">Select Suit</string>
+    <string name="ucrop_menu_crop">Crop</string>
+    <string name="ucrop_error_input_data_is_absent" translatable="false">Both input and output Uri must be specified</string>
+    <string name="ucrop_mutate_exception_hint" translatable="false">Therefore, override color resource (ucrop_color_toolbar_widget) in your app to make it work on pre-L devices</string>
+    <string name="scale">Scale</string>
+    <string name="reset">Reset</string>
+    <string name="jacket">Jacket</string>
+    <string name="formal">Formal</string>
+    <string name="suit">Suit</string>
+    <string name="blazer">Blazer</string>
+    <string name="edit_image">Edit Photo</string>
+    <string name="erase">Erase</string>
+    <string name="restore">Restore</string>
+    <string name="auto_erase">Auto Erase</string>
+    <string name="zoom">Zoom</string>
+    <string name="processing">Image Processing…</string>
+    <string name="warn_draw_path">Please Draw a closed path!!!</string>
+    <string name="offset">Offset</string>
+    <string name="threshold">Threshold</string>
+    <string name="size">Size</string>
+    <string name="stickers">Stickers</string>
+    <string name="background">Background</string>
+    <string name="add_stickers">Add Stickers</string>
+    <string name="color">Color</string>
+    <string name="opacity">Opacity</string>
+    <string name="image">Image</string>
+    <string name="none">None</string>
+    <string name="beard">Beard</string>
+    <string name="goggles">Goggles</string>
+    <string name="hair">Hair</string>
+    <string name="hat">Hat</string>
+    <string name="mustache">Mustache</string>
+    <string name="tie">Tie</string>
+    <string name="saved_image">Saved Image</string>
+    <string name="share">Share</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="app_link">Rate Us</string>
+    <string name="delete">Delete</string>
+    <string name="are_you_sure">Are you sure you want to delete?</string>
+    <string name="cancel">Cancel</string>
+    <string name="no_ads">No Ads and Watermark</string>
+    <string name="upgrade_to">Upgrade to Premium</string>
+    <string name="pro_member">Upgrade to premium to enjoy the following features</string>
+    <string name="ads_free">Ads Free</string>
+    <string name="better_performance">Better Performance</string>
+    <string name="unlock">Unlock All Features</string>
+    <string name="monthly">Monthly</string>
+    <string name="yearly">Yearly</string>
+    <string name="threeMonths">6-Months</string>
+    <string name="rs">Rs.</string>
+    <string name="price">3$</string>
+    <string name="per_month">/month</string>
+    <string name="price1">6$</string>
+    <string name="three_month">1$/month</string>
+    <string name="yearly_month">0.8$/month</string>
+    <string name="price2">10$</string>
+    <string name="select_category">Select Category</string>
+    <string name="body_builder">Body Builder</string>
+    <string name="police">Police</string>
+    <string name="kurta">Kurta</string>
+    <string name="t_shirt">T-Shirt</string>
+    <string name="western">Western Wear</string>
+    <string name="casual">Casual</string>
+    <string name="crop_photo">Crop Photo</string>
+    <string name="crop_face">Crop Your Face</string>
+    <string name="edit_photo">Edit Photo</string>
+    <string name="move">Move:</string>
+    <string name="photo">Photo</string>
+    <string name="home">Home</string>
+    <string name="photo_view">Photo View</string>
+    <string name="install">Install</string>
+    <string name="christmas">Christmas</string>
+    <string name="save_image">Saved Image</string>
+
+
+    <!--    &lt;!&ndash;    live ids&ndash;&gt;-->
+    <string name="admob_app_id" translatable="false">ca-app-pub-8617754893098646~1390917459</string>
+    <string name="admob_banner_ad_id" translatable="false">ca-app-pub-8617754893098646/3661857577</string>
+    <string name="admob_interstial_ad_id" translatable="false">ca-app-pub-8617754893098646/1630574691</string>
+    <string name="admob_native_ad_unit" translatable="false">ca-app-pub-8617754893098646/7409530897</string>
+    <string name="openAds" translatable="false">ca-app-pub-8617754893098646/4783367556</string>
+    <string name="reward_ad" translatable="false">ca-app-pub-8617754893098646/3025804381</string>
+
+
+    <string name="indian_premium_league">Indian Premier League</string>
+    <string name="pakistan_premium_league">Pakistan Premier League</string>
+    <string name="bangladesh_premium_league">Bangladesh Premier League</string>
+    <string name="bigbash_league">BigBash League</string>
+    <string name="national_cricket_teams">National Cricket Teams</string>
+    <string name="international_football_teams">International Football Teams</string>
+    <string name="super_heroes">Superheroes</string>
+    <string name="cricket">Cricket</string>
+    <string name="bg_remover">Remove Background</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="txt_not_detect_human">No human detected</string>
+    <string name="Something_went_wrong">Oops! something went wrong</string>
+    <string name="Fail">Fail</string>
+    <string name="Processing_image">Processing image ...</string>
+    <string name="cut_outside">Cut Outside</string>
+    <string name="cut_inside">Cut Inside</string>
+    <string name="eraser">Eraser</string>
+    <string name="auto">Magic</string>
+    <string name="lasso">Lasso</string>
+    <string name="bg">Bg</string>
+    <string name="directory" translatable="false" tools:ignore="ExtraTranslation">/.PhotoEditorTemp/</string>
+    <string name="redoing">Redoing</string>
+    <string name="undoing">Undoing</string>
+    <string name="import_img_warning">Please import image!!!</string>
+    <string name="importing_image">Importing image…</string>
+    <string name="import_error">Error while getting image.</string>
+</resources>

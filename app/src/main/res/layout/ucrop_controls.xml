@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/wrapper_controls"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ucrop_height_wrapper_controls"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="0dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ucrop_wrapper_controls_shape" />
+
+        <LinearLayout
+            android:id="@+id/layout_aspect_ratio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal" />
+
+        <include
+            android:id="@+id/layout_rotate_wheel"
+            layout="@layout/ucrop_layout_rotate_wheel" />
+
+        <include
+            android:id="@+id/layout_scale_wheel"
+            layout="@layout/ucrop_layout_scale_wheel" />
+
+    </FrameLayout>
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/controls_shadow"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="8dp"-->
+    <!--        android:layout_alignBottom="@+id/wrapper_controls"-->
+    <!--        android:src="@drawable/ucrop_shadow_upside" />-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wrapper_states"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wrapper_controls"
+        android:background="@color/white"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/state_rotate"
+            style="@style/uCrop_wrapperIconState"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/state_aspect_ratio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image_view_state_rotate"
+                style="@style/uCrop_imageViewWidgetIcon"
+                app:srcCompat="@drawable/ic_rotate" />
+
+            <TextView
+                android:id="@+id/text_view_rotate"
+                style="@style/uCrop_textViewWidget"
+                android:fontFamily="@font/product_sans"
+                android:text="@string/rotate" />
+
+        </LinearLayout>
+
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/state_hand"-->
+        <!--            style="@style/uCrop_wrapperIconState"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/state_aspect_ratio"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/state_rotate"-->
+        <!--            app:layout_constraintTop_toTopOf="parent">-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/imageView_hand"-->
+        <!--                style="@style/uCrop_imageViewWidgetIcon"-->
+        <!--                android:gravity="center"-->
+        <!--                android:orientation="vertical"-->
+        <!--                app:srcCompat="@drawable/ic_free_hand" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/textView_hand"-->
+        <!--                style="@style/uCrop_textViewWidget"-->
+        <!--                android:fontFamily="@font/product_sans"-->
+        <!--                android:text="@string/hand_crop" />-->
+
+        <!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:id="@+id/state_aspect_ratio"
+            style="@style/uCrop_wrapperIconState"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/state_scale"
+            app:layout_constraintStart_toEndOf="@+id/state_rotate"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image_view_state_aspect_ratio"
+                style="@style/uCrop_imageViewWidgetIcon"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:srcCompat="@drawable/ic_crop"
+                app:tint="@color/icon_color_black" />
+
+            <TextView
+                android:id="@+id/text_view_crop"
+                style="@style/uCrop_textViewWidget"
+                android:fontFamily="@font/product_sans"
+                android:text="@string/custom" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/state_scale"
+            style="@style/uCrop_wrapperIconState"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/state_aspect_ratio"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image_view_state_scale"
+                style="@style/uCrop_imageViewWidgetIcon"
+                app:srcCompat="@drawable/ic_scale_new" />
+
+            <TextView
+                android:id="@+id/text_view_scale"
+                style="@style/uCrop_textViewWidget"
+                android:fontFamily="@font/product_sans"
+                android:text="@string/scale" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.apploop.face.changer.app">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <!-- in android 13 READ_EXTERNAL_STORAGE will be allowed only for media file and only if we have defined them WRITE_EXTERNAL_STORAGE is not required or nec in 12 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!-- 4 Advertising ID -->
+    <!-- If you are using a the Google Play Advertising ID, with targeting SDK 33
+    you need to declare the com.google.android.gms.permission.AD_ID permission in
+    your AndroidManifest.xml like you can see in the code snippet below: -->
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+
+    <application
+        android:name="com.apploop.face.changer.app.app.MyApplication"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="false"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MenJacket"
+        tools:replace="android:icon,android:theme"
+        tools:targetApi="31">
+
+        <activity
+            android:name="com.apploop.face.changer.app.views.FaceChangeScreen.FaceChangeActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.saved.ProSavedActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.MenPhotoScreen.MenPhotoActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.RemoveBgScreen.RemoveBgActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.splash.Splash"
+            android:exported="false" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.category.CricketActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat" /> <!-- optional (needed if default theme has no action bar) -->
+
+
+        <activity
+            android:name="com.apploop.face.changer.app.views.saved.ImageAdsSavedActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.ShowAssertsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.category.SelectCategoryActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.premium.PremiumActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.myCreation.ViewSavedImageActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.myCreation.MyCreationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.saved.ImageSavedActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.stickers.StickerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.eraser.EraserActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.editor.SelectSuitActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.handCrop.HandCropActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.crop.CropActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.mainactivity.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.apploop.face.changer.app.views.splash.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:ignore="WrongManifestParent">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id" />
+    </application>
+
+</manifest>
