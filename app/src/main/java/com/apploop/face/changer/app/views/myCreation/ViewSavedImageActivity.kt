@@ -108,31 +108,31 @@ class ViewSavedImageActivity : AppCompatActivity() {
         }
 
         faceChange.setOnClickListener {
-            com.apploop.face.changer.app.utils.UtilsCons.chooseLayout = "PHOTO_REMOVE_BG"
+            UtilsCons.chooseLayout = "PHOTO_REMOVE_BG"
             val intent = Intent(this, com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
             startActivity(intent)
-            com.apploop.face.changer.app.utils.UtilsCons.originalBitmap = null
-            com.apploop.face.changer.app.utils.UtilsCons.originalPath = ""
-            com.apploop.face.changer.app.utils.UtilsCons.fromGallery = ""
-            com.apploop.face.changer.app.utils.UtilsCons.originalBitmap = BitmapFactory.decodeFile(path)
-            com.apploop.face.changer.app.utils.UtilsCons.originalPath = Extension.imageFilePath
+            UtilsCons.originalBitmap = null
+            UtilsCons.originalPath = ""
+            UtilsCons.fromGallery = ""
+            UtilsCons.originalBitmap = BitmapFactory.decodeFile(path)
+            UtilsCons.originalPath = Extension.imageFilePath
             alertDialog.dismiss()
         }
 
         menstyle.setOnClickListener {
-            com.apploop.face.changer.app.utils.UtilsCons.chooseLayout = "PHOTO_MEN"
+            UtilsCons.chooseLayout = "PHOTO_MEN"
             val intent = Intent(this, com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
             startActivity(intent)
-            com.apploop.face.changer.app.utils.UtilsCons.originalBitmap = null
-            com.apploop.face.changer.app.utils.UtilsCons.originalPath = ""
-            com.apploop.face.changer.app.utils.UtilsCons.fromGallery = ""
-            com.apploop.face.changer.app.utils.UtilsCons.originalBitmap = BitmapFactory.decodeFile(path)
-            com.apploop.face.changer.app.utils.UtilsCons.originalPath = Extension.imageFilePath
+            UtilsCons.originalBitmap = null
+            UtilsCons.originalPath = ""
+            UtilsCons.fromGallery = ""
+            UtilsCons.originalBitmap = BitmapFactory.decodeFile(path)
+            UtilsCons.originalPath = Extension.imageFilePath
             alertDialog.dismiss()
         }
 
         removebg.setOnClickListener {
-            com.apploop.face.changer.app.utils.UtilsCons.chooseLayout = "PHOTO_REMOVE_BG"
+            UtilsCons.chooseLayout = "PHOTO_REMOVE_BG"
             val intent = Intent(this, com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
             val myUri = Uri.parse(path)
             intent.putExtra("image_uri", myUri.toString())
@@ -141,11 +141,11 @@ class ViewSavedImageActivity : AppCompatActivity() {
             startActivity(intent)
 
 
-            com.apploop.face.changer.app.utils.UtilsCons.originalBitmap = null
-            com.apploop.face.changer.app.utils.UtilsCons.originalPath = ""
-            com.apploop.face.changer.app.utils.UtilsCons.fromGallery = ""
-            com.apploop.face.changer.app.utils.UtilsCons.originalBitmap = BitmapFactory.decodeFile(path)
-            com.apploop.face.changer.app.utils.UtilsCons.originalPath = Extension.imageFilePath
+            UtilsCons.originalBitmap = null
+            UtilsCons.originalPath = ""
+            UtilsCons.fromGallery = ""
+            UtilsCons.originalBitmap = BitmapFactory.decodeFile(path)
+            UtilsCons.originalPath = Extension.imageFilePath
 
             alertDialog.dismiss()
         }

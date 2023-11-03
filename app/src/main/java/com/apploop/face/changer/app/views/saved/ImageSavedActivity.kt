@@ -58,31 +58,26 @@ class ImageSavedActivity : AppCompatActivity() {
             })
         }.start()
 
-        binding.done.setOnClickListener {
+        binding.ivBack.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.flags =
-                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             finish()
         }
-
-        binding.lvCamera.setOnClickListener {
-            share(path)
-        }
-
-        binding.lvGallery.setOnClickListener {
-//            alertDialogRate()
-            rateApp()
-
-        }
-
+//
+//        binding.lvCamera.setOnClickListener {
+//            share(path)
+//        }
+//
+//        binding.lvGallery.setOnClickListener {
+//            rateApp()
+//        }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, MainActivity::class.java)
-        intent.flags =
-            Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
         finish()
     }
@@ -90,7 +85,6 @@ class ImageSavedActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        com.apploop.face.changer.app.utils.SharedPrefHelper.writeBoolean(com.apploop.face.changer.app.utils.Constants.IN_APP_KEY, true)
-
+        SharedPrefHelper.writeBoolean(Constants.IN_APP_KEY, true)
     }
 }

@@ -13,12 +13,11 @@ import com.apploop.face.changer.app.callBacks.AdapterPathInterface
 import com.apploop.face.changer.app.callBacks.AddStickerBottomSheetViewModelInterface
 import com.apploop.face.changer.app.models.ObjStickerImageDetail
 
-class ShowStickersBottomSheetAdapter(
+class ShowSkinToneAdapter(
     val list: List<ObjStickerImageDetail>,
     val context: Context,
-    val listener: AddStickerBottomSheetViewModelInterface,
-    private val adapterPathInterface: AdapterPathInterface)
-    : RecyclerView.Adapter<ShowStickersBottomSheetAdapter.ViewHolder>() {
+    val listener: AddStickerBottomSheetViewModelInterface)
+    : RecyclerView.Adapter<ShowSkinToneAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -44,7 +43,6 @@ class ShowStickersBottomSheetAdapter(
 
         holder.imageView.setOnClickListener {
             listener.onAddStickerBottomSheetButtonClicks(model.stickerpath)
-            adapterPathInterface.onClick()
         }
     }
 

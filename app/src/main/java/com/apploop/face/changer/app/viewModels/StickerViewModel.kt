@@ -19,8 +19,19 @@ class StickerViewModel(stickerCallBack: StickerViewModelInterface) {
         stickerViewModelInterface.onStickerButtonClicks(EnumClass.BACKGROUND)
     }
 
+    fun onOldManClick() {
+        stickerViewModelInterface.onStickerButtonClicks(EnumClass.OLD_MAN)
+    }
+    fun onKidClick() {
+        stickerViewModelInterface.onStickerButtonClicks(EnumClass.KID)
+    }
+
     fun onStickerColorClick() {
         stickerViewModelInterface.onStickerButtonClicks(EnumClass.STICKER_COLOR)
+    }
+
+    fun onSkinToneClick() {
+        stickerViewModelInterface.onStickerButtonClicks(EnumClass.SKIN_TONE)
     }
 
     fun onOpacityClick() {

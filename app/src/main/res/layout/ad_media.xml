@@ -193,7 +193,7 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_40sdp"
-                android:backgroundTint="@color/purple_status"
+                android:backgroundTint="@color/purple_color"
                 android:gravity="center"
                 android:text="@string/install"
                 android:layout_marginEnd="@dimen/_50sdp"

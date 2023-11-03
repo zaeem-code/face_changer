@@ -41,10 +41,8 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
 
     private lateinit var stickerViewModel: StickerViewModel
     private var sticker: StickerImageView? = null
-    private val multiTouchListener =
-        com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener()
+    private val multiTouchListener = MultiTouchListener()
 
-    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_men_photo)
@@ -55,7 +53,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
 
     private fun init() {
         binding.shimmerFrameLayout.startShimmer()
-        AdsManager.Companion.instance!!.showAdMobBanner(this, binding.frameLayout) {
+        AdsManager.instance!!.showAdMobBanner(this, binding.frameLayout) {
             if (it) {
                 binding.shimmerFrameLayout.visibility = View.INVISIBLE
             } else {
@@ -66,8 +64,8 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
 
         stickerViewModel = StickerViewModel(this)
         binding.stickerViewModel = stickerViewModel
-        if (com.apploop.face.changer.app.utils.UtilsCons.originalBitmap != null) {
-            loadBitmap(binding.ivSuit, com.apploop.face.changer.app.utils.UtilsCons.originalBitmap)
+        if (UtilsCons.originalBitmap != null) {
+            loadBitmap(binding.ivSuit, UtilsCons.originalBitmap)
         }
     }
 
@@ -169,25 +167,10 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.ADD_STICKERS -> {
-                binding.ivAddStickers.setColorFilter(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.purple_status
-                    )
-                )
+                binding.ivAddStickers.setColorFilter(ContextCompat.getColor(this, R.color.purple_status))
                 binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
-                binding.ivOpacityStickers.setColorFilter(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.light_grey
-                    )
-                )
-                binding.tvAddStickers.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.purple_status
-                    )
-                )
+                binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
+                binding.tvAddStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
                 binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvOpacityStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 AddStickerBottomSheet( this@MenPhotoActivity,this).apply {
@@ -197,8 +180,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
 
             EnumClass.BLACK -> {
                 if (binding.lvRoot.childCount <= 2) {
-                    Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT).show()
                     return
                 }
                 binding.ivBlack.visibility = View.VISIBLE

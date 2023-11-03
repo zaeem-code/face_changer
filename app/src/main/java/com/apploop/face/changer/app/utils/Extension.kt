@@ -70,6 +70,12 @@ object Extension {
     var objStickerDetailsTie: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
     var objStickerDetailsBeard: ArrayList<ObjStickerImageDetail> =
         ArrayList<ObjStickerImageDetail>()
+    var objFaceChangeDetail: ArrayList<ObjStickerImageDetail> =
+        ArrayList<ObjStickerImageDetail>()
+    var oldFaceChangeDetail: ArrayList<ObjStickerImageDetail> =
+        ArrayList<ObjStickerImageDetail>()
+    var kidFaceChangeDetail: ArrayList<ObjStickerImageDetail> =
+        ArrayList<ObjStickerImageDetail>()
     var objStickerDetailsMustache: ArrayList<ObjStickerImageDetail> =
         ArrayList<ObjStickerImageDetail>()
     var objStickerDetailsHat: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
@@ -299,6 +305,12 @@ object Extension {
             listSticker1("symbol/TieBow", "symbol/TieBow/", objStickerDetailsTie)
         objStickerDetailsBeard =
             listSticker1("symbol/Beard", "symbol/Beard/", objStickerDetailsBeard)
+        objFaceChangeDetail =
+            listSticker1("faceChange", "faceChange/", objFaceChangeDetail)
+        kidFaceChangeDetail =
+            listSticker1("faceChange", "faceChange/", kidFaceChangeDetail)
+        oldFaceChangeDetail =
+            listSticker1("oldFaceChange", "oldFaceChange/", oldFaceChangeDetail)
         objStickerDetailsMustache =
             listSticker1(
                 "symbol/Mustaches",

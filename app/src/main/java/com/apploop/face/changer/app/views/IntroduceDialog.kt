@@ -8,9 +8,13 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.apploop.face.changer.app.R
+import com.apploop.face.changer.app.bottomsheets.CustomBSFragment
+import com.apploop.face.changer.app.callBacks.AdapterPathInterface
+import com.apploop.face.changer.app.callBacks.AddStickerBottomSheetViewModelInterface
 
 class IntroduceDialog(
-    var pContext: Context,
+    pContext: Context,
+    val listener: AdapterPathInterface
 ){
     private var context=pContext
     var close: ImageView?
@@ -30,7 +34,7 @@ class IntroduceDialog(
 
     private fun initClicks() {
         close?.setOnClickListener(View.OnClickListener {
-            closeDialog()
+            listener.onClick()
         })
     }
 

@@ -16,6 +16,7 @@ import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.api.apiRespoInterfaces.CallBackResponseJson
 import com.apploop.face.changer.app.api.viewModel.ViewModelVideos
 import com.apploop.face.changer.app.bottomsheets.CustomBSFragment
+import com.apploop.face.changer.app.callBacks.AdapterPathInterface
 import com.apploop.face.changer.app.callBacks.MainViewModelInterface
 import com.apploop.face.changer.app.databinding.ActivityMainBinding
 import com.apploop.face.changer.app.helpers.EnumClass
@@ -36,7 +37,7 @@ import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInterface,
-    com.apploop.face.changer.app.api.apiRespoInterfaces.CallBackResponseJson {
+    CallBackResponseJson,AdapterPathInterface {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainActivityViewModel: MainActivityViewModel
@@ -49,9 +50,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
         init()
         hitApis()
 
-        com.apploop.face.changer.app.InAppBilling.SubscriptionBillingManager(this, this)
+        SubscriptionBillingManager(this, this)
 
-        introduceDialog = IntroduceDialog(this)
+        introduceDialog = IntroduceDialog(this,this@MainActivity)
 
         binding.ivPremium.setOnClickListener {
             if (!com.apploop.face.changer.app.manager.OpenAdManager.getInstance().enabledNoAds) {
@@ -110,11 +111,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
     private fun init() {
         binding.shimmerFrameLayout.startShimmer()
         AdsManager.instance?.showNativeAd(
-            binding.frameLayout,
-            binding.frameLayout,
-            layoutInflater,
-            R.layout.ad_with_media
-        ) {
+            binding.frameLayout, binding.frameLayout, layoutInflater, R.layout.ad_with_media) {
             if (it) {
                 binding.shimmerFrameLayout.visibility = View.INVISIBLE
             } else {
@@ -125,8 +122,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
 
         mainActivityViewModel = MainActivityViewModel(this)
         binding.mainActivityViewModel = mainActivityViewModel
-        binding.layoutNavigationView.tvVersion.text =
-            "Version = ${BuildConfig.VERSION_CODE.toString()}"
+        binding.layoutNavigationView.tvVersion.text = "Version = ${BuildConfig.VERSION_CODE.toString()}"
 
         initClicks()
     }
@@ -193,20 +189,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
             }
 
             EnumClass.PHOTO_MEN -> {
-                com.apploop.face.changer.app.utils.UtilsCons.chooseLayout = "PHOTO_MEN"
+                UtilsCons.chooseLayout = "PHOTO_MEN"
                 showHeartRateBottomSheet()
             }
 
             EnumClass.PHOTO_REMOVE_BG -> {
-                com.apploop.face.changer.app.utils.UtilsCons.chooseLayout = "PHOTO_REMOVE_BG"
+                UtilsCons.chooseLayout = "PHOTO_REMOVE_BG"
                 showHeartRateBottomSheet()
             }
 
             EnumClass.PHOTO_FACE -> {
-                com.apploop.face.changer.app.utils.UtilsCons.chooseLayout = "PHOTO_FACE"
-                if (!com.apploop.face.changer.app.utils.SharedPrefHelper.readBoolean("isTrue")) {
+                UtilsCons.chooseLayout = "PHOTO_FACE"
+                if (!SharedPrefHelper.readBoolean("isTrue")) {
                     introduceDialog.showDialog()
-                    com.apploop.face.changer.app.utils.SharedPrefHelper.writeBoolean("isTrue", true)
+                    SharedPrefHelper.writeBoolean("isTrue", true)
                 } else {
                     showHeartRateBottomSheet()
                 }
@@ -235,5 +231,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
 
     override fun onFailResponse(result: String) {
         Log.d("dash", "---error--------$result")
+    }
+
+    override fun onClick() {
+        introduceDialog.closeDialog()
+        showHeartRateBottomSheet()
     }
 }

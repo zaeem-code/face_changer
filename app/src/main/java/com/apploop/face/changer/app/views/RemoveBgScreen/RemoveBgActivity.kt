@@ -43,7 +43,7 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
     private lateinit var stickerViewModel: StickerViewModel
     private var sticker: StickerImageView? = null
     private val multiTouchListener =
-        com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener()
+        MultiTouchListener()
     private lateinit var selectSuitViewModel: SelectSuitViewModel
     interface OnStickerTouch {
         fun onTouch(action: Int)
@@ -54,7 +54,6 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
         binding = DataBindingUtil.setContentView(this, R.layout.activity_remove_bg2)
         statusBarColor(R.color.background)
         init()
-//        initClicks()
     }
 
     private fun init() {
@@ -158,7 +157,7 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
                 if (binding.lvBackgroundContainer.visibility == View.VISIBLE) {
                     binding.lvBackgroundContainer.visibility = View.GONE
                     val touchListener =
-                        com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener()
+                        MultiTouchListener()
                     binding.ivSuit.setOnTouchListener(touchListener)
                     return
                 }
@@ -170,7 +169,7 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
             EnumClass.ZOOM -> {
                 binding.lvBackgroundContainer.visibility = View.GONE
                 val touchListener =
-                    com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener()
+                    MultiTouchListener()
                 binding.ivSuit.setOnTouchListener(touchListener)
             }
 
@@ -359,28 +358,15 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
             }
 
             EnumClass.BACKGROUND_IMAGES -> {
-                binding.ivAddImage.setColorFilter(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.purple_status
-                    )
-                )
-                binding.ivColorBackground.setColorFilter(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.light_grey
-                    )
-                )
+                binding.ivAddImage.setColorFilter(ContextCompat.getColor(this, R.color.purple_status))
+                binding.ivColorBackground.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
                 binding.ivNone.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
-                binding.tvAddImage.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.purple_status
-                    )
-                )
+                binding.tvAddImage.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
                 binding.tvColorBackground.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvNone.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 initLists()
+
+                binding.lvColorsCodeContainer.visibility = View.GONE
                 ShowBackgroundsBottomSheet(
                     this@RemoveBgActivity,
                     Extension.objSuitOptions,

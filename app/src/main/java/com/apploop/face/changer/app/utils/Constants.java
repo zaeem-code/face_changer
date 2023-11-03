@@ -6,6 +6,4 @@ public class Constants {
     static final public String SKU_ITEM_ONE_YEAR = "yearly";
     static final public String ADS_ID_KEY = "IS_NO_ADS_ENABLED";
     static final public String IN_APP_KEY = "inApp_Check";
-
-
 }

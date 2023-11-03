@@ -4,11 +4,13 @@ import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
@@ -24,21 +26,23 @@ import com.apploop.face.changer.app.helpers.stickerviewclass.StickerImageView
 import com.apploop.face.changer.app.helpers.stickerviewclass.StickerView
 import com.apploop.face.changer.app.utils.Extension
 import com.apploop.face.changer.app.utils.Extension.getBitmapFromView
+import com.apploop.face.changer.app.utils.Extension.initLists
 import com.apploop.face.changer.app.utils.Extension.loadBitmap
 import com.apploop.face.changer.app.utils.Extension.statusBarColor
 import com.apploop.face.changer.app.utils.UtilsCons
 import com.apploop.face.changer.app.viewModels.StickerViewModel
+import com.apploop.face.changer.app.views.adapters.ShowSkinToneAdapter
 import com.apploop.face.changer.app.views.saved.ImageAdsSavedActivity
+import com.apploop.face.changer.app.views.stickers.StickerActivity
 import java.util.Random
 
 class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
     ,AddStickerBottomSheetViewModelInterface, BackgroundBottomSheetInterface {
 
     lateinit var binding: ActivityFaceChangeBinding
-    private var sticker: com.apploop.face.changer.app.helpers.stickerviewclass.StickerImageView? = null
+    private var sticker: StickerImageView? = null
     private lateinit var stickerViewModel: StickerViewModel
-    private val multiTouchListener =
-        com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener()
+    private val multiTouchListener = MultiTouchListener()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,14 +70,32 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
     private fun init() {
         stickerViewModel = StickerViewModel(this)
         binding.stickerViewModel = stickerViewModel
-        if (com.apploop.face.changer.app.utils.UtilsCons.originalBitmap != null) {
-            loadBitmap(binding.ivSuit, com.apploop.face.changer.app.utils.UtilsCons.originalBitmap)
+        if (UtilsCons.originalBitmap != null) {
+            loadBitmap(binding.ivSuit, UtilsCons.originalBitmap)
+        }
+
+        UtilsCons.faceType = "YOUNG"
+
+        multiTouchListener.setOnMultiTouch(object : StickerActivity.OnStickerTouch {
+            override fun onTouch(action: Int) {
+                if (action == MotionEvent.ACTION_DOWN) {
+                    removeBorder()
+                } else if (action == MotionEvent.ACTION_UP) {
+                    removeBorder()
+                }
+            }
+        })
+
+        binding.ivSuit.setOnTouchListener(multiTouchListener)
+
+        binding.lvRoot.setOnClickListener {
+            removeBorder()
         }
     }
 
-    private val onTouchSticker: com.apploop.face.changer.app.helpers.stickerviewclass.StickerView.OnTouchSticker =
-        com.apploop.face.changer.app.helpers.stickerviewclass.StickerView.OnTouchSticker { stickerImageView ->
-            sticker = stickerImageView as com.apploop.face.changer.app.helpers.stickerviewclass.StickerImageView
+    private val onTouchSticker: StickerView.OnTouchSticker =
+        StickerView.OnTouchSticker { stickerImageView ->
+            sticker = stickerImageView as StickerImageView
             removeBorder()
         }
 
@@ -84,8 +106,8 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                     if (Extension.stickerViewId.isNotEmpty()) {
                         val view: View =
                             binding.lvRoot.findViewById<View>(Extension.stickerViewId[i])
-                        if (view is com.apploop.face.changer.app.helpers.stickerviewclass.StickerImageView) {
-                            val stickerView: com.apploop.face.changer.app.helpers.stickerviewclass.StickerImageView = view
+                        if (view is StickerImageView) {
+                            val stickerView: StickerImageView = view
                             stickerView.setControlItemsHidden(true)
                         }
                     }
@@ -98,7 +120,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
 
     override fun onAddStickerBottomSheetButtonClicks(path: String) {
         binding.ivSuit.setOnTouchListener(multiTouchListener)
-        sticker = com.apploop.face.changer.app.helpers.stickerviewclass.StickerImageView(
+        sticker = StickerImageView(
             this,
             onTouchSticker
         )
@@ -136,30 +158,14 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 onBackPressed()
             }
 
-            EnumClass.STICKERS -> {
-                binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
-                binding.tvBackground.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
-                binding.tvZoom.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
-                if (binding.lvStickersContainer.visibility == View.VISIBLE) {
-                    binding.lvStickersContainer.visibility = View.GONE
-                    val touchListener =
-                        com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener()
-                    binding.ivSuit.setOnTouchListener(touchListener)
-                    return
-                }
-                binding.lvStickersContainer.visibility = View.VISIBLE
-                binding.lvBackgroundContainer.visibility = View.GONE
-                binding.ivSuit.setOnTouchListener(null)
-            }
-
-            EnumClass.BACKGROUND -> {
+            EnumClass.OLD_MAN -> {
+                UtilsCons.faceType = "OLD"
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvBackground.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
                 binding.tvZoom.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 if (binding.lvStickersContainer.visibility == View.VISIBLE) {
-                    binding.lvStickersContainer.visibility = View.GONE
                     val touchListener =
-                        com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener()
+                        MultiTouchListener()
                     binding.ivSuit.setOnTouchListener(touchListener)
                     return
                 }
@@ -168,20 +174,62 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.ivSuit.setOnTouchListener(null)
             }
 
-            EnumClass.ZOOM -> {
-                binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+            EnumClass.STICKERS -> {
+                UtilsCons.faceType = "YOUNG"
+                binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
                 binding.tvBackground.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
-                binding.tvZoom.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
+                binding.tvZoom.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 if (binding.lvStickersContainer.visibility == View.VISIBLE) {
-                    binding.lvStickersContainer.visibility = View.GONE
-                    val touchListener =
-                        com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener()
+                    val touchListener = MultiTouchListener()
                     binding.ivSuit.setOnTouchListener(touchListener)
                     return
                 }
                 binding.lvStickersContainer.visibility = View.VISIBLE
                 binding.lvBackgroundContainer.visibility = View.GONE
                 binding.ivSuit.setOnTouchListener(null)
+
+                removeBorder()
+            }
+
+            EnumClass.KID -> {
+                UtilsCons.faceType = "KID"
+                binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                binding.tvBackground.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                binding.tvZoom.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
+                if (binding.lvStickersContainer.visibility == View.VISIBLE) {
+                    val touchListener = MultiTouchListener()
+                    binding.ivSuit.setOnTouchListener(touchListener)
+                    return
+                }
+                binding.lvStickersContainer.visibility = View.VISIBLE
+                binding.lvBackgroundContainer.visibility = View.GONE
+                binding.ivSuit.setOnTouchListener(null)
+
+                removeBorder()
+            }
+
+            EnumClass.SKIN_TONE -> {
+                if (binding.lvRec.visibility == View.VISIBLE) {
+                    binding.lvRec.visibility = View.GONE
+                    binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
+                    binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                    return
+                }
+
+                binding.ivAddStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
+                binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.purple_status))
+                binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
+                binding.tvAddStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
+                binding.tvOpacityStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                binding.lvOpacitySeekBarContainer.visibility = View.GONE
+
+                binding.lvRec.visibility = View.VISIBLE
+                removeBorder()
+
+                binding.skinToneRV.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+                var suitsBottomSheetAdapter = ShowSkinToneAdapter(Extension.oldFaceChangeDetail, this@FaceChangeActivity, this@FaceChangeActivity)
+                binding.skinToneRV.adapter = suitsBottomSheetAdapter
             }
 
             EnumClass.ADD_STICKERS -> {
@@ -191,42 +239,50 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.tvAddStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
                 binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvOpacityStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                binding.lvOpacitySeekBarContainer.visibility = View.GONE
+                binding.lvRec.visibility = View.GONE
 
-                ShowStickersBottomSheet(
-                    this,
-                    Extension.objStickerDetailsBeard,
-                    this
-                ).apply {
-                    show(supportFragmentManager, tag)
+                initLists()
+                if(UtilsCons.faceType.contains("OLD")){
+                    ShowStickersBottomSheet(
+                        this,
+                        Extension.oldFaceChangeDetail,
+                        this
+                    ).apply {
+                        show(supportFragmentManager, tag)
+                    }
+                }else if (UtilsCons.faceType.contains("YOUNG")){
+                    ShowStickersBottomSheet(
+                        this,
+                        Extension.objFaceChangeDetail,
+                        this
+                    ).apply {
+                        show(supportFragmentManager, tag)
+                    }
+                }else {
+                    ShowStickersBottomSheet(
+                        this,
+                        Extension.kidFaceChangeDetail,
+                        this
+                    ).apply {
+                        show(supportFragmentManager, tag)
+                    }
                 }
             }
 
             EnumClass.OPACITY -> {
                 if (binding.lvOpacitySeekBarContainer.visibility == View.VISIBLE) {
                     binding.lvOpacitySeekBarContainer.visibility = View.GONE
-                    binding.ivOpacityStickers.setColorFilter(
-                        ContextCompat.getColor(
-                            this,
-                            R.color.light_grey
-                        )
-                    )
-                    binding.tvOpacityStickers.setTextColor(
-                        ContextCompat.getColor(
-                            this,
-                            R.color.light_grey
-                        )
-                    )
+                    binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
+                    binding.tvOpacityStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                     return
                 }
 
+                binding.lvRec.visibility = View.GONE
+
                 binding.ivAddStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
                 binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
-                binding.ivOpacityStickers.setColorFilter(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.purple_status
-                    )
-                )
+                binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.purple_status))
                 binding.tvAddStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvOpacityStickers.setTextColor(

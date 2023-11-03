@@ -47,11 +47,11 @@ public class DrawingView extends androidx.appcompat.widget.AppCompatImageView im
     float Y = 100.0f;
     private ActionListener actionListener;
     private int bpr = 200;
-    private ArrayList<Integer> brushIndx = new ArrayList();
+    private ArrayList<Integer> brushIndx = new ArrayList<>();
     private int brushSize = 18;
     private int brushSize1 = 18;
     Canvas c2;
-    private ArrayList<Path> changesIndx = new ArrayList();
+    private ArrayList<Path> changesIndx = new ArrayList<>();
     Context ctx;
     private int curIndx = -1;
     private boolean drawLasso = false;
@@ -65,8 +65,8 @@ public class DrawingView extends androidx.appcompat.widget.AppCompatImageView im
     private boolean isSelected = true;
     private boolean isTouched = false;
     Path lPath = new Path();
-    private ArrayList<Boolean> lassoIndx = new ArrayList();
-    private ArrayList<Integer> modeIndx = new ArrayList();
+    private ArrayList<Boolean> lassoIndx = new ArrayList<>();
+    private ArrayList<Integer> modeIndx = new ArrayList<>();
     private int offset = 200;
     private int offset1 = 200;
     private Bitmap orgBit;
@@ -82,7 +82,7 @@ public class DrawingView extends androidx.appcompat.widget.AppCompatImageView im
     private int targetBrushSize1 = 18;
     private UndoRedoListener undoRedoListener;
     private boolean updateOnly = false;
-    private ArrayList<Vector<Point>> vectorPoints = new ArrayList();
+    private ArrayList<Vector<Point>> vectorPoints = new ArrayList<>();
     Paint strokePaint;
     Bitmap Transparent;
     int r = 55;
@@ -571,7 +571,6 @@ public class DrawingView extends androidx.appcompat.widget.AppCompatImageView im
             if (this.undoRedoListener != null) {
                 this.undoRedoListener.enableRedo(true);
             }
-
         }
     }
 

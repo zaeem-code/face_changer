@@ -25,14 +25,12 @@
                 android:layout_marginBottom="@dimen/_15sdp"
                 android:fontFamily="@font/product_sans"
                 android:gravity="center"
-                android:text="@string/save_image"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_18sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
             <ImageView
                 android:id="@+id/shareIMG"
@@ -75,7 +73,6 @@
                     android:layout_gravity="end|bottom"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:text="Men's Jacket"
                     android:src="@drawable/men_style"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sdp"
@@ -91,7 +88,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:background="@drawable/cus_camera_bg"
+            android:background="@drawable/cus_drawer_bg_rounded"
             app:layout_constraintBottom_toTopOf="@id/guideline1"
             app:layout_constraintEnd_toStartOf="@+id/lv_ad"
             app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +100,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/product_sans"
                 android:gravity="center"
-                android:text="Go to Home"
+                android:text="Save image"
+
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="parent"

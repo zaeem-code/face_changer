@@ -148,7 +148,7 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/lv_background"
                 style="@style/uCrop_wrapperIconState"
-                android:onClick="@{ ()-> stickerViewModel.onBackGroundClick()}"
+                android:onClick="@{ ()-> stickerViewModel.onOldManClick()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/lv_zoom"
                 app:layout_constraintStart_toEndOf="@+id/lv_stickers"
@@ -174,7 +174,7 @@
                 android:id="@+id/lv_zoom"
                 style="@style/uCrop_wrapperIconState"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:onClick="@{ ()-> stickerViewModel.onZoomClick()}"
+                android:onClick="@{ ()-> stickerViewModel.onKidClick()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/lv_background"
@@ -209,14 +209,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
-                android:visibility="gone"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:background="@drawable/cus_white_bg_rounded"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/lv_opacity_seekBar"
+                    android:id="@+id/lv_skinTone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_7sdp"
@@ -233,7 +232,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/faceChangeRV"
+                            android:id="@+id/skinToneRV"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_100sdp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -293,7 +292,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/lv_color"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lv_opacity_seekBar">
+                    app:layout_constraintTop_toBottomOf="@+id/lv_skinTone">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/iv_addStickers"
@@ -315,11 +314,11 @@
                     style="@style/uCrop_wrapperIconState"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_15sdp"
-                    android:onClick="@{ ()-> stickerViewModel.onStickerColorClick()}"
+                    android:onClick="@{ ()-> stickerViewModel.onSkinToneClick()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/lv_opacity"
                     app:layout_constraintStart_toEndOf="@+id/lv_add_stickers"
-                    app:layout_constraintTop_toBottomOf="@+id/lv_opacity_seekBar">
+                    app:layout_constraintTop_toBottomOf="@+id/lv_skinTone">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/iv_colorStickers"
@@ -347,7 +346,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/lv_color"
-                    app:layout_constraintTop_toBottomOf="@+id/lv_opacity_seekBar">
+                    app:layout_constraintTop_toBottomOf="@+id/lv_skinTone">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/iv_opacityStickers"
