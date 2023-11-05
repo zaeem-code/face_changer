@@ -80,6 +80,7 @@ class AddStickerBottomSheet(
                     show(selectSuitActivity.supportFragmentManager, tag)
                 }
             }
+
             EnumClass.HAIR -> {
                 dismiss()
                 ShowStickersBottomSheet(
@@ -90,6 +91,7 @@ class AddStickerBottomSheet(
                     show(selectSuitActivity.supportFragmentManager, tag)
                 }
             }
+
             EnumClass.HAT -> {
                 dismiss()
                 ShowStickersBottomSheet(
@@ -100,6 +102,7 @@ class AddStickerBottomSheet(
                     show(selectSuitActivity.supportFragmentManager, tag)
                 }
             }
+
             EnumClass.MUSTACHE -> {
                 dismiss()
                 ShowStickersBottomSheet(
@@ -110,6 +113,7 @@ class AddStickerBottomSheet(
                     show(selectSuitActivity.supportFragmentManager, tag)
                 }
             }
+
             EnumClass.TIE -> {
                 dismiss()
                 ShowStickersBottomSheet(
@@ -120,6 +124,7 @@ class AddStickerBottomSheet(
                     show(selectSuitActivity.supportFragmentManager, tag)
                 }
             }
+
             else -> {}
         }
     }

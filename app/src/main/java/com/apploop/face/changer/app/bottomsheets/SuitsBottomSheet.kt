@@ -27,11 +27,6 @@ class SuitsBottomSheet(
     private lateinit var suitBottomSheetViewModel: SuitBottomSheetViewModel
     private lateinit var suitsBottomSheetAdapter: SuitsBottomSheetAdapter
 
-
-
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

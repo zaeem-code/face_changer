@@ -306,6 +306,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
             }
 
             EnumClass.DONE -> {
+                removeBorder()
                 getBitmapFromView(binding.lvRoot)?.let {
                     binding.progressBar.visibility = View.VISIBLE
                     window.setFlags(

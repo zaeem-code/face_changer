@@ -292,40 +292,15 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             EnumClass.STICKER_COLOR -> {
                 if (binding.lvColorsCode.visibility == View.VISIBLE) {
                     binding.lvColorsCode.visibility = View.GONE
-                    binding.ivColorStickers.setColorFilter(
-                        ContextCompat.getColor(
-                            this,
-                            R.color.light_grey
-                        )
-                    )
-                    binding.tvColorStickers.setTextColor(
-                        ContextCompat.getColor(
-                            this,
-                            R.color.light_grey
-                        )
-                    )
+                    binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
+                    binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                     return
                 }
                 binding.ivAddStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
-                binding.ivColorStickers.setColorFilter(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.purple_status
-                    )
-                )
-                binding.ivOpacityStickers.setColorFilter(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.light_grey
-                    )
-                )
+                binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.purple_status))
+                binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvAddStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
-                binding.tvColorStickers.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.purple_status
-                    )
-                )
+                binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
                 binding.tvOpacityStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.lvColorsCode.visibility = View.VISIBLE
                 binding.lvOpacitySeekBarContainer.visibility = View.GONE
@@ -334,37 +309,17 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             EnumClass.OPACITY -> {
                 if (binding.lvOpacitySeekBarContainer.visibility == View.VISIBLE) {
                     binding.lvOpacitySeekBarContainer.visibility = View.GONE
-                    binding.ivOpacityStickers.setColorFilter(
-                        ContextCompat.getColor(
-                            this,
-                            R.color.light_grey
-                        )
-                    )
-                    binding.tvOpacityStickers.setTextColor(
-                        ContextCompat.getColor(
-                            this,
-                            R.color.light_grey
-                        )
-                    )
+                    binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
+                    binding.tvOpacityStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                     return
                 }
 
                 binding.ivAddStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
                 binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
-                binding.ivOpacityStickers.setColorFilter(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.purple_status
-                    )
-                )
+                binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.purple_status))
                 binding.tvAddStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
-                binding.tvOpacityStickers.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.purple_status
-                    )
-                )
+                binding.tvOpacityStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
 
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
@@ -381,6 +336,8 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.DONE -> {
+                removeBorder()
+
                 getBitmapFromView(binding.lvRoot)?.let {
                     binding.progressBar.visibility = View.VISIBLE
                     window.setFlags(

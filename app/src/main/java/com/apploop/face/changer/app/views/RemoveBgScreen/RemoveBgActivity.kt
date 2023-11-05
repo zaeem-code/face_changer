@@ -221,10 +221,6 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
                 binding.lvColorsCodeContainer.visibility = View.VISIBLE
             }
 
-            EnumClass.ADD_STICKERS -> {
-
-            }
-
             EnumClass.BLACK1 -> {
                 binding.ivBlack1.visibility = View.VISIBLE
                 binding.ivRed1.visibility = View.GONE
@@ -377,6 +373,7 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
             }
 
             EnumClass.DONE -> {
+                removeBorder()
                 getBitmapFromView(binding.lvRoot)?.let {
                     binding.progressBar.visibility = View.VISIBLE
                     window.setFlags(

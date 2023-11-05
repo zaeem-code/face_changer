@@ -8,7 +8,6 @@ public class UtilsCons {
     public static String originalPath;
     public static String fromGallery;
     public static Uri finalUri;
-
     public static String faceType;
     public static String chooseLayout;
 

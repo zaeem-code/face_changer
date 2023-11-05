@@ -14,7 +14,6 @@ public class SharedPrefHelper {
         if (preferences == null) {
             preferences = MyApplication.Companion.applicationContext().getSharedPreferences("private-prefs", MODE);
         }
-
         return preferences;
     }
 

@@ -16,7 +16,6 @@ import com.apploop.face.changer.app.models.ObjSuitImageOption
 import com.apploop.face.changer.app.views.adapters.BackGroundBottomSheetAdapter
 import java.util.*
 
-
 class ShowBackgroundsBottomSheet(
     val activity: Activity,
     val list: List<ObjSuitImageOption>,

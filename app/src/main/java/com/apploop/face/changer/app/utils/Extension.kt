@@ -43,7 +43,6 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 object Extension {
 
     var imageFilePath: String = ""
@@ -63,32 +62,21 @@ object Extension {
     var wtList: ArrayList<SuitList?> = ArrayList()
     var fifaList: ArrayList<SuitList?> = ArrayList()
     var superList: ArrayList<SuitList?> = ArrayList()
-    private val ProjectFolderPath =
-        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath + File.separator + Edit_Folder_name + File.separator
-
+    private val ProjectFolderPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath + File.separator + Edit_Folder_name + File.separator
     var objSuitOptions: ArrayList<ObjSuitImageOption> = ArrayList<ObjSuitImageOption>()
     var objStickerDetailsTie: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
-    var objStickerDetailsBeard: ArrayList<ObjStickerImageDetail> =
-        ArrayList<ObjStickerImageDetail>()
-    var objFaceChangeDetail: ArrayList<ObjStickerImageDetail> =
-        ArrayList<ObjStickerImageDetail>()
-    var oldFaceChangeDetail: ArrayList<ObjStickerImageDetail> =
-        ArrayList<ObjStickerImageDetail>()
-    var kidFaceChangeDetail: ArrayList<ObjStickerImageDetail> =
-        ArrayList<ObjStickerImageDetail>()
-    var objStickerDetailsMustache: ArrayList<ObjStickerImageDetail> =
-        ArrayList<ObjStickerImageDetail>()
+    var objStickerDetailsBeard: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
+    var objFaceChangeDetail: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
+    var oldFaceChangeDetail: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
+    var kidFaceChangeDetail: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
+    var objStickerDetailsMustache: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
     var objStickerDetailsHat: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
-    var objStickerDetailsGoggle: ArrayList<ObjStickerImageDetail> =
-        ArrayList<ObjStickerImageDetail>()
+    var objStickerDetailsGoggle: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
     var objStickerDetailsPomp: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
     var objStickerDetailLong: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
-    var objStickerDetailsShort: ArrayList<ObjStickerImageDetail> =
-        ArrayList<ObjStickerImageDetail>()
-    var objStickerDetailsSpike: ArrayList<ObjStickerImageDetail> =
-        ArrayList<ObjStickerImageDetail>()
-    var objStickerDetailsColor: ArrayList<ObjStickerImageDetail> =
-        ArrayList<ObjStickerImageDetail>()
+    var objStickerDetailsShort: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
+    var objStickerDetailsSpike: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
+    var objStickerDetailsColor: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
     var objStickerDetailsBald: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
     var objStickerDetailsHair: ArrayList<ObjStickerImageDetail> = ArrayList<ObjStickerImageDetail>()
 
@@ -100,7 +88,6 @@ object Extension {
         "#FF9800",
         "#7B61FF",
         "#616161"
-
     )
 
     var objSuitOptions1: ArrayList<ObjSuitImageOption> = ArrayList<ObjSuitImageOption>()
@@ -126,20 +113,17 @@ object Extension {
         return Uri.parse(path)
     }
 
-    fun Context.createImageFile(): File? {
+    fun Context.createImageFile(): File {
         val uniqueString = UUID.randomUUID().toString()
         val file = File(
-            File(
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                    .toString()
-            ), "temp$uniqueString.jpg"
-        )
+            File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                .toString()), "temp$uniqueString.jpg")
         imageFilePath = file.absolutePath
         return file
     }
 
     fun Activity.handleCropError(result: Intent) {
-        val cropError = com.apploop.face.changer.app.cropModule.UCrop.getError(result)
+        val cropError = UCrop.getError(result)
         if (cropError != null) {
             Toast.makeText(this, cropError.message, Toast.LENGTH_LONG).show()
         } else {
@@ -195,12 +179,8 @@ object Extension {
     fun Activity.loadImage(image: AppCompatImageView) {
         Glide.with(applicationContext)
             .asBitmap()
-            .load(suitPath)
-            .into(object : SimpleTarget<Bitmap?>() {
-                override fun onResourceReady(
-                    resource: Bitmap,
-                    transition: Transition<in Bitmap?>?
-                ) {
+            .load(suitPath).into(object : SimpleTarget<Bitmap?>() {
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap?>?) {
                     bitmapSuit = resource
                     image.setImageBitmap(resource)
                 }
@@ -242,11 +222,7 @@ object Extension {
         }
     }
 
-    private fun Activity.listSticker1(
-        dirFrom: String?,
-        path: String,
-        emojiLists: ArrayList<ObjStickerImageDetail>
-    ): ArrayList<ObjStickerImageDetail> {
+    private fun Activity.listSticker1(dirFrom: String?, path: String, emojiLists: ArrayList<ObjStickerImageDetail>): ArrayList<ObjStickerImageDetail> {
         var emojiLists: ArrayList<ObjStickerImageDetail> = emojiLists
         emojiLists = ArrayList<ObjStickerImageDetail>()
         val res: Resources = resources
@@ -265,11 +241,7 @@ object Extension {
         return emojiLists
     }
 
-    private fun Activity.listSticker2(
-        dirFrom: String?,
-        path: String,
-        emojiLists: ArrayList<ObjStickerImage>
-    ): ArrayList<ObjStickerImage> {
+    private fun Activity.listSticker2(dirFrom: String?, path: String, emojiLists: ArrayList<ObjStickerImage>): ArrayList<ObjStickerImage> {
         var emojiLists: ArrayList<ObjStickerImage> = emojiLists
         emojiLists = ArrayList<ObjStickerImage>()
         val res: Resources = resources
@@ -283,14 +255,9 @@ object Extension {
         if (fileList != null) {
             for (i in fileList.indices) {
                 fileList[i]?.let {
-                    ObjStickerImage(
-                        it,
-                        "file:///android_asset/" + path + fileList[i]
-                    )
+                    ObjStickerImage(it, "file:///android_asset/" + path + fileList[i])
                 }?.let {
-                    emojiLists.add(
-                        it
-                    )
+                    emojiLists.add(it)
                 }
             }
         }
@@ -298,83 +265,30 @@ object Extension {
     }
 
     fun Activity.initLists() {
-        objSuitOptions =
-            listSticker("backgroundBG", "backgroundBG/", objSuitOptions)
-
-        objStickerDetailsTie =
-            listSticker1("symbol/TieBow", "symbol/TieBow/", objStickerDetailsTie)
-        objStickerDetailsBeard =
-            listSticker1("symbol/Beard", "symbol/Beard/", objStickerDetailsBeard)
-        objFaceChangeDetail =
-            listSticker1("faceChange", "faceChange/", objFaceChangeDetail)
-        kidFaceChangeDetail =
-            listSticker1("faceChange", "faceChange/", kidFaceChangeDetail)
-        oldFaceChangeDetail =
-            listSticker1("oldFaceChange", "oldFaceChange/", oldFaceChangeDetail)
-        objStickerDetailsMustache =
-            listSticker1(
-                "symbol/Mustaches",
-                "symbol/Mustaches/",
-                objStickerDetailsMustache
-            )
-        objStickerDetailsGoggle = listSticker1(
-            "symbol/GogglesSunglass",
-            "symbol/GogglesSunglass/",
-            objStickerDetailsGoggle
-        )
-        objStickerDetailsHat =
-            listSticker1("symbol/Hat", "symbol/Hat/", objStickerDetailsHat)
-
-        objStickerDetailsHair =
-            listSticker1(
-                "hairstyles/Coiffure",
-                "hairstyles/Coiffure/",
-                objStickerDetailsHair
-            )
+        objSuitOptions = listSticker("backgroundBG", "backgroundBG/", objSuitOptions)
+        objStickerDetailsTie = listSticker1("symbol/TieBow", "symbol/TieBow/", objStickerDetailsTie)
+        objStickerDetailsBeard = listSticker1("symbol/Beard", "symbol/Beard/", objStickerDetailsBeard)
+        objFaceChangeDetail = listSticker1("faceChange", "faceChange/", objFaceChangeDetail)
+        kidFaceChangeDetail = listSticker1("faceChange", "faceChange/", kidFaceChangeDetail)
+        oldFaceChangeDetail = listSticker1("oldFaceChange", "oldFaceChange/", oldFaceChangeDetail)
+        objStickerDetailsMustache = listSticker1("symbol/Mustaches", "symbol/Mustaches/", objStickerDetailsMustache)
+        objStickerDetailsGoggle = listSticker1("symbol/GogglesSunglass", "symbol/GogglesSunglass/", objStickerDetailsGoggle)
+        objStickerDetailsHat = listSticker1("symbol/Hat", "symbol/Hat/", objStickerDetailsHat)
+        objStickerDetailsHair = listSticker1("hairstyles/Coiffure", "hairstyles/Coiffure/", objStickerDetailsHair)
 
         objStickerDetailsHair.addAll(objStickerDetailsHair)
 
-        objStickerDetailsPomp =
-            listSticker1(
-                "hairstyles/Coiffure",
-                "hairstyles/Coiffure/",
-                objStickerDetailsPomp
-            )
+        objStickerDetailsPomp = listSticker1("hairstyles/Coiffure", "hairstyles/Coiffure/",objStickerDetailsPomp)
         objStickerDetailsHair.addAll(objStickerDetailsPomp)
-        objStickerDetailLong =
-            listSticker1(
-                "hairstyles/Longhair",
-                "hairstyles/Longhair/",
-                objStickerDetailLong
-            )
+        objStickerDetailLong = listSticker1("hairstyles/Longhair", "hairstyles/Longhair/",objStickerDetailLong)
         objStickerDetailsHair.addAll(objStickerDetailLong)
-        objStickerDetailsShort =
-            listSticker1(
-                "hairstyles/Crewcut",
-                "hairstyles/Crewcut/",
-                objStickerDetailsShort
-            )
+        objStickerDetailsShort = listSticker1("hairstyles/Crewcut", "hairstyles/Crewcut/",objStickerDetailsShort)
         objStickerDetailsHair.addAll(objStickerDetailsShort)
-        objStickerDetailsSpike =
-            listSticker1(
-                "hairstyles/Spiky",
-                "hairstyles/Spiky/",
-                objStickerDetailsSpike
-            )
+        objStickerDetailsSpike = listSticker1("hairstyles/Spiky", "hairstyles/Spiky/",objStickerDetailsSpike)
         objStickerDetailsHair.addAll(objStickerDetailsSpike)
-        objStickerDetailsColor =
-            listSticker1(
-                "hairstyles/Colored",
-                "hairstyles/Colored/",
-                objStickerDetailsColor
-            )
+        objStickerDetailsColor = listSticker1("hairstyles/Colored", "hairstyles/Colored/",objStickerDetailsColor)
         objStickerDetailsHair.addAll(objStickerDetailsColor)
-        objStickerDetailsBald =
-            listSticker1(
-                "hairstyles/Bald",
-                "hairstyles/Bald/",
-                objStickerDetailsBald
-            )
+        objStickerDetailsBald = listSticker1("hairstyles/Bald", "hairstyles/Bald/",objStickerDetailsBald)
         objStickerDetailsHair.addAll(objStickerDetailsBald)
     }
 
@@ -397,12 +311,7 @@ object Extension {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        MediaScannerConnection.scanFile(
-            this,
-            arrayOf(file2.absolutePath.toString()),
-            null,
-            null
-        )
+        MediaScannerConnection.scanFile(this, arrayOf(file2.absolutePath.toString()), null, null)
         if (Build.VERSION.SDK_INT >= 19) {
             val intent6 = Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE")
             intent6.data = Uri.fromFile(file2)
@@ -411,12 +320,7 @@ object Extension {
             val sb = StringBuilder()
             sb.append("file://")
             sb.append(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES))
-            sendBroadcast(
-                Intent(
-                    "android.intent.action.MEDIA_MOUNTED",
-                    Uri.parse(sb.toString())
-                )
-            )
+            sendBroadcast(Intent("android.intent.action.MEDIA_MOUNTED", Uri.parse(sb.toString())))
         }
         return file2.absolutePath
     }
@@ -468,18 +372,15 @@ object Extension {
     fun Activity.alertDialog(path: String) {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = this.layoutInflater
-        val dialogView: View =
-            inflater.inflate(com.apploop.face.changer.app.R.layout.cus_delete_dialog, null)
+        val dialogView: View = inflater.inflate(com.apploop.face.changer.app.R.layout.cus_delete_dialog, null)
         dialogBuilder.setView(dialogView)
 
         val alertDialog = dialogBuilder.create()
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
 
-        val lvCancel =
-            dialogView.findViewById<View>(com.apploop.face.changer.app.R.id.lv_cancel) as ConstraintLayout
-        val lvDelete =
-            dialogView.findViewById<View>(com.apploop.face.changer.app.R.id.lv_delete) as ConstraintLayout
+        val lvCancel = dialogView.findViewById<View>(com.apploop.face.changer.app.R.id.lv_cancel) as ConstraintLayout
+        val lvDelete = dialogView.findViewById<View>(com.apploop.face.changer.app.R.id.lv_delete) as ConstraintLayout
 
         lvCancel.setOnClickListener {
             alertDialog.dismiss()
@@ -493,19 +394,13 @@ object Extension {
                     if (imageGallery.size <= 0) {
                         finish()
                     }
-                    sendBroadcast(
-                        Intent(
-                            "android.intent.action.MEDIA_SCANNER_SCAN_FILE",
-                            Uri.fromFile(fD)
-                        )
-                    )
+                    sendBroadcast(Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE", Uri.fromFile(fD)))
                 }
                 alertDialog.dismiss()
                 finish()
             }
         }
     }
-
 
     fun Activity.initSuitsLists() {
         objSuitOptions1 = listSticker("blazeres", "blazeres/", objSuitOptions1)
@@ -534,7 +429,7 @@ object Extension {
             dialogView.findViewById<AppCompatButton>(com.apploop.face.changer.app.R.id.btn_rateUs)
 
         btnRate.setOnClickListener {
-            com.apploop.face.changer.app.utils.SharedPrefHelper.writeBoolean("isOpened", true)
+            SharedPrefHelper.writeBoolean("isOpened", true)
             rateApp()
         }
 
@@ -580,7 +475,6 @@ object Extension {
                 alertDialog.show()
             }
         })
-
     }
 
     fun Activity.isOpenRecently(): Boolean {
@@ -647,9 +541,7 @@ object Extension {
                 }
             }
         }
-
         return result
     }
-
 
 }

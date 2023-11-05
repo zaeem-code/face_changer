@@ -15,37 +15,24 @@ import com.apploop.face.changer.app.models.ObjStickerImageDetail
 import com.apploop.face.changer.app.views.adapters.ShowStickersBottomSheetAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.apploop.face.changer.app.manager.AdsManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
-class ShowStickersBottomSheet(
-    val activity: Activity,
-    val list: List<ObjStickerImageDetail>,
-    val listener: AddStickerBottomSheetViewModelInterface
-) :
+class ShowStickersBottomSheet(val activity: Activity, val list: List<ObjStickerImageDetail>, val listener: AddStickerBottomSheetViewModelInterface) :
     BottomSheetDialogFragment(), AdapterPathInterface {
 
     private lateinit var binding: CusSuitBottomSheetBinding
     private lateinit var suitsBottomSheetAdapter: ShowStickersBottomSheetAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.cus_suit_bottom_sheet,
-            container,
-            false
-        )
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.cus_suit_bottom_sheet, container, false)
         return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val dialog = dialog as BottomSheetDialog
+        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
 
         AdsManager.instance?.showNativeAd(
             binding.frameLayout,
