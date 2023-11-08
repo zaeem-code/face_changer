@@ -53,7 +53,6 @@ class AddStickerBottomSheet(
         selectSuitActivity.initLists()
     }
 
-
     override fun getTheme(): Int {
         return R.style.SheetDialog
     }

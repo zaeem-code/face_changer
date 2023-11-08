@@ -233,6 +233,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
             }
 
             EnumClass.ADD_STICKERS -> {
+                removeBorder()
                 binding.ivAddStickers.setColorFilter(ContextCompat.getColor(this, R.color.purple_status))
                 binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
                 binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
@@ -271,6 +272,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
             }
 
             EnumClass.OPACITY -> {
+                removeBorder()
                 if (binding.lvOpacitySeekBarContainer.visibility == View.VISIBLE) {
                     binding.lvOpacitySeekBarContainer.visibility = View.GONE
                     binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))

@@ -97,8 +97,6 @@ class SplashActivity : AppCompatActivity() {
             return
         }
 
-
-
         // Load an ad.
         (application as MyApplication).loadAd(this)
     }

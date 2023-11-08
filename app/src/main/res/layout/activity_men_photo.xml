@@ -571,13 +571,15 @@
                         style="@style/uCrop_imageViewWidgetIcon"
                         android:gravity="center"
                         android:orientation="vertical"
+                        app:tint="@color/light_grey"
                         app:srcCompat="@drawable/ic_color" />
 
                     <TextView
                         android:id="@+id/tv_colorStickers"
                         style="@style/uCrop_textViewWidget"
                         android:fontFamily="@font/product_sans"
-                        android:text="@string/color" />
+                        android:text="@string/color"
+                        android:textColor="@color/light_grey" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -596,13 +598,15 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/iv_opacityStickers"
                         style="@style/uCrop_imageViewWidgetIcon"
+                        app:tint="@color/light_grey"
                         app:srcCompat="@drawable/ic_opacity" />
 
                     <TextView
                         android:id="@+id/tv_opacityStickers"
                         style="@style/uCrop_textViewWidget"
                         android:fontFamily="@font/product_sans"
-                        android:text="@string/opacity" />
+                        android:text="@string/opacity"
+                        android:textColor="@color/light_grey"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

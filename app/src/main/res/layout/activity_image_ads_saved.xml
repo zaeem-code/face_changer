@@ -100,8 +100,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/product_sans"
                 android:gravity="center"
-                android:text="Save image"
-
+                android:text="Go to Home"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="parent"

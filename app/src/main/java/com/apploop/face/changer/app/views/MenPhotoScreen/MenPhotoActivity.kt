@@ -179,6 +179,8 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.BLACK -> {
+
+                removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT).show()
                     return
@@ -194,6 +196,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.RED -> {
+                removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
                         .show()
@@ -210,6 +213,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.BLUE -> {
+                removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
                         .show()
@@ -226,6 +230,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.GREEN -> {
+                removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
                         .show()
@@ -242,6 +247,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.YELLOW -> {
+                removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
                         .show()
@@ -258,6 +264,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.PURPLE -> {
+                removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
                         .show()
@@ -274,6 +281,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.GRAY -> {
+                removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
                         .show()
@@ -290,6 +298,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.STICKER_COLOR -> {
+                removeBorder()
                 if (binding.lvColorsCode.visibility == View.VISIBLE) {
                     binding.lvColorsCode.visibility = View.GONE
                     binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
@@ -307,6 +316,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.OPACITY -> {
+                removeBorder()
                 if (binding.lvOpacitySeekBarContainer.visibility == View.VISIBLE) {
                     binding.lvOpacitySeekBarContainer.visibility = View.GONE
                     binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
@@ -337,7 +347,6 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
 
             EnumClass.DONE -> {
                 removeBorder()
-
                 getBitmapFromView(binding.lvRoot)?.let {
                     binding.progressBar.visibility = View.VISIBLE
                     window.setFlags(

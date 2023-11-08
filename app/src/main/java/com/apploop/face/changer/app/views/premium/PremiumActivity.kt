@@ -27,10 +27,9 @@ class PremiumActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_premium)
         statusBarColor(R.color.white)
 
-        com.apploop.face.changer.app.utils.SharedPrefHelper.writeBoolean(com.apploop.face.changer.app.utils.Constants.IN_APP_KEY,true)
+        SharedPrefHelper.writeBoolean(Constants.IN_APP_KEY,true)
 
-
-        com.apploop.face.changer.app.InAppBilling.SubscriptionBillingManager(this, this)
+        SubscriptionBillingManager(this, this)
 
 
         init()
@@ -46,7 +45,7 @@ class PremiumActivity : AppCompatActivity() {
             binding.ivCheck.visibility = View.VISIBLE
             binding.ivCheck1.visibility = View.INVISIBLE
             binding.ivCheck2.visibility = View.INVISIBLE
-            priceTag = com.apploop.face.changer.app.utils.Constants.SKU_ITEM_ONE_MONTH
+            priceTag = Constants.SKU_ITEM_ONE_MONTH
 
         }
 
@@ -57,7 +56,7 @@ class PremiumActivity : AppCompatActivity() {
             binding.ivCheck1.visibility = View.VISIBLE
             binding.ivCheck.visibility = View.INVISIBLE
             binding.ivCheck2.visibility = View.INVISIBLE
-            priceTag = com.apploop.face.changer.app.utils.Constants.SKU_ITEM_SIX_MONTH
+            priceTag = Constants.SKU_ITEM_SIX_MONTH
 
         }
 
@@ -67,7 +66,7 @@ class PremiumActivity : AppCompatActivity() {
             binding.ivCheck2.visibility = View.VISIBLE
             binding.ivCheck1.visibility = View.INVISIBLE
             binding.ivCheck.visibility = View.INVISIBLE
-            priceTag = com.apploop.face.changer.app.utils.Constants.SKU_ITEM_ONE_YEAR
+            priceTag = Constants.SKU_ITEM_ONE_YEAR
 
 
         }
@@ -80,14 +79,12 @@ class PremiumActivity : AppCompatActivity() {
                 binding.ivCheck2.visibility = View.INVISIBLE
                 binding.ivCheck.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_check_circle));
 
-//                makePurchaseViewModel!!.buySku(this, Constants.SKU_ITEM_ONE_MONTH)
-                com.apploop.face.changer.app.InAppBilling.SubscriptionBillingManager(this, this)
-                    .subscribe(com.apploop.face.changer.app.utils.Constants.SKU_ITEM_ONE_MONTH)
+                SubscriptionBillingManager(this, this)
+                    .subscribe(Constants.SKU_ITEM_ONE_MONTH)
 
             } else {
-                com.apploop.face.changer.app.InAppBilling.SubscriptionBillingManager(this, this).subscribe(priceTag)
+                SubscriptionBillingManager(this, this).subscribe(priceTag)
 
-//                makePurchaseViewModel!!.buySku(this, priceTag)
             }
 
         }
@@ -98,16 +95,17 @@ class PremiumActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
             )
-            AdsManager.Companion.instance!!.showInterstitialAd(this, object :
-                com.apploop.face.changer.app.manager.OnAdLoaded {
-                override fun OnAdLoadedCallBack(loaded: Boolean?) {
-                    binding.progressBar.visibility = View.GONE
-                    window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-                    finish()
-                    startActivity(Intent(this@PremiumActivity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
-                }
-
-            })
+            AdsManager.Companion.instance!!.showInterstitialAd(this) {
+                binding.progressBar.visibility = View.GONE
+                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                finish()
+                startActivity(
+                    Intent(
+                        this@PremiumActivity,
+                        MainActivity::class.java
+                    ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                )
+            }
         }
 
     }
@@ -121,17 +119,15 @@ class PremiumActivity : AppCompatActivity() {
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 )
-                AdsManager.Companion.instance!!.showInterstitialAd(this, object :
-                    com.apploop.face.changer.app.manager.OnAdLoaded {
-                    override fun OnAdLoadedCallBack(loaded: Boolean?) {
-                        binding.progressBar.visibility = View.GONE
-                        window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-                        finish()
-                        startActivity(Intent(this@PremiumActivity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
-                    }
-
-                })
-
-
+                AdsManager.instance!!.showInterstitialAd(this) {
+                    binding.progressBar.visibility = View.GONE
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                    finish()
+                    startActivity(
+                        Intent(this@PremiumActivity, MainActivity::class.java).addFlags(
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        )
+                    )
+                }
     }
 }
