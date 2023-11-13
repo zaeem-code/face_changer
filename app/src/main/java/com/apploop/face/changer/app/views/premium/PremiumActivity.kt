@@ -28,16 +28,34 @@ class PremiumActivity : AppCompatActivity() {
         statusBarColor(R.color.white)
 
         SharedPrefHelper.writeBoolean(Constants.IN_APP_KEY,true)
-
         SubscriptionBillingManager(this, this)
-
 
         init()
     }
 
     private fun init() {
 
+        binding.ivCross.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+            )
+            AdsManager.instance!!.showInterstitialAd(this) {
+                binding.progressBar.visibility = View.GONE
+                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                finish()
+                startActivity(
+                    Intent(this@PremiumActivity, MainActivity::class.java).addFlags(
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    )
+                )
+            }
+        }
 
+        binding.basicRL.setOnClickListener {
+            priceTag = Constants.SKU_ITEM_ONE_MONTH
+        }
 
         binding.lvMonth.setOnClickListener {
 
@@ -48,7 +66,6 @@ class PremiumActivity : AppCompatActivity() {
             priceTag = Constants.SKU_ITEM_ONE_MONTH
 
         }
-
 
         binding.lvSixMonth.setOnClickListener {
 
@@ -68,24 +85,23 @@ class PremiumActivity : AppCompatActivity() {
             binding.ivCheck.visibility = View.INVISIBLE
             priceTag = Constants.SKU_ITEM_ONE_YEAR
 
-
         }
 
         binding.ivButton.setOnClickListener {
 
-            if (priceTag == "empty") {
-                binding.ivCheck.visibility = View.VISIBLE
-                binding.ivCheck1.visibility = View.INVISIBLE
-                binding.ivCheck2.visibility = View.INVISIBLE
-                binding.ivCheck.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_check_circle));
+//            if (priceTag == "empty") {
+//                binding.ivCheck.visibility = View.VISIBLE
+//                binding.ivCheck1.visibility = View.INVISIBLE
+//                binding.ivCheck2.visibility = View.INVISIBLE
+//                binding.ivCheck.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_check_circle));
 
                 SubscriptionBillingManager(this, this)
                     .subscribe(Constants.SKU_ITEM_ONE_MONTH)
 
-            } else {
-                SubscriptionBillingManager(this, this).subscribe(priceTag)
-
-            }
+//            } else {
+//                SubscriptionBillingManager(this, this).subscribe(priceTag)
+//
+//            }
 
         }
 

@@ -73,8 +73,8 @@ public abstract class StickerView extends FrameLayout implements View.OnClickLis
         this.iv_flip = new ImageView(context);
 
         this.iv_scale.setImageResource(R.drawable.ic_pick_sticker);
-        this.iv_delete.setImageResource(R.drawable.ic_cross_sticker);
-        this.iv_flip.setImageResource(R.drawable.ic_flip_sticker);
+        this.iv_delete.setImageResource(R.drawable.cross);
+        this.iv_flip.setImageResource(R.drawable.flip);
 
         this.setTag("DraggableViewGroup");
         this.iv_border.setTag("iv_border");

@@ -61,8 +61,6 @@ public class StickerImageView extends StickerView {
         paint.setColorFilter(new LightingColorFilter(Color.parseColor(str), 1));
         new Canvas(copy).drawBitmap(copy, 0.0f, 0.0f, paint);
         iv_main.setImageBitmap(copy);
-
-
     }
 
     public void setImageResource(int res_id) {

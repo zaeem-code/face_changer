@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
+import android.widget.GridLayout
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
@@ -18,6 +20,7 @@ import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.bottomsheets.ShowStickersBottomSheet
 import com.apploop.face.changer.app.callBacks.AddStickerBottomSheetViewModelInterface
 import com.apploop.face.changer.app.callBacks.BackgroundBottomSheetInterface
+import com.apploop.face.changer.app.callBacks.BackgroundSkinToneInterface
 import com.apploop.face.changer.app.callBacks.StickerViewModelInterface
 import com.apploop.face.changer.app.databinding.ActivityFaceChangeBinding
 import com.apploop.face.changer.app.helpers.EnumClass
@@ -25,6 +28,8 @@ import com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener
 import com.apploop.face.changer.app.helpers.stickerviewclass.StickerImageView
 import com.apploop.face.changer.app.helpers.stickerviewclass.StickerView
 import com.apploop.face.changer.app.utils.Extension
+import com.apploop.face.changer.app.utils.Extension.faceChangeList
+import com.apploop.face.changer.app.utils.Extension.faceColors
 import com.apploop.face.changer.app.utils.Extension.getBitmapFromView
 import com.apploop.face.changer.app.utils.Extension.initLists
 import com.apploop.face.changer.app.utils.Extension.loadBitmap
@@ -32,12 +37,14 @@ import com.apploop.face.changer.app.utils.Extension.statusBarColor
 import com.apploop.face.changer.app.utils.UtilsCons
 import com.apploop.face.changer.app.viewModels.StickerViewModel
 import com.apploop.face.changer.app.views.adapters.ShowSkinToneAdapter
+import com.apploop.face.changer.app.views.adapters.ShowSkinToneColorsAdapter
 import com.apploop.face.changer.app.views.saved.ImageAdsSavedActivity
 import com.apploop.face.changer.app.views.stickers.StickerActivity
 import java.util.Random
 
 class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
-    ,AddStickerBottomSheetViewModelInterface, BackgroundBottomSheetInterface {
+    ,AddStickerBottomSheetViewModelInterface, BackgroundBottomSheetInterface ,
+    BackgroundSkinToneInterface {
 
     lateinit var binding: ActivityFaceChangeBinding
     private var sticker: StickerImageView? = null
@@ -75,6 +82,18 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
         }
 
         UtilsCons.faceType = "YOUNG"
+
+        initLists()
+        binding.lvFaceChange.visibility = View.VISIBLE
+        binding.lvRec.visibility = View.GONE
+        removeBorder()
+
+        binding.faceChangeRV.layoutManager = GridLayoutManager(this,3)
+        var suitsBottomSheetAdapter = ShowSkinToneAdapter(Extension.objFaceChangeDetail, this@FaceChangeActivity, this@FaceChangeActivity)
+        binding.faceChangeRV.adapter = suitsBottomSheetAdapter
+        suitsBottomSheetAdapter.notifyDataSetChanged()
+
+
 
         multiTouchListener.setOnMultiTouch(object : StickerActivity.OnStickerTouch {
             override fun onTouch(action: Int) {
@@ -127,6 +146,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
         Glide.with(applicationContext)
             .asBitmap()
             .load(path)
+
             .into(object : SimpleTarget<Bitmap?>() {
                 override fun onResourceReady(
                     resource: Bitmap,
@@ -144,7 +164,6 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
         sticker!!.id = Extension.viewId
 
         Extension.stickerViewId.add(Extension.viewId)
-
         sticker!!.setOnClickListener(View.OnClickListener {
             sticker!!.setControlItemsHidden(true)
         })
@@ -209,6 +228,12 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
             }
 
             EnumClass.SKIN_TONE -> {
+                if (binding.lvRoot.childCount <= 2) {
+                    Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
+                        .show()
+                    return
+                }
+
                 if (binding.lvRec.visibility == View.VISIBLE) {
                     binding.lvRec.visibility = View.GONE
                     binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
@@ -223,13 +248,16 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
                 binding.tvOpacityStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.lvOpacitySeekBarContainer.visibility = View.GONE
+                binding.lvFaceChange.visibility = View.GONE
 
                 binding.lvRec.visibility = View.VISIBLE
                 removeBorder()
 
+
                 binding.skinToneRV.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-                var suitsBottomSheetAdapter = ShowSkinToneAdapter(Extension.oldFaceChangeDetail, this@FaceChangeActivity, this@FaceChangeActivity)
+                var suitsBottomSheetAdapter = ShowSkinToneColorsAdapter(faceChangeList(),this@FaceChangeActivity, Extension.imageFilePath,this@FaceChangeActivity)
                 binding.skinToneRV.adapter = suitsBottomSheetAdapter
+                suitsBottomSheetAdapter.notifyDataSetChanged()
             }
 
             EnumClass.ADD_STICKERS -> {
@@ -243,31 +271,48 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.lvOpacitySeekBarContainer.visibility = View.GONE
                 binding.lvRec.visibility = View.GONE
 
+//                initLists()
                 initLists()
+                binding.lvFaceChange.visibility = View.VISIBLE
+                removeBorder()
+
+                binding.faceChangeRV.layoutManager = GridLayoutManager(this,3)
+
                 if(UtilsCons.faceType.contains("OLD")){
-                    ShowStickersBottomSheet(
-                        this,
-                        Extension.oldFaceChangeDetail,
-                        this
-                    ).apply {
-                        show(supportFragmentManager, tag)
-                    }
+//                    ShowStickersBottomSheet(
+//                        this,
+//                        Extension.oldFaceChangeDetail,
+//                        this
+//                    ).apply {
+//                        show(supportFragmentManager, tag)
+//                    }
+                    var suitsBottomSheetAdapter = ShowSkinToneAdapter(Extension.oldFaceChangeDetail, this@FaceChangeActivity, this@FaceChangeActivity)
+                    binding.faceChangeRV.adapter = suitsBottomSheetAdapter
+                    suitsBottomSheetAdapter.notifyDataSetChanged()
                 }else if (UtilsCons.faceType.contains("YOUNG")){
-                    ShowStickersBottomSheet(
-                        this,
-                        Extension.objFaceChangeDetail,
-                        this
-                    ).apply {
-                        show(supportFragmentManager, tag)
-                    }
+//                    ShowStickersBottomSheet(
+//                        this,
+//                        Extension.objFaceChangeDetail,
+//                        this
+//                    ).apply {
+//                        show(supportFragmentManager, tag)
+//                    }
+
+                    var suitsBottomSheetAdapter = ShowSkinToneAdapter(Extension.objFaceChangeDetail, this@FaceChangeActivity, this@FaceChangeActivity)
+                    binding.faceChangeRV.adapter = suitsBottomSheetAdapter
+                    suitsBottomSheetAdapter.notifyDataSetChanged()
                 }else {
-                    ShowStickersBottomSheet(
-                        this,
-                        Extension.kidFaceChangeDetail,
-                        this
-                    ).apply {
-                        show(supportFragmentManager, tag)
-                    }
+//                    ShowStickersBottomSheet(
+//                        this,
+//                        Extension.kidFaceChangeDetail,
+//                        this
+//                    ).apply {
+//                        show(supportFragmentManager, tag)
+//                    }
+
+                    var suitsBottomSheetAdapter = ShowSkinToneAdapter(Extension.kidFaceChangeDetail, this@FaceChangeActivity, this@FaceChangeActivity)
+                    binding.faceChangeRV.adapter = suitsBottomSheetAdapter
+                    suitsBottomSheetAdapter.notifyDataSetChanged()
                 }
             }
 
@@ -281,6 +326,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 }
 
                 binding.lvRec.visibility = View.GONE
+                binding.lvFaceChange.visibility = View.GONE
 
                 binding.ivAddStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
                 binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
@@ -327,6 +373,9 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
         }
     }
 
+    override fun onBackgroundSkinToneInterfaceClicks(color: String) {
+        sticker!!.applyColorFilter(color)
+    }
     override fun onBackgroundBottomSheetButtonClicks(path: String) {
         binding.ivBackGround.colorFilter = null
         val filePath = "file:///android_asset/$path"

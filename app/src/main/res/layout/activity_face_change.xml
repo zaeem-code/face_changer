@@ -93,7 +93,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_5sdp"
             android:background="@color/background"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintBottom_toTopOf="@+id/main"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frame_layout">
@@ -108,8 +108,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_suit"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="match_parent" />
         </FrameLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -164,9 +163,9 @@
                 <TextView
                     android:id="@+id/tv_background"
                     style="@style/uCrop_textViewWidget"
-                    android:textColor="@color/light_grey"
                     android:fontFamily="@font/product_sans"
-                    android:text="Old Man" />
+                    android:text="Old Man"
+                    android:textColor="@color/light_grey" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -189,8 +188,8 @@
                     android:id="@+id/tv_zoom"
                     style="@style/uCrop_textViewWidget"
                     android:fontFamily="@font/product_sans"
-                    android:textColor="@color/light_grey"
-                    android:text="Kid Face" />
+                    android:text="Kid Face"
+                    android:textColor="@color/light_grey" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -208,9 +207,7 @@
                 android:id="@+id/lv_stickers_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:background="@drawable/cus_white_bg_rounded"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -219,6 +216,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_7sdp"
+                    app:layout_constraintBottom_toTopOf="@+id/lv_stickers_container1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -226,13 +224,30 @@
                         android:id="@+id/lv_rec"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/skinToneRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_100sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/lv_faceChange"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/faceChangeRV"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_100sdp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -279,88 +294,96 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/lv_add_stickers"
-                    style="@style/uCrop_wrapperIconState"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    android:onClick="@{ ()-> stickerViewModel.onAddStickersClick()}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/lv_color"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lv_skinTone">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_addStickers"
-                        style="@style/uCrop_imageViewWidgetIcon"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:srcCompat="@drawable/face_icon" />
-
-                    <TextView
-                        android:id="@+id/tv_addStickers"
-                        style="@style/uCrop_textViewWidget"
-                        android:fontFamily="@font/product_sans"
-                        android:text="Change Face" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/lv_color"
-                    style="@style/uCrop_wrapperIconState"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    android:onClick="@{ ()-> stickerViewModel.onSkinToneClick()}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/lv_opacity"
-                    app:layout_constraintStart_toEndOf="@+id/lv_add_stickers"
-                    app:layout_constraintTop_toBottomOf="@+id/lv_skinTone">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_colorStickers"
-                        style="@style/uCrop_imageViewWidgetIcon"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        app:srcCompat="@drawable/skin_tone" />
-
-                    <TextView
-                        android:id="@+id/tv_colorStickers"
-                        style="@style/uCrop_textViewWidget"
-                        android:fontFamily="@font/product_sans"
-                        android:textColor="@color/light_grey"
-                        android:text="Skin Tone" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/lv_opacity"
-                    style="@style/uCrop_wrapperIconState"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/_15sdp"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    android:onClick="@{ ()-> stickerViewModel.onOpacityClick()}"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lv_stickers_container1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/lv_color"
-                    app:layout_constraintTop_toBottomOf="@+id/lv_skinTone">
+                    app:layout_constraintStart_toStartOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_opacityStickers"
-                        style="@style/uCrop_imageViewWidgetIcon"
-                        app:srcCompat="@drawable/opacity" />
 
-                    <TextView
-                        android:id="@+id/tv_opacityStickers"
-                        style="@style/uCrop_textViewWidget"
-                        android:textColor="@color/light_grey"
-                        android:fontFamily="@font/product_sans"
-                        android:text="@string/opacity" />
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/lv_add_stickers"
+                        style="@style/uCrop_wrapperIconState"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:onClick="@{ ()-> stickerViewModel.onAddStickersClick()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/lv_color"
+                        app:layout_constraintStart_toStartOf="parent">
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_addStickers"
+                            style="@style/uCrop_imageViewWidgetIcon"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:srcCompat="@drawable/face_icon" />
+
+                        <TextView
+                            android:id="@+id/tv_addStickers"
+                            style="@style/uCrop_textViewWidget"
+                            android:fontFamily="@font/product_sans"
+                            android:text="Change Face" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/lv_color"
+                        style="@style/uCrop_wrapperIconState"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:onClick="@{ ()-> stickerViewModel.onSkinToneClick()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/lv_opacity"
+                        app:layout_constraintStart_toEndOf="@+id/lv_add_stickers">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_colorStickers"
+                            style="@style/uCrop_imageViewWidgetIcon"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:srcCompat="@drawable/skin_tone" />
+
+                        <TextView
+                            android:id="@+id/tv_colorStickers"
+                            style="@style/uCrop_textViewWidget"
+                            android:fontFamily="@font/product_sans"
+                            android:text="Skin Tone"
+                            android:textColor="@color/light_grey" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/lv_opacity"
+                        style="@style/uCrop_wrapperIconState"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:onClick="@{ ()-> stickerViewModel.onOpacityClick()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/lv_color">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_opacityStickers"
+                            style="@style/uCrop_imageViewWidgetIcon"
+                            app:srcCompat="@drawable/opacity" />
+
+                        <TextView
+                            android:id="@+id/tv_opacityStickers"
+                            style="@style/uCrop_textViewWidget"
+                            android:fontFamily="@font/product_sans"
+                            android:text="@string/opacity"
+                            android:textColor="@color/light_grey" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -371,8 +394,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
-                android:visibility="gone"
                 android:background="@drawable/cus_white_bg_rounded"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 

@@ -44,13 +44,13 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:fontFamily="@font/product_sans"
                     android:gravity="center"
-                    android:text="@string/photo_suit_editor"
+                    android:text="@string/app_name"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_drawer"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -62,12 +62,11 @@
                     android:layout_height="0dp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginEnd="@dimen/_15sdp"
-                    android:visibility="gone"
                     android:layout_marginBottom="@dimen/_15sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/premium_icon" />
+                    app:srcCompat="@drawable/upgrade_premuim" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -87,7 +86,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_marginHorizontal="@dimen/_20sdp"
-                        app:layout_constraintBottom_toBottomOf="@+id/guidelineAd"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/guidelineAd3"
                         app:layout_constraintTop_toBottomOf="@+id/guidelineAdTop">
 
                         <include layout="@layout/shimmer_medium_layout" />
@@ -107,6 +107,7 @@
                         android:layout_height="0dp"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
                         app:layout_constraintBottom_toBottomOf="@+id/guidelineAd"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +119,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layout_marginVertical="@dimen/_10sdp"
                         app:layout_constraintGuide_percent="0.50" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guidelineAd3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        app:layout_constraintGuide_percent="0.45" />
 
                     <!--            <androidx.constraintlayout.widget.Guideline-->
                     <!--                android:id="@+id/guideline"-->
@@ -151,7 +162,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/lv_header1"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/shimmerFrameLayout"
+                        app:layout_constraintTop_toBottomOf="@+id/guidelineAd"
                         app:layout_constraintVertical_chainStyle="spread">
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -162,7 +173,7 @@
                             android:fontFamily="@font/product_sans"
                             android:letterSpacing="0.1"
                             android:padding="@dimen/_5sdp"
-                            android:text="Face Change"
+                            android:text="@string/face_change"
                             android:textColor="@color/mainColor1"
                             android:textSize="15sp"
                             android:textStyle="bold"
@@ -193,7 +204,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/lv_header"
-                        app:layout_constraintTop_toBottomOf="@+id/shimmerFrameLayout"
+                        app:layout_constraintTop_toBottomOf="@+id/guidelineAd"
                         app:layout_constraintVertical_chainStyle="spread">
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -291,7 +302,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/remove_bg_curve" />
+                            app:srcCompat="@drawable/remove_bg" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tv_creation"
@@ -325,6 +336,8 @@
             android:id="@+id/navigation_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="-60dp"
+            android:layout_marginEnd="-60dp"
             android:layout_gravity="start">
 
             <include

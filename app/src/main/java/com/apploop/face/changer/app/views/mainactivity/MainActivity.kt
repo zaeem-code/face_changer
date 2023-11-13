@@ -1,6 +1,7 @@
 package com.apploop.face.changer.app.views.mainactivity
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +9,8 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet.Constraint
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import com.apploop.face.changer.app.BuildConfig
@@ -37,7 +40,7 @@ import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInterface,
-    CallBackResponseJson,AdapterPathInterface {
+    CallBackResponseJson, AdapterPathInterface {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainActivityViewModel: MainActivityViewModel
@@ -52,10 +55,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
 
         SubscriptionBillingManager(this, this)
 
-        introduceDialog = IntroduceDialog(this,this@MainActivity)
+        introduceDialog = IntroduceDialog(this, this@MainActivity)
 
         binding.ivPremium.setOnClickListener {
-            if (!com.apploop.face.changer.app.manager.OpenAdManager.getInstance().enabledNoAds) {
+            if (!OpenAdManager.getInstance().enabledNoAds) {
                 startActivity(Intent(this, PremiumActivity::class.java))
             } else {
                 binding.ivPremium.visibility = View.INVISIBLE
@@ -109,9 +112,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
     }
 
     private fun init() {
+        binding.ivPremium.setOnClickListener {
+            startActivity(Intent(this, PremiumActivity::class.java))
+        }
+
         binding.shimmerFrameLayout.startShimmer()
         AdsManager.instance?.showNativeAd(
-            binding.frameLayout, binding.frameLayout, layoutInflater, R.layout.ad_with_media) {
+            binding.frameLayout, binding.frameLayout, layoutInflater, R.layout.ad_with_media
+        ) {
             if (it) {
                 binding.shimmerFrameLayout.visibility = View.INVISIBLE
             } else {
@@ -122,12 +130,31 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
 
         mainActivityViewModel = MainActivityViewModel(this)
         binding.mainActivityViewModel = mainActivityViewModel
-        binding.layoutNavigationView.tvVersion.text = "Version = ${BuildConfig.VERSION_CODE.toString()}"
+        binding.layoutNavigationView.tvVersion.text =
+            "Version = ${BuildConfig.VERSION_CODE.toString()}"
 
         initClicks()
+
+        binding.layoutNavigationView.shimmerFrameLayout.startShimmer()
+        AdsManager.Companion.instance!!.showNativeAd(
+            binding.layoutNavigationView.frameLayout,
+            binding.layoutNavigationView.frameLayout,
+            layoutInflater,
+            R.layout.ad_media
+        )
+        {
+            if (it) {
+                binding.layoutNavigationView.shimmerFrameLayout.visibility = View.INVISIBLE
+            } else {
+                binding.layoutNavigationView.shimmerFrameLayout.visibility = View.GONE
+                binding.layoutNavigationView.frameLayout.visibility = View.GONE
+            }
+        }
     }
 
     private fun initClicks() {
+        binding.layoutNavigationView.ivCross.setOnClickListener(this)
+        binding.layoutNavigationView.lvPremium.setOnClickListener(this)
         binding.layoutNavigationView.lvCreation.setOnClickListener(this)
         binding.layoutNavigationView.lvShare.setOnClickListener(this)
         binding.layoutNavigationView.lvRateUs.setOnClickListener(this)
@@ -140,6 +167,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
         when (view?.id) {
             R.id.lv_creation -> {
                 startActivity(Intent(this, MyCreationActivity::class.java))
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+            }
+
+            R.id.iv_cross -> {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+            }
+
+            R.id.lv_premium -> {
+                startActivity(Intent(this, PremiumActivity::class.java))
                 binding.drawerLayout.closeDrawer(GravityCompat.START)
             }
 
@@ -167,6 +203,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
             }
         }
     }
+
 
     fun openAppInPlayStore(appPackageName: String) {
         try {

@@ -206,10 +206,6 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
         } catch (e: ActivityNotFoundException) {
             e.localizedMessage
         }
-        startActivityForResult(
-            intent,
-            102
-        )
         getResultFromCamera.launch(intent)
     }
 

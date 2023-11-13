@@ -60,6 +60,7 @@
     <color name="bg">#d4d2d2</color>
     <color name="light_grey">#97A7B7</color>
     <color name="purple_color">#B46EE2</color>
+    <color name="dark_purple_color">#9747FF</color>
 
 
 </resources>

@@ -64,14 +64,15 @@
                     android:id="@+id/iv_saved_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/purple"
                     android:scaleType="centerCrop" />
 
                 <ImageView
                     android:id="@+id/tv_water_mark"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/_120sdp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end|bottom"
-                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_gravity="start|bottom"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:src="@drawable/men_style"
                     android:textColor="@color/black"

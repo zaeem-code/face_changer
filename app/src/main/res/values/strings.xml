@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Man Hairstyle</string>
+    <string name="app_name">Face Changer</string>
     <string name="photo_suit_editor">Man Hairstyle</string>
     <string name="try_diff_suits">Try different suits with your photo</string>
-    <string name="my_creations">My Creations</string>
+    <string name="my_creations">My Collection</string>
     <string name="label_share">Share</string>
     <string name="label_rate_us">Rate Us</string>
     <string name="more_apps">More Apps</string>
@@ -58,6 +58,7 @@
     <string name="app_link">Rate Us</string>
     <string name="delete">Delete</string>
     <string name="are_you_sure">Are you sure you want to delete?</string>
+    <string name="discard_image">Do you really want to discard this image?</string>
     <string name="cancel">Cancel</string>
     <string name="no_ads">No Ads and Watermark</string>
     <string name="upgrade_to">Upgrade to Premium</string>
@@ -129,4 +130,6 @@
     <string name="import_img_warning">Please import image!!!</string>
     <string name="importing_image">Importing image…</string>
     <string name="import_error">Error while getting image.</string>
+    <string name="Yes">Yes</string>
+    <string name="face_change">Face Change</string>
 </resources>

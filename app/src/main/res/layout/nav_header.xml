@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/lv_header"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/dark_blue_card"
+            android:layout_height="250dp"
+            android:background="@color/white"
             android:paddingBottom="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_margin="@dimen/_50sdp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_cross"
                 app:srcCompat="@drawable/logo" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -31,9 +33,9 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/product_sans"
                 android:gravity="center"
-                android:text="@string/photo_suit_editor"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_20sdp"
+                android:text="@string/app_name"
+                android:textColor="@color/purple_status"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -58,10 +60,10 @@
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:fontFamily="@font/product_sans"
                 android:gravity="center"
-                android:visibility="gone"
                 android:text="@string/no_ads"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_heading" />
@@ -73,8 +75,8 @@
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:visibility="gone"
                 android:background="@drawable/cus_white_bg_rounded"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_des">
@@ -108,14 +110,25 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_cross"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="@dimen/_30sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/cancel_drawer" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/background"
+            android:background="@color/dark_purple_color"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lv_header">
 
@@ -124,19 +137,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.09" />
+                app:layout_constraintGuide_percent="0.05" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/lv_creation"
+                android:id="@+id/lv_premium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/dark_blue_card"
+                android:background="@color/purple_color"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/guideline">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/iv_creation"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/iv_premium"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
@@ -144,7 +157,47 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_foldernotch"
+                    app:srcCompat="@drawable/upgrade_premuim"
+                    app:tint="@color/white">
+
+                </androidx.appcompat.widget.AppCompatImageView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_premium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/product_sans"
+                    android:text="Upgrade to promium"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_premium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_premium"
+                    app:layout_constraintTop_toTopOf="@+id/iv_premium" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lv_creation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lv_premium">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_creation"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_folder_white"
                     app:tint="@color/white">
 
                 </androidx.appcompat.widget.AppCompatImageView>
@@ -176,7 +229,7 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_share"
-                    android:layout_width="wrap_content"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
@@ -185,7 +238,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_share_loop"
-                    app:tint="@color/dark_blue_card">
+                    app:tint="@color/white">
 
                 </androidx.appcompat.widget.AppCompatImageView>
 
@@ -197,7 +250,7 @@
                     android:layout_marginEnd="@dimen/_5sdp"
                     android:fontFamily="@font/product_sans"
                     android:text="@string/label_share"
-                    android:textColor="@color/black_nav"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_13sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_share"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -215,7 +268,7 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_rateUs"
-                    android:layout_width="wrap_content"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
@@ -224,7 +277,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_rate"
-                    app:tint="@color/dark_blue_card">
+                    app:tint="@color/white">
 
                 </androidx.appcompat.widget.AppCompatImageView>
 
@@ -236,7 +289,7 @@
                     android:layout_marginEnd="@dimen/_5sdp"
                     android:fontFamily="@font/product_sans"
                     android:text="@string/label_rate_us"
-                    android:textColor="@color/black_nav"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_13sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_rateUs"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -298,6 +351,7 @@
                 android:text="@string/version"
                 android:textColor="@color/version_gray"
                 android:textSize="@dimen/_13sdp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/lv_more"
                 app:layout_constraintTop_toBottomOf="@+id/lv_more" />
@@ -305,6 +359,24 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+            <include layout="@layout/shimmer_banner_layout" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_layout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_90sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

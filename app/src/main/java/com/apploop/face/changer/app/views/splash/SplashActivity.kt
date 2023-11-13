@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.app.MyApplication
 import com.apploop.face.changer.app.manager.GoogleMobileAdsConsentManager
+import com.apploop.face.changer.app.utils.Extension.statusBarColor
 import com.apploop.face.changer.app.views.premium.PremiumActivity
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
@@ -27,6 +28,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        statusBarColor(R.color.background)
         // Log the Mobile Ads SDK version.
 
         // Create a timer so the SplashActivity will be displayed for a fixed amount of time.

@@ -10,6 +10,7 @@ import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.databinding.ActivityImageAdsSavedBinding
 import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.manager.OnAdLoaded
+import com.apploop.face.changer.app.utils.Extension.alertDiscardDialog
 import com.apploop.face.changer.app.utils.Extension.createDirectoryAndSaveFile
 import com.apploop.face.changer.app.utils.Extension.getBitmapFromView
 import com.apploop.face.changer.app.utils.Extension.saveBitmapLast
@@ -45,14 +46,16 @@ class ImageAdsSavedActivity : AppCompatActivity() {
         }
 
         binding.lvSave.setOnClickListener {
-            getBitmapFromView(binding.lvImageContainer)?.let {
-                val savedPath = createDirectoryAndSaveFile(it)
-                val intent =
-                    Intent(this@ImageAdsSavedActivity, ImageSavedActivity::class.java)
-                intent.putExtra("savedPath", savedPath)
-                startActivity(intent)
-                finish()
-            }
+            alertDiscardDialog()
+
+//            getBitmapFromView(binding.lvImageContainer)?.let {
+//                val savedPath = createDirectoryAndSaveFile(it)
+//                val intent =
+//                    Intent(this@ImageAdsSavedActivity, ImageSavedActivity::class.java)
+//                intent.putExtra("savedPath", savedPath)
+//                startActivity(intent)
+//                finish()
+//            }
         }
 
         binding.lvAd.setOnClickListener {
