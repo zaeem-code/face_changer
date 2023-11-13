@@ -36,6 +36,7 @@ import com.apploop.face.changer.app.viewModels.MainActivityViewModel
 import com.apploop.face.changer.app.views.IntroduceDialog
 import com.apploop.face.changer.app.views.myCreation.MyCreationActivity
 import com.apploop.face.changer.app.views.premium.PremiumActivity
+import com.apploop.face.changer.app.views.removeBackground.ImageRemoveBgActivity
 import org.json.JSONObject
 
 

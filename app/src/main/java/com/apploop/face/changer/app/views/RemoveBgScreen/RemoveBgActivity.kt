@@ -145,8 +145,9 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
     }
 
     override fun onStickerButtonClicks(type: EnumClass) {
-        removeBorder()
+//        removeBorder()
         when (type) {
+
             EnumClass.STICKERS -> {
                 binding.lvBackgroundContainer.visibility = View.GONE
                 binding.ivSuit.setOnTouchListener(null)
@@ -373,7 +374,7 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
             }
 
             EnumClass.DONE -> {
-                removeBorder()
+//                removeBorder()
                 getBitmapFromView(binding.lvRoot)?.let {
                     binding.progressBar.visibility = View.VISIBLE
                     window.setFlags(
@@ -385,8 +386,7 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
                         saveBitmapLast?.recycle()
                     }
                     saveBitmapLast = it
-                    val intent =
-                        Intent(this@RemoveBgActivity, ImageAdsSavedActivity::class.java)
+                    val intent = Intent(this@RemoveBgActivity, ImageAdsSavedActivity::class.java)
                     startActivity(intent)
                     finish()
                 }

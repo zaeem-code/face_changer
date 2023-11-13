@@ -65,28 +65,21 @@ object Extension {
     var wtList: ArrayList<SuitList?> = ArrayList()
     var fifaList: ArrayList<SuitList?> = ArrayList()
     var superList: ArrayList<SuitList?> = ArrayList()
-    private val ProjectFolderPath =
-        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath + File.separator + Edit_Folder_name + File.separator
-    var objSuitOptions: ArrayList<ObjSuitImageOption> = ArrayList<ObjSuitImageOption>()
+    private val ProjectFolderPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath + File.separator + Edit_Folder_name + File.separator
+    var objSuitOptions: ArrayList<ObjSuitImageOption> = ArrayList()
     var objStickerDetailsTie: ArrayList<ObjStickerImageDetail> = ArrayList()
-    var objStickerDetailsBeard: ArrayList<ObjStickerImageDetail> =
-        ArrayList()
+    var objStickerDetailsBeard: ArrayList<ObjStickerImageDetail> = ArrayList()
     var objFaceChangeDetail: ArrayList<ObjStickerImageDetail> = ArrayList()
     var oldFaceChangeDetail: ArrayList<ObjStickerImageDetail> = ArrayList()
     var kidFaceChangeDetail: ArrayList<ObjStickerImageDetail> = ArrayList()
-    var objStickerDetailsMustache: ArrayList<ObjStickerImageDetail> =
-        ArrayList()
+    var objStickerDetailsMustache: ArrayList<ObjStickerImageDetail> = ArrayList()
     var objStickerDetailsHat: ArrayList<ObjStickerImageDetail> = ArrayList()
-    var objStickerDetailsGoggle: ArrayList<ObjStickerImageDetail> =
-        ArrayList()
+    var objStickerDetailsGoggle: ArrayList<ObjStickerImageDetail> = ArrayList()
     var objStickerDetailsPomp: ArrayList<ObjStickerImageDetail> = ArrayList()
     var objStickerDetailLong: ArrayList<ObjStickerImageDetail> = ArrayList()
-    var objStickerDetailsShort: ArrayList<ObjStickerImageDetail> =
-        ArrayList()
-    var objStickerDetailsSpike: ArrayList<ObjStickerImageDetail> =
-        ArrayList()
-    var objStickerDetailsColor: ArrayList<ObjStickerImageDetail> =
-        ArrayList()
+    var objStickerDetailsShort: ArrayList<ObjStickerImageDetail> = ArrayList()
+    var objStickerDetailsSpike: ArrayList<ObjStickerImageDetail> = ArrayList()
+    var objStickerDetailsColor: ArrayList<ObjStickerImageDetail> = ArrayList()
     var objStickerDetailsBald: ArrayList<ObjStickerImageDetail> = ArrayList()
     var objStickerDetailsHair: ArrayList<ObjStickerImageDetail> = ArrayList()
     var faceColors: ArrayList<String> = ArrayList()
@@ -140,15 +133,15 @@ object Extension {
     }
 
     var objSuitOptions1: ArrayList<ObjSuitImageOption> = ArrayList()
-    var objSuitOptions2: ArrayList<ObjSuitImageOption> = ArrayList<ObjSuitImageOption>()
-    var objSuitOptions3: ArrayList<ObjSuitImageOption> = ArrayList<ObjSuitImageOption>()
-    var objSuitOptions4: ArrayList<ObjSuitImageOption> = ArrayList<ObjSuitImageOption>()
-    var objSuitOptions5: ArrayList<ObjSuitImageOption> = ArrayList<ObjSuitImageOption>()
-    var bodyBuildersList: ArrayList<ObjSuitImageOption> = ArrayList<ObjSuitImageOption>()
-    var kurtaList: ArrayList<ObjSuitImageOption> = ArrayList<ObjSuitImageOption>()
-    var policeList: ArrayList<ObjSuitImageOption> = ArrayList<ObjSuitImageOption>()
-    var tShirtList: ArrayList<ObjSuitImageOption> = ArrayList<ObjSuitImageOption>()
-    var christmasList: ArrayList<ObjSuitImageOption> = ArrayList<ObjSuitImageOption>()
+    var objSuitOptions2: ArrayList<ObjSuitImageOption> = ArrayList()
+    var objSuitOptions3: ArrayList<ObjSuitImageOption> = ArrayList()
+    var objSuitOptions4: ArrayList<ObjSuitImageOption> = ArrayList()
+    var objSuitOptions5: ArrayList<ObjSuitImageOption> = ArrayList()
+    var bodyBuildersList: ArrayList<ObjSuitImageOption> = ArrayList()
+    var kurtaList: ArrayList<ObjSuitImageOption> = ArrayList()
+    var policeList: ArrayList<ObjSuitImageOption> = ArrayList()
+    var tShirtList: ArrayList<ObjSuitImageOption> = ArrayList()
+    var christmasList: ArrayList<ObjSuitImageOption> = ArrayList()
 
 
     fun Context.getImageUri(context: Context, inImage: Bitmap): Uri? {

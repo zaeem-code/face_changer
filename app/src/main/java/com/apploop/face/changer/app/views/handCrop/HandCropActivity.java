@@ -1,5 +1,7 @@
 package com.apploop.face.changer.app.views.handCrop;
 
+import static com.apploop.face.changer.app.utils.UtilsCons.originalBitmap;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -41,6 +43,8 @@ import com.apploop.face.changer.app.views.FaceChangeScreen.FaceChangeActivity;
 import com.apploop.face.changer.app.views.MenPhotoScreen.MenPhotoActivity;
 import com.apploop.face.changer.app.views.RemoveBgScreen.RemoveBgActivity;
 import com.apploop.face.changer.app.views.handCrop.freecrop.FreeCropView;
+import com.apploop.face.changer.app.views.removeBackground.ImageRemoveBgActivity;
+import com.apploop.face.changer.app.views.removeBackground.StoreManager;
 
 import java.io.ByteArrayOutputStream;
 
@@ -73,7 +77,7 @@ public class HandCropActivity extends AppCompatActivity implements View.OnClickL
     private void init() {
 //        Objects.requireNonNull(AdsManager.Companion.getInstance()).showNativeAd(binding.frameLayout, binding.frameLayout, getLayoutInflater(), R.layout.ad_media);
         try {
-            freeCrop = UtilsCons.originalBitmap;
+            freeCrop = originalBitmap;
         } catch (OutOfMemoryError e) {
             e.getLocalizedMessage();
         }
@@ -166,11 +170,9 @@ public class HandCropActivity extends AppCompatActivity implements View.OnClickL
                             binding.progressBar.setVisibility(View.GONE);
                             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
-                            UtilsCons.originalBitmap = freeCrop;
+                            originalBitmap = freeCrop;
                             if (UtilsCons.chooseLayout.contains("PHOTO_REMOVE_BG")) {
-                                Intent intent = new Intent(HandCropActivity.this, RemoveBgActivity.class);
-                                startActivity(intent);
-                                finish();
+                                call();
                             } else if (UtilsCons.chooseLayout.contains("PHOTO_MEN")) {
                                 Intent intent = new Intent(HandCropActivity.this, MenPhotoActivity.class);
                                 startActivity(intent);
@@ -204,6 +206,22 @@ public class HandCropActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    public void call() {
+        try {
+            StoreManager.setCurrentCropedBitmap(this, (Bitmap) null);
+            StoreManager.setCurrentCroppedMaskBitmap(this, (Bitmap) null);
+            ImageRemoveBgActivity.setFaceBitmap(originalBitmap);
+            StoreManager.setCurrentOriginalBitmap(this, originalBitmap);
+            startActivity(new Intent(this, ImageRemoveBgActivity.class));
+            finish();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     private void saveImage() {
         progressDialogCrop = ProgressDialog.show(this, "Please Wait", "Image Processing");
         new Handler().postDelayed(new SetImage(), 100);
@@ -212,7 +230,7 @@ public class HandCropActivity extends AppCompatActivity implements View.OnClickL
     class SetImage implements Runnable {
         public void run() {
 //            UtilsCons.originalBitmap.recycle();
-            UtilsCons.originalBitmap = createBitmap;
+            originalBitmap = createBitmap;
 
             if (progressDialogCrop.isShowing() && progressDialogCrop != null)
                 progressDialogCrop.dismiss();

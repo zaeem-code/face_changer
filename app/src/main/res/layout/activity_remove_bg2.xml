@@ -48,7 +48,7 @@
                     style="@style/uCrop_wrapperIconState"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_15sdp"
-                    android:onClick="@{ ()-> selectSuitViewModel.onSuitClick()}"
+                    android:onClick="@{ ()-> selectSuitViewModel.onBack()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/lv_flip_suit1"
                     app:layout_constraintStart_toStartOf="parent"

@@ -45,6 +45,11 @@
         <activity
             android:name="com.apploop.face.changer.app.views.saved.ProSavedActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".views.removeBackground.ImageRemoveBgActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.apploop.face.changer.app.views.MenPhotoScreen.MenPhotoActivity"
             android:exported="false" />
