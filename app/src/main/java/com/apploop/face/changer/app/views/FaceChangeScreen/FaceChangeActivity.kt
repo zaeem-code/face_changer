@@ -191,6 +191,9 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.lvStickersContainer.visibility = View.VISIBLE
                 binding.lvBackgroundContainer.visibility = View.GONE
                 binding.ivSuit.setOnTouchListener(null)
+
+
+                binding.lvFaceChange.visibility = View.GONE
             }
 
             EnumClass.STICKERS -> {
@@ -207,7 +210,8 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.lvBackgroundContainer.visibility = View.GONE
                 binding.ivSuit.setOnTouchListener(null)
 
-                removeBorder()
+
+                binding.lvFaceChange.visibility = View.GONE
             }
 
             EnumClass.KID -> {
@@ -224,7 +228,8 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.lvBackgroundContainer.visibility = View.GONE
                 binding.ivSuit.setOnTouchListener(null)
 
-                removeBorder()
+                binding.lvFaceChange.visibility = View.GONE
+
             }
 
             EnumClass.SKIN_TONE -> {
@@ -251,8 +256,6 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.lvFaceChange.visibility = View.GONE
 
                 binding.lvRec.visibility = View.VISIBLE
-                removeBorder()
-
 
                 binding.skinToneRV.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
                 var suitsBottomSheetAdapter = ShowSkinToneColorsAdapter(faceChangeList(),this@FaceChangeActivity, Extension.imageFilePath,this@FaceChangeActivity)
@@ -261,7 +264,6 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
             }
 
             EnumClass.ADD_STICKERS -> {
-                removeBorder()
                 binding.ivAddStickers.setColorFilter(ContextCompat.getColor(this, R.color.purple_status))
                 binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
                 binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
@@ -274,7 +276,6 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
 //                initLists()
                 initLists()
                 binding.lvFaceChange.visibility = View.VISIBLE
-                removeBorder()
 
                 binding.faceChangeRV.layoutManager = GridLayoutManager(this,3)
 
@@ -317,7 +318,12 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
             }
 
             EnumClass.OPACITY -> {
-                removeBorder()
+                if (binding.lvRoot.childCount <= 2) {
+                    Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
+                        .show()
+                    return
+                }
+
                 if (binding.lvOpacitySeekBarContainer.visibility == View.VISIBLE) {
                     binding.lvOpacitySeekBarContainer.visibility = View.GONE
                     binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
@@ -339,12 +345,6 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                         R.color.purple_status
                     )
                 )
-
-                if (binding.lvRoot.childCount <= 2) {
-                    Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
-                        .show()
-                    return
-                }
 
                 val imageSticker5 = sticker
                 val opacity = imageSticker5!!.opacity
