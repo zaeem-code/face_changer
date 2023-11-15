@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
@@ -42,8 +44,8 @@ import com.apploop.face.changer.app.views.saved.ImageAdsSavedActivity
 import com.apploop.face.changer.app.views.stickers.StickerActivity
 import java.util.Random
 
-class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
-    ,AddStickerBottomSheetViewModelInterface, BackgroundBottomSheetInterface ,
+class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
+    AddStickerBottomSheetViewModelInterface, BackgroundBottomSheetInterface,
     BackgroundSkinToneInterface {
 
     lateinit var binding: ActivityFaceChangeBinding
@@ -88,8 +90,12 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
         binding.lvRec.visibility = View.GONE
         removeBorder()
 
-        binding.faceChangeRV.layoutManager = GridLayoutManager(this,3)
-        var suitsBottomSheetAdapter = ShowSkinToneAdapter(Extension.objFaceChangeDetail, this@FaceChangeActivity, this@FaceChangeActivity)
+        binding.faceChangeRV.layoutManager = GridLayoutManager(this, 3)
+        var suitsBottomSheetAdapter = ShowSkinToneAdapter(
+            Extension.objFaceChangeDetail,
+            this@FaceChangeActivity,
+            this@FaceChangeActivity
+        )
         binding.faceChangeRV.adapter = suitsBottomSheetAdapter
         suitsBottomSheetAdapter.notifyDataSetChanged()
 
@@ -138,6 +144,12 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
     }
 
     override fun onAddStickerBottomSheetButtonClicks(path: String) {
+        if (binding.lvRoot.childCount > 2) {
+            Toast.makeText(applicationContext, "Remove Previous Face First!", Toast.LENGTH_SHORT)
+                .show()
+            return
+        }
+
         binding.ivSuit.setOnTouchListener(multiTouchListener)
         sticker = StickerImageView(
             this,
@@ -146,7 +158,6 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
         Glide.with(applicationContext)
             .asBitmap()
             .load(path)
-
             .into(object : SimpleTarget<Bitmap?>() {
                 override fun onResourceReady(
                     resource: Bitmap,
@@ -180,8 +191,17 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
             EnumClass.OLD_MAN -> {
                 UtilsCons.faceType = "OLD"
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
-                binding.tvBackground.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
+                binding.tvBackground.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.purple_status
+                    )
+                )
                 binding.tvZoom.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                binding.lvRec.visibility = View.GONE
+                binding.lvFaceChange.visibility = View.GONE
+                binding.lvOpacitySeekBarContainer.visibility = View.GONE
+
                 if (binding.lvStickersContainer.visibility == View.VISIBLE) {
                     val touchListener =
                         MultiTouchListener()
@@ -191,9 +211,6 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.lvStickersContainer.visibility = View.VISIBLE
                 binding.lvBackgroundContainer.visibility = View.GONE
                 binding.ivSuit.setOnTouchListener(null)
-
-
-                binding.lvFaceChange.visibility = View.GONE
             }
 
             EnumClass.STICKERS -> {
@@ -201,6 +218,10 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
                 binding.tvBackground.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvZoom.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                binding.lvRec.visibility = View.GONE
+                binding.lvFaceChange.visibility = View.GONE
+                binding.lvOpacitySeekBarContainer.visibility = View.GONE
+
                 if (binding.lvStickersContainer.visibility == View.VISIBLE) {
                     val touchListener = MultiTouchListener()
                     binding.ivSuit.setOnTouchListener(touchListener)
@@ -209,9 +230,6 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.lvStickersContainer.visibility = View.VISIBLE
                 binding.lvBackgroundContainer.visibility = View.GONE
                 binding.ivSuit.setOnTouchListener(null)
-
-
-                binding.lvFaceChange.visibility = View.GONE
             }
 
             EnumClass.KID -> {
@@ -219,6 +237,10 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvBackground.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvZoom.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
+                binding.lvRec.visibility = View.GONE
+                binding.lvFaceChange.visibility = View.GONE
+                binding.lvOpacitySeekBarContainer.visibility = View.GONE
+
                 if (binding.lvStickersContainer.visibility == View.VISIBLE) {
                     val touchListener = MultiTouchListener()
                     binding.ivSuit.setOnTouchListener(touchListener)
@@ -227,9 +249,6 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
                 binding.lvStickersContainer.visibility = View.VISIBLE
                 binding.lvBackgroundContainer.visibility = View.GONE
                 binding.ivSuit.setOnTouchListener(null)
-
-                binding.lvFaceChange.visibility = View.GONE
-
             }
 
             EnumClass.SKIN_TONE -> {
@@ -241,45 +260,114 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
 
                 if (binding.lvRec.visibility == View.VISIBLE) {
                     binding.lvRec.visibility = View.GONE
-                    binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
-                    binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                    binding.ivColorStickers.setColorFilter(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.light_grey
+                        )
+                    )
+                    binding.tvColorStickers.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.light_grey
+                        )
+                    )
                     return
                 }
 
-                binding.ivAddStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
-                binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.purple_status))
-                binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
+                binding.ivAddStickers.setColorFilter(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.light_grey
+                    )
+                )
+                binding.ivColorStickers.setColorFilter(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.purple_status
+                    )
+                )
+                binding.ivOpacityStickers.setColorFilter(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.light_grey
+                    )
+                )
                 binding.tvAddStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
-                binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
-                binding.tvOpacityStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                binding.tvColorStickers.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.purple_status
+                    )
+                )
+                binding.tvOpacityStickers.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.light_grey
+                    )
+                )
+
                 binding.lvOpacitySeekBarContainer.visibility = View.GONE
                 binding.lvFaceChange.visibility = View.GONE
-
                 binding.lvRec.visibility = View.VISIBLE
 
-                binding.skinToneRV.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-                var suitsBottomSheetAdapter = ShowSkinToneColorsAdapter(faceChangeList(),this@FaceChangeActivity, Extension.imageFilePath,this@FaceChangeActivity)
+                binding.skinToneRV.layoutManager =
+                    LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+                var suitsBottomSheetAdapter = ShowSkinToneColorsAdapter(
+                    faceChangeList(),
+                    this@FaceChangeActivity,
+                    Extension.imageFilePath,
+                    this@FaceChangeActivity
+                )
                 binding.skinToneRV.adapter = suitsBottomSheetAdapter
                 suitsBottomSheetAdapter.notifyDataSetChanged()
             }
 
             EnumClass.ADD_STICKERS -> {
-                binding.ivAddStickers.setColorFilter(ContextCompat.getColor(this, R.color.purple_status))
-                binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
-                binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
-                binding.tvAddStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
-                binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
-                binding.tvOpacityStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                binding.ivAddStickers.setColorFilter(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.purple_status
+                    )
+                )
+                binding.ivColorStickers.setColorFilter(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.light_grey
+                    )
+                )
+                binding.ivOpacityStickers.setColorFilter(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.light_grey
+                    )
+                )
+                binding.tvAddStickers.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.purple_status
+                    )
+                )
+                binding.tvColorStickers.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.light_grey
+                    )
+                )
+                binding.tvOpacityStickers.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.light_grey
+                    )
+                )
                 binding.lvOpacitySeekBarContainer.visibility = View.GONE
                 binding.lvRec.visibility = View.GONE
 
-//                initLists()
                 initLists()
                 binding.lvFaceChange.visibility = View.VISIBLE
 
-                binding.faceChangeRV.layoutManager = GridLayoutManager(this,3)
-
-                if(UtilsCons.faceType.contains("OLD")){
+                binding.faceChangeRV.layoutManager = GridLayoutManager(this, 3)
+                if (UtilsCons.faceType.contains("OLD")) {
 //                    ShowStickersBottomSheet(
 //                        this,
 //                        Extension.oldFaceChangeDetail,
@@ -287,10 +375,14 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
 //                    ).apply {
 //                        show(supportFragmentManager, tag)
 //                    }
-                    var suitsBottomSheetAdapter = ShowSkinToneAdapter(Extension.oldFaceChangeDetail, this@FaceChangeActivity, this@FaceChangeActivity)
+                    var suitsBottomSheetAdapter = ShowSkinToneAdapter(
+                        Extension.oldFaceChangeDetail,
+                        this@FaceChangeActivity,
+                        this@FaceChangeActivity
+                    )
                     binding.faceChangeRV.adapter = suitsBottomSheetAdapter
                     suitsBottomSheetAdapter.notifyDataSetChanged()
-                }else if (UtilsCons.faceType.contains("YOUNG")){
+                } else if (UtilsCons.faceType.contains("YOUNG")) {
 //                    ShowStickersBottomSheet(
 //                        this,
 //                        Extension.objFaceChangeDetail,
@@ -299,10 +391,14 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
 //                        show(supportFragmentManager, tag)
 //                    }
 
-                    var suitsBottomSheetAdapter = ShowSkinToneAdapter(Extension.objFaceChangeDetail, this@FaceChangeActivity, this@FaceChangeActivity)
+                    var suitsBottomSheetAdapter = ShowSkinToneAdapter(
+                        Extension.objFaceChangeDetail,
+                        this@FaceChangeActivity,
+                        this@FaceChangeActivity
+                    )
                     binding.faceChangeRV.adapter = suitsBottomSheetAdapter
                     suitsBottomSheetAdapter.notifyDataSetChanged()
-                }else {
+                } else {
 //                    ShowStickersBottomSheet(
 //                        this,
 //                        Extension.kidFaceChangeDetail,
@@ -311,7 +407,11 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
 //                        show(supportFragmentManager, tag)
 //                    }
 
-                    var suitsBottomSheetAdapter = ShowSkinToneAdapter(Extension.kidFaceChangeDetail, this@FaceChangeActivity, this@FaceChangeActivity)
+                    var suitsBottomSheetAdapter = ShowSkinToneAdapter(
+                        Extension.kidFaceChangeDetail,
+                        this@FaceChangeActivity,
+                        this@FaceChangeActivity
+                    )
                     binding.faceChangeRV.adapter = suitsBottomSheetAdapter
                     suitsBottomSheetAdapter.notifyDataSetChanged()
                 }
@@ -326,19 +426,50 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
 
                 if (binding.lvOpacitySeekBarContainer.visibility == View.VISIBLE) {
                     binding.lvOpacitySeekBarContainer.visibility = View.GONE
-                    binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
-                    binding.tvOpacityStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                    binding.ivOpacityStickers.setColorFilter(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.light_grey
+                        )
+                    )
+                    binding.tvOpacityStickers.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.light_grey
+                        )
+                    )
                     return
                 }
 
+                binding.lvOpacitySeekBarContainer.visibility = View.GONE
                 binding.lvRec.visibility = View.GONE
                 binding.lvFaceChange.visibility = View.GONE
 
-                binding.ivAddStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
-                binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
-                binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.purple_status))
+                binding.ivAddStickers.setColorFilter(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.light_grey
+                    )
+                )
+                binding.ivColorStickers.setColorFilter(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.light_grey
+                    )
+                )
+                binding.ivOpacityStickers.setColorFilter(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.purple_status
+                    )
+                )
                 binding.tvAddStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
-                binding.tvColorStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
+                binding.tvColorStickers.setTextColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.light_grey
+                    )
+                )
                 binding.tvOpacityStickers.setTextColor(
                     ContextCompat.getColor(
                         this,
@@ -355,20 +486,24 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
 
             EnumClass.DONE -> {
                 removeBorder()
-                getBitmapFromView(binding.lvRoot)?.let {
-                    binding.progressBar.visibility = View.VISIBLE
-                    window.setFlags(
-                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                    )
-                    if (Extension.saveBitmapLast != null) {
-                        Extension.saveBitmapLast?.recycle()
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    getBitmapFromView(binding.lvRoot)?.let {
+                        binding.progressBar.visibility = View.VISIBLE
+                        window.setFlags(
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                        )
+                        if (Extension.saveBitmapLast != null) {
+                            Extension.saveBitmapLast?.recycle()
+                        }
+                        Extension.saveBitmapLast = it
+                        val intent =
+                            Intent(this@FaceChangeActivity, ImageAdsSavedActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
-                    Extension.saveBitmapLast = it
-                    val intent = Intent(this@FaceChangeActivity, ImageAdsSavedActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
+                }, 2000)
             }
         }
     }
@@ -376,6 +511,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface
     override fun onBackgroundSkinToneInterfaceClicks(color: String) {
         sticker!!.applyColorFilter(color)
     }
+
     override fun onBackgroundBottomSheetButtonClicks(path: String) {
         binding.ivBackGround.colorFilter = null
         val filePath = "file:///android_asset/$path"

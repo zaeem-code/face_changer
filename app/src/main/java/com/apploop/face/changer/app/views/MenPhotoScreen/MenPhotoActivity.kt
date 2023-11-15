@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
@@ -347,22 +349,42 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
 
             EnumClass.DONE -> {
                 removeBorder()
-                getBitmapFromView(binding.lvRoot)?.let {
-                    binding.progressBar.visibility = View.VISIBLE
-                    window.setFlags(
-                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                    )
-
-                    if (Extension.saveBitmapLast != null) {
-                        Extension.saveBitmapLast?.recycle()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    getBitmapFromView(binding.lvRoot)?.let {
+                        binding.progressBar.visibility = View.VISIBLE
+                        window.setFlags(
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                        )
+                        if (Extension.saveBitmapLast != null) {
+                            Extension.saveBitmapLast?.recycle()
+                        }
+                        Extension.saveBitmapLast = it
+                        val intent =
+                            Intent(this@MenPhotoActivity, ImageAdsSavedActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
-                    Extension.saveBitmapLast = it
-                    val intent =
-                        Intent(this@MenPhotoActivity, ImageAdsSavedActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
+                }, 2000)
+
+
+//                removeBorder()
+//                getBitmapFromView(binding.lvRoot)?.let {
+//                    binding.progressBar.visibility = View.VISIBLE
+//                    window.setFlags(
+//                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+//                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+//                    )
+//
+//                    if (Extension.saveBitmapLast != null) {
+//                        Extension.saveBitmapLast?.recycle()
+//                    }
+//                    Extension.saveBitmapLast = it
+//                    val intent =
+//                        Intent(this@MenPhotoActivity, ImageAdsSavedActivity::class.java)
+//                    startActivity(intent)
+//                    finish()
+//                }
             }
         }
     }

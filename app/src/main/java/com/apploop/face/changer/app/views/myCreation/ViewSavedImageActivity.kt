@@ -108,7 +108,7 @@ class ViewSavedImageActivity : AppCompatActivity() {
         }
 
         faceChange.setOnClickListener {
-            UtilsCons.chooseLayout = "PHOTO_REMOVE_BG"
+            UtilsCons.chooseLayout = "PHOTO_FACE"
             val intent = Intent(this, com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
             startActivity(intent)
             UtilsCons.originalBitmap = null

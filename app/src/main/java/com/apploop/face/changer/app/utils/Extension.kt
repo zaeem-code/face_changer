@@ -322,43 +322,33 @@ object Extension {
     }
 
     fun Activity.initLists() {
+
         objSuitOptions = listSticker("backgroundBG", "backgroundBG/", objSuitOptions)
         objStickerDetailsTie = listSticker1("symbol/TieBow", "symbol/TieBow/", objStickerDetailsTie)
-        objStickerDetailsBeard =
-            listSticker1("symbol/Beard", "symbol/Beard/", objStickerDetailsBeard)
+        objStickerDetailsBeard = listSticker1("symbol/Beard", "symbol/Beard/", objStickerDetailsBeard)
+
         objFaceChangeDetail = listSticker1("faceChange", "faceChange/", objFaceChangeDetail)
-        kidFaceChangeDetail = listSticker1("faceChange", "faceChange/", kidFaceChangeDetail)
+        kidFaceChangeDetail = listSticker1("kidFaceChange", "kidFaceChange/", kidFaceChangeDetail)
         oldFaceChangeDetail = listSticker1("oldFaceChange", "oldFaceChange/", oldFaceChangeDetail)
-        objStickerDetailsMustache =
-            listSticker1("symbol/Mustaches", "symbol/Mustaches/", objStickerDetailsMustache)
-        objStickerDetailsGoggle = listSticker1(
-            "symbol/GogglesSunglass",
-            "symbol/GogglesSunglass/",
-            objStickerDetailsGoggle
-        )
+
+        objStickerDetailsMustache = listSticker1("symbol/Mustaches", "symbol/Mustaches/", objStickerDetailsMustache)
+        objStickerDetailsGoggle = listSticker1("symbol/GogglesSunglass", "symbol/GogglesSunglass/", objStickerDetailsGoggle)
         objStickerDetailsHat = listSticker1("symbol/Hat", "symbol/Hat/", objStickerDetailsHat)
-        objStickerDetailsHair =
-            listSticker1("hairstyles/Coiffure", "hairstyles/Coiffure/", objStickerDetailsHair)
+        objStickerDetailsHair = listSticker1("hairstyles/Coiffure", "hairstyles/Coiffure/", objStickerDetailsHair)
 
         objStickerDetailsHair.addAll(objStickerDetailsHair)
 
-        objStickerDetailsPomp =
-            listSticker1("hairstyles/Coiffure", "hairstyles/Coiffure/", objStickerDetailsPomp)
+        objStickerDetailsPomp = listSticker1("hairstyles/Coiffure", "hairstyles/Coiffure/", objStickerDetailsPomp)
         objStickerDetailsHair.addAll(objStickerDetailsPomp)
-        objStickerDetailLong =
-            listSticker1("hairstyles/Longhair", "hairstyles/Longhair/", objStickerDetailLong)
+        objStickerDetailLong = listSticker1("hairstyles/Longhair", "hairstyles/Longhair/", objStickerDetailLong)
         objStickerDetailsHair.addAll(objStickerDetailLong)
-        objStickerDetailsShort =
-            listSticker1("hairstyles/Crewcut", "hairstyles/Crewcut/", objStickerDetailsShort)
+        objStickerDetailsShort = listSticker1("hairstyles/Crewcut", "hairstyles/Crewcut/", objStickerDetailsShort)
         objStickerDetailsHair.addAll(objStickerDetailsShort)
-        objStickerDetailsSpike =
-            listSticker1("hairstyles/Spiky", "hairstyles/Spiky/", objStickerDetailsSpike)
+        objStickerDetailsSpike = listSticker1("hairstyles/Spiky", "hairstyles/Spiky/", objStickerDetailsSpike)
         objStickerDetailsHair.addAll(objStickerDetailsSpike)
-        objStickerDetailsColor =
-            listSticker1("hairstyles/Colored", "hairstyles/Colored/", objStickerDetailsColor)
+        objStickerDetailsColor = listSticker1("hairstyles/Colored", "hairstyles/Colored/", objStickerDetailsColor)
         objStickerDetailsHair.addAll(objStickerDetailsColor)
-        objStickerDetailsBald =
-            listSticker1("hairstyles/Bald", "hairstyles/Bald/", objStickerDetailsBald)
+        objStickerDetailsBald = listSticker1("hairstyles/Bald", "hairstyles/Bald/", objStickerDetailsBald)
         objStickerDetailsHair.addAll(objStickerDetailsBald)
     }
 

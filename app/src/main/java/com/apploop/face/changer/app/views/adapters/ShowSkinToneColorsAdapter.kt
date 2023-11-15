@@ -45,15 +45,15 @@ class ShowSkinToneColorsAdapter(
             holder.lv_card_skin_tone.setCardBackgroundColor(Color.parseColor(list[position]))
 //            holder.lv_card_skin_tone.setCardBackgroundColor(list[position].toInt())
 
-            val filePath = imagePAth
-            Glide.with(context)
-                .load(filePath)
-                .into(holder.imageView)
+//            val filePath = imagePAth
+//            Glide.with(context)
+//                .load(filePath)
+//                .into(holder.imageView)
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
-        holder.imageView.setOnClickListener {
+        holder.itemView.setOnClickListener {
             listener.onBackgroundSkinToneInterfaceClicks(list[position])
         }
     }

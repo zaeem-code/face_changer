@@ -41,14 +41,17 @@
                 android:baselineAligned="false"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:id="@+id/lv_suit1"
                     style="@style/uCrop_wrapperIconState"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_15sdp"
-                    android:onClick="@{ ()-> selectSuitViewModel.onBack()}"
+                    android:onClick="@{ ()-> stickerViewModel.onBackClick()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/lv_flip_suit1"
                     app:layout_constraintStart_toStartOf="parent"
@@ -64,8 +67,8 @@
                         android:id="@+id/tv_suit1"
                         style="@style/uCrop_textViewWidget"
                         android:fontFamily="@font/product_sans"
-                        android:visibility="gone"
-                        android:text="@string/select_suit" />
+                        android:text="@string/select_suit"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
@@ -73,21 +76,22 @@
                     android:id="@+id/changeBackgroundTV"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:text="Change Background"
                     android:gravity="center"
-                    android:visibility="gone"
+                    android:text="Change Background"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14sdp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/lv_flip_image1"
                     app:layout_constraintEnd_toEndOf="@+id/lv_flip_image1"
                     app:layout_constraintStart_toEndOf="@+id/lv_suit1"
                     app:layout_constraintTop_toTopOf="@+id/lv_flip_image1" />
+
                 <LinearLayout
                     android:id="@+id/lv_flip_suit1"
                     style="@style/uCrop_wrapperIconState"
                     android:onClick="@{ ()-> stickerViewModel.onBackGroundImagesClick()}"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:paddingVertical="@dimen/_3sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/lv_flip_image1"
                     app:layout_constraintStart_toEndOf="@+id/lv_suit1"
                     app:layout_constraintTop_toTopOf="parent">
@@ -103,8 +107,8 @@
                         android:id="@+id/tv_flip_suit1"
                         style="@style/uCrop_textViewWidget"
                         android:fontFamily="@font/product_sans"
-                        android:visibility="gone"
-                        android:text="@string/flip_suit" />
+                        android:text="@string/flip_suit"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
@@ -112,11 +116,11 @@
                     android:id="@+id/lv_flip_image1"
                     style="@style/uCrop_wrapperIconState"
                     android:onClick="@{ ()-> selectSuitViewModel.flipImage()}"
+                    android:paddingVertical="@dimen/_3sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/lv_edit1"
                     app:layout_constraintStart_toEndOf="@+id/lv_flip_suit1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:paddingVertical="@dimen/_3sdp">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
                         android:id="@+id/iv_flip_image1"
@@ -130,37 +134,32 @@
                         style="@style/uCrop_textViewWidget"
                         android:fontFamily="@font/product_sans"
                         android:text="@string/flip_image"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/lv_edit1"
                     style="@style/uCrop_wrapperIconState"
-                    android:onClick="@{ ()-> selectSuitViewModel.onDoneClick()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:onClick="@{ ()-> stickerViewModel.onDoneClick()}"
                     app:layout_constraintStart_toEndOf="@+id/lv_flip_image1"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
                         android:id="@+id/iv_edit1"
                         style="@style/uCrop_imageViewWidgetIcon"
-                        app:srcCompat="@drawable/ic_check"/>
+                        app:srcCompat="@drawable/ic_check" />
 
                     <TextView
                         android:id="@+id/tv_edit1"
                         style="@style/uCrop_textViewWidget"
                         android:fontFamily="@font/product_sans"
                         android:text="@string/edit"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                 </LinearLayout>
-
-
-
-
-
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -231,10 +230,7 @@
                 android:visibility="gone"
                 android:background="@drawable/cus_light_purple_bg_rounded"
                 android:onClick="@{ ()-> selectSuitViewModel.onPhotoClick()}"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_move"
-                app:layout_constraintEnd_toStartOf="@+id/iv_suit_move"
-                app:layout_constraintStart_toEndOf="@+id/tv_move"
-                app:layout_constraintTop_toTopOf="@+id/tv_move">
+                app:layout_constraintEnd_toStartOf="@+id/iv_suit_move">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_upgrade"
@@ -257,13 +253,10 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_23sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
-                android:visibility="gone"
                 android:background="@drawable/cus_white_bg_rounded"
                 android:onClick="@{ ()-> selectSuitViewModel.onMoveSuitClick()}"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_move"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_button"
-                app:layout_constraintTop_toTopOf="@+id/tv_move">
+                app:layout_constraintStart_toEndOf="@+id/iv_button">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_suit_move"
@@ -288,6 +281,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/background"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -340,7 +334,6 @@
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/lv_root"
             app:layout_constraintTop_toBottomOf="@+id/topBar" >
-
 
             <include layout="@layout/shimmer_layout_without_media" />
 

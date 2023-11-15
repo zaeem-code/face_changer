@@ -77,6 +77,25 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
         if (UtilsCons.originalBitmap != null) {
             loadBitmap(binding.ivSuit, UtilsCons.originalBitmap)
         }
+
+        binding.lvEdit1.setOnClickListener {
+
+//            getBitmapFromView(binding.lvRoot)?.let {
+//                binding.progressBar.visibility = View.VISIBLE
+//                window.setFlags(
+//                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+//                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+//                )
+//
+//                if (saveBitmapLast != null) {
+//                    saveBitmapLast?.recycle()
+//                }
+//                saveBitmapLast = it
+//                val intent = Intent(this@RemoveBgActivity, ImageAdsSavedActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            }
+        }
     }
     private val onTouchSticker: StickerView.OnTouchSticker =
         StickerView.OnTouchSticker { stickerImageView ->
@@ -180,10 +199,12 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
 
             EnumClass.STICKER_COLOR -> {
 
+                onBackPressed()
             }
 
             EnumClass.OPACITY -> {
 
+                onBackPressed()
             }
 
             EnumClass.BACKGROUND_COLOR -> {

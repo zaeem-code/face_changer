@@ -34,10 +34,8 @@ class Splash : AppCompatActivity() {
         /// inApp update
         appUpdateManager = AppUpdateManagerFactory.create(this)
 
-
         lottieAnimator=findViewById(R.id.animation_view)
         adsText=findViewById(R.id.ads_txt)
-
 
         updateApp()
 
@@ -48,22 +46,20 @@ class Splash : AppCompatActivity() {
     {
         Handler(Looper.getMainLooper()).postDelayed({
             /* Create an Intent that will start the Menu-Activity. */
-            if (com.apploop.face.changer.app.manager.OpenAdManager.getInstance().isAdAvailable && !com.apploop.face.changer.app.manager.OpenAdManager.getInstance().enabledNoAds)
+            if (OpenAdManager.getInstance().isAdAvailable && !com.apploop.face.changer.app.manager.OpenAdManager.getInstance().enabledNoAds)
             {
-                com.apploop.face.changer.app.manager.OpenAdManager.getInstance().showAdIfAvailable(this)
+                OpenAdManager.getInstance().showAdIfAvailable(this)
             } else {
-
-
                 lottieAnimator.visibility= View.VISIBLE
                 adsText.visibility= View.VISIBLE
 
                 Handler(Looper.getMainLooper()).postDelayed({
-                    if (com.apploop.face.changer.app.manager.OpenAdManager.getInstance().isAdAvailable && !com.apploop.face.changer.app.manager.OpenAdManager.getInstance().enabledNoAds)
+                    if (OpenAdManager.getInstance().isAdAvailable && !com.apploop.face.changer.app.manager.OpenAdManager.getInstance().enabledNoAds)
                     {
                         lottieAnimator.visibility= View.INVISIBLE
                         adsText.visibility= View.INVISIBLE
 
-                        com.apploop.face.changer.app.manager.OpenAdManager.getInstance().showAdIfAvailable(this)
+                        OpenAdManager.getInstance().showAdIfAvailable(this)
                     }
                     else
                     {
@@ -76,8 +72,6 @@ class Splash : AppCompatActivity() {
                 },4000)
 
             }
-
-
 
         }, 3000)
 
