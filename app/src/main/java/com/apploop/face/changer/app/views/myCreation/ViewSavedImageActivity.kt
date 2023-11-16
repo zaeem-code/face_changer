@@ -129,6 +129,8 @@ class ViewSavedImageActivity : AppCompatActivity() {
             UtilsCons.originalBitmap = BitmapFactory.decodeFile(path)
             UtilsCons.originalPath = Extension.imageFilePath
             alertDialog.dismiss()
+
+
         }
 
         removebg.setOnClickListener {
