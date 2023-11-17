@@ -35,11 +35,10 @@ class ImageSavedActivity : AppCompatActivity() {
 //            }, 3000)
 //        }
         binding.shimmerFrameLayout.startShimmer()
-        AdsManager.Companion.instance!!.showNativeAd(
+        AdsManager.getInstance().loadNativeAdCallback(
+            this,
             binding.frameLayout,
-            binding.frameLayout,
-            layoutInflater,
-            R.layout.ad_media
+            AdsManager.NativeAdType.MEDIUM_TYPE
         )
         {
             if (it) {

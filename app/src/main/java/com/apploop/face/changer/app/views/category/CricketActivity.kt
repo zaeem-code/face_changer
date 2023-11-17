@@ -9,7 +9,6 @@ import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.api.apiRespoInterfaces.CallBackResponseJson
 import com.apploop.face.changer.app.api.viewModel.ViewModelVideos
 import com.apploop.face.changer.app.databinding.ActivityCricketBinding
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.manager.AnalyticsManager
 import com.apploop.face.changer.app.models.SuitList
 import com.apploop.face.changer.app.utils.Extension.isInternetAvailable
@@ -47,21 +46,21 @@ class CricketActivity : AppCompatActivity(),
 
 
 
-        binding.shimmerFrameLayout.startShimmer()
-        AdsManager.Companion.instance!!.showNativeAd(
-            binding.frameLayout3,
-            binding.frameLayout3,
-            layoutInflater,
-            R.layout.ad_media
-        )
-        {
-            if (it) {
-                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-            } else {
-                binding.shimmerFrameLayout.visibility = View.GONE
-                binding.frameLayout3.visibility = View.GONE
-            }
-        }
+//        binding.shimmerFrameLayout.startShimmer()
+//        AdsManager.Companion.instance!!.showNativeAd(
+//            binding.frameLayout3,
+//            binding.frameLayout3,
+//            layoutInflater,
+//            R.layout.ad_media
+//        )
+//        {
+//            if (it) {
+//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+//            } else {
+//                binding.shimmerFrameLayout.visibility = View.GONE
+//                binding.frameLayout3.visibility = View.GONE
+//            }
+//        }
 
         binding.ivBack.setOnClickListener {
             finish()

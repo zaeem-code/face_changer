@@ -10,8 +10,8 @@ android {
         applicationId "com.apploop.face.changer.app"
         minSdk 23
         targetSdk 33
-        versionCode 50
-        versionName "5.0.5"
+        versionCode 1
+        versionName "1.0"
         resConfigs "en", "US"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

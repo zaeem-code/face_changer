@@ -16,7 +16,6 @@ import com.apploop.face.changer.app.callBacks.SuitBottomSheetViewModelInterface
 import com.apploop.face.changer.app.databinding.ActivityEditorBinding
 import com.apploop.face.changer.app.helpers.EnumClass
 import com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.manager.OnAdLoaded
 import com.apploop.face.changer.app.utils.Extension.getBitmapFromView
 import com.apploop.face.changer.app.utils.Extension.loadBitmap
@@ -45,17 +44,17 @@ class SelectSuitActivity : AppCompatActivity(), SelectSuitViewModelInterface,
 
     private fun init() {
         binding.shimmerFrameLayout.startShimmer()
-        AdsManager.Companion.instance!!.showAdMobBanner(this, binding.frameLayout){
-            if (it)
-            {
-                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-            }
-            else
-            {
-                binding.shimmerFrameLayout.visibility = View.GONE
-                binding.frameLayout.visibility = View.GONE
-            }
-        }
+//        AdsManager.Companion.instance!!.showAdMobBanner(this, binding.frameLayout){
+//            if (it)
+//            {
+//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+//            }
+//            else
+//            {
+//                binding.shimmerFrameLayout.visibility = View.GONE
+//                binding.frameLayout.visibility = View.GONE
+//            }
+//        }
         selectSuitViewModel = SelectSuitViewModel(this)
         binding.selectSuitViewModel = selectSuitViewModel
         if (UtilsCons.originalBitmap != null) {
@@ -170,21 +169,26 @@ class SelectSuitActivity : AppCompatActivity(), SelectSuitViewModelInterface,
                     val bitmapSuit = getBitmapFromView(binding.fySuit)
                     if (bitmapSuit != null) {
 
-                        binding.progressBar.visibility = View.VISIBLE
-                        window.setFlags(
-                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                        )
-                        AdsManager.Companion.instance!!.showInterstitialAd(this, object : OnAdLoaded {
-                            override fun OnAdLoadedCallBack(loaded: Boolean?) {
-                                binding.progressBar.visibility = View.GONE
-                                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
-                                UtilsCons.originalBitmap = bitmapSuit
-                                val i = Intent(this@SelectSuitActivity, EraserActivity::class.java)
-                                startActivity(i)
-                            }
-                        })
+                        UtilsCons.originalBitmap = bitmapSuit
+                        val i = Intent(this@SelectSuitActivity, EraserActivity::class.java)
+                        startActivity(i)
+
+//                        binding.progressBar.visibility = View.VISIBLE
+//                        window.setFlags(
+//                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+//                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+//                        )
+//                        AdsManager.Companion.instance!!.showInterstitialAd(this, object : OnAdLoaded {
+//                            override fun OnAdLoadedCallBack(loaded: Boolean?) {
+//                                binding.progressBar.visibility = View.GONE
+//                                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+//
+//                                UtilsCons.originalBitmap = bitmapSuit
+//                                val i = Intent(this@SelectSuitActivity, EraserActivity::class.java)
+//                                startActivity(i)
+//                            }
+//                        })
                     } else {
                         Toast.makeText(this, "please, select image", Toast.LENGTH_SHORT).show()
                     }

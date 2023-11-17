@@ -55,7 +55,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
 
     private fun init() {
         binding.shimmerFrameLayout.startShimmer()
-        AdsManager.instance!!.showAdMobBanner(this, binding.frameLayout) {
+        AdsManager.getInstance()!!.showCustomBanner(this, binding.frameLayout,"") {
             if (it) {
                 binding.shimmerFrameLayout.visibility = View.INVISIBLE
             } else {

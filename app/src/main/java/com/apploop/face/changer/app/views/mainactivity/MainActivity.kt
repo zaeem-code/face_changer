@@ -24,7 +24,6 @@ import com.apploop.face.changer.app.callBacks.MainViewModelInterface
 import com.apploop.face.changer.app.databinding.ActivityMainBinding
 import com.apploop.face.changer.app.helpers.EnumClass
 import com.apploop.face.changer.app.manager.AdsManager
-import com.apploop.face.changer.app.manager.OpenAdManager
 import com.apploop.face.changer.app.utils.Extension
 import com.apploop.face.changer.app.utils.Extension.isInternetAvailable
 import com.apploop.face.changer.app.utils.Extension.rateApp
@@ -59,11 +58,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
         introduceDialog = IntroduceDialog(this, this@MainActivity)
 
         binding.ivPremium.setOnClickListener {
-            if (!OpenAdManager.getInstance().enabledNoAds) {
-                startActivity(Intent(this, PremiumActivity::class.java))
-            } else {
-                binding.ivPremium.visibility = View.INVISIBLE
-            }
+
+            startActivity(Intent(this, PremiumActivity::class.java))
+
+//            if (!OpenAdManager.getInstance().enabledNoAds) {
+//                startActivity(Intent(this, PremiumActivity::class.java))
+//            } else {
+//                binding.ivPremium.visibility = View.INVISIBLE
+//            }
         }
     }
 
@@ -118,8 +120,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
         }
 
         binding.shimmerFrameLayout.startShimmer()
-        AdsManager.instance?.showNativeAd(
-            binding.frameLayout, binding.frameLayout, layoutInflater, R.layout.ad_with_media
+        AdsManager.getInstance()?.loadNativeAdCallback(
+            this,
+            binding.frameLayout,
+            AdsManager.NativeAdType.REGULAR_TYPE
         ) {
             if (it) {
                 binding.shimmerFrameLayout.visibility = View.INVISIBLE
@@ -136,21 +140,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
 
         initClicks()
 
-        binding.layoutNavigationView.shimmerFrameLayout.startShimmer()
-        AdsManager.Companion.instance!!.showNativeAd(
-            binding.layoutNavigationView.frameLayout,
-            binding.layoutNavigationView.frameLayout,
-            layoutInflater,
-            R.layout.ad_media
-        )
-        {
-            if (it) {
-                binding.layoutNavigationView.shimmerFrameLayout.visibility = View.INVISIBLE
-            } else {
-                binding.layoutNavigationView.shimmerFrameLayout.visibility = View.GONE
-                binding.layoutNavigationView.frameLayout.visibility = View.GONE
-            }
-        }
+
     }
 
     private fun initClicks() {

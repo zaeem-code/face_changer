@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.apploop.face.changer.app.R
-import com.apploop.face.changer.app.app.MyApplication
+import com.apploop.face.changer.app.app.App
 import com.apploop.face.changer.app.databinding.ActivityProSavedBinding
 import com.apploop.face.changer.app.utils.Extension
 import com.apploop.face.changer.app.utils.Extension.createDirectoryAndSaveFile
@@ -62,14 +62,8 @@ class ProSavedActivity : AppCompatActivity() {
         }
 
         binding.btnWatchAd.setOnClickListener {
-            (application as MyApplication).showAdIfAvailable(
-                this@ProSavedActivity,
-                object : MyApplication.OnShowAdCompleteListener {
-                    override fun onShowAdComplete() {
-                        startSavedActivity()
-                    }
-                }
-            )
+            startSavedActivity()
+
         }
     }
 

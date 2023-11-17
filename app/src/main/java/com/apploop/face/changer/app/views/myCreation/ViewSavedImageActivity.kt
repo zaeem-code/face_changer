@@ -38,11 +38,10 @@ class ViewSavedImageActivity : AppCompatActivity() {
     private fun init() {
 
         binding.shimmerFrameLayout.startShimmer()
-        AdsManager.Companion.instance!!.showNativeAd(
+        AdsManager.getInstance().loadNativeAdCallback(
+            this,
             binding.frameLayout,
-            binding.frameLayout,
-            layoutInflater,
-            R.layout.ad_media
+            AdsManager.NativeAdType.MEDIUM_TYPE
         )
         {
             if (it) {

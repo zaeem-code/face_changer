@@ -72,6 +72,9 @@ public class HandCropActivity extends AppCompatActivity implements View.OnClickL
             getWindow().setStatusBarColor(getResources().getColor(R.color.background));
         }
         init();
+
+
+        AdsManager.getInstance().loadInterstitialAdIfNotLoaded(this);
     }
 
     private void init() {
@@ -164,7 +167,7 @@ public class HandCropActivity extends AppCompatActivity implements View.OnClickL
                     binding.progressBar.setVisibility(View.VISIBLE);
                     getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                             WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                    AdsManager.Companion.getInstance().showInterstitialAd(HandCropActivity.this, new OnAdLoaded() {
+                    AdsManager.getInstance().showInterstitialAd(HandCropActivity.this, new OnAdLoaded() {
                         @Override
                         public void OnAdLoadedCallBack(Boolean loaded) {
                             binding.progressBar.setVisibility(View.GONE);
@@ -239,7 +242,7 @@ public class HandCropActivity extends AppCompatActivity implements View.OnClickL
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
-            AdsManager.Companion.getInstance().showInterstitialAd(HandCropActivity.this, new OnAdLoaded() {
+            AdsManager.getInstance().showInterstitialAd(HandCropActivity.this, new OnAdLoaded() {
                 @Override
                 public void OnAdLoadedCallBack(Boolean loaded) {
                     binding.progressBar.setVisibility(View.GONE);
