@@ -3,7 +3,8 @@ package com.apploop.face.changer.app.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.apploop.face.changer.app.app.MyApplication;
+import com.apploop.face.changer.app.app.App;
+
 
 public class SharedPrefHelper {
 
@@ -12,7 +13,7 @@ public class SharedPrefHelper {
 
     private static SharedPreferences getPreferences() {
         if (preferences == null) {
-            preferences = MyApplication.Companion.applicationContext().getSharedPreferences("private-prefs", MODE);
+            preferences = App.getContext().getSharedPreferences("private-prefs", MODE);
         }
         return preferences;
     }

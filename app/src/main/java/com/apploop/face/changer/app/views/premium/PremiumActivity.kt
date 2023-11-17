@@ -11,7 +11,6 @@ import com.apploop.face.changer.app.InAppBilling.SubscriptionBillingManager
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.databinding.ActivityPremiumBinding
 import com.apploop.face.changer.app.manager.AdsManager
-import com.apploop.face.changer.app.manager.OnAdLoaded
 import com.apploop.face.changer.app.utils.Constants
 import com.apploop.face.changer.app.utils.Extension.statusBarColor
 import com.apploop.face.changer.app.utils.SharedPrefHelper
@@ -29,8 +28,9 @@ class PremiumActivity : AppCompatActivity() {
 
         SharedPrefHelper.writeBoolean(Constants.IN_APP_KEY,true)
         SubscriptionBillingManager(this, this)
-
         init()
+        AdsManager.getInstance().loadInterstitialAdIfNotLoaded(this)
+
     }
 
     private fun init() {
@@ -41,7 +41,7 @@ class PremiumActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
             )
-            AdsManager.instance!!.showInterstitialAd(this) {
+            AdsManager.getInstance().showInterstitialAd(this) {
                 binding.progressBar.visibility = View.GONE
                 window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                 finish()
@@ -105,37 +105,17 @@ class PremiumActivity : AppCompatActivity() {
 
         }
 
-        binding.ivCross.setOnClickListener {
-            binding.progressBar.visibility = View.VISIBLE
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-            )
-            AdsManager.Companion.instance!!.showInterstitialAd(this) {
-                binding.progressBar.visibility = View.GONE
-                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-                finish()
-                startActivity(
-                    Intent(
-                        this@PremiumActivity,
-                        MainActivity::class.java
-                    ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                )
-            }
-        }
 
     }
 
     override fun onBackPressed() {
-//        AdsManager.instance?.showInterstitialAd(this)
-//        finish()
 
                 binding.progressBar.visibility = View.VISIBLE
                 window.setFlags(
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 )
-                AdsManager.instance!!.showInterstitialAd(this) {
+                AdsManager.getInstance().showInterstitialAd(this) {
                     binding.progressBar.visibility = View.GONE
                     window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                     finish()

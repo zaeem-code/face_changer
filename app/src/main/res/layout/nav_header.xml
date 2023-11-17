@@ -359,16 +359,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmerFrameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_80sdp"
-            app:layout_constraintBottom_toBottomOf="parent">
 
-
-            <include layout="@layout/shimmer_banner_layout" />
-
-        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <FrameLayout
             android:id="@+id/frame_layout"

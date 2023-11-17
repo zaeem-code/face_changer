@@ -77,17 +77,16 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
     }
 
     private fun init() {
-        AdsManager.instance?.showNativeAd(
-            binding!!.frameLayout,
-            binding!!.frameLayout,
-            layoutInflater,
-            R.layout.ad_with_media
-        ) {
+        AdsManager.getInstance()?.loadNativeAdCallback(
+            requireActivity(),
+            binding?.frameLayout,
+            AdsManager.NativeAdType.MEDIUM_TYPE
+        )  {
             if (it) {
-                binding!!.shimmerFrameLayout.visibility = View.INVISIBLE
+                binding?.shimmerFrameLayout?.visibility = View.INVISIBLE
             } else {
-                binding!!.shimmerFrameLayout.visibility = View.INVISIBLE
-                binding!!.frameLayout.visibility = View.INVISIBLE
+                binding?.shimmerFrameLayout?.visibility = View.INVISIBLE
+                binding?.frameLayout?.visibility = View.INVISIBLE
             }
         }
 

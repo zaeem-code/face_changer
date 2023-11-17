@@ -60,11 +60,10 @@ class OpenCameraBottomSheet(
 
     private fun init() {
 
-        AdsManager.instance?.showNativeAd(
+        AdsManager.getInstance()?.loadNativeAdCallback(
+            requireActivity(),
             binding.frameLayout,
-            binding.frameLayout,
-            layoutInflater,
-            R.layout.ad_with_media
+            AdsManager.NativeAdType.MEDIUM_TYPE
         )  {
             if (it) {
                 binding.shimmerFrameLayout.visibility = View.INVISIBLE

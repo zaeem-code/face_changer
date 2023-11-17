@@ -8,12 +8,10 @@ import androidx.databinding.DataBindingUtil
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.api.apiRespoInterfaces.CallBackResponseJson
 import com.apploop.face.changer.app.api.viewModel.ViewModelVideos
-import com.apploop.face.changer.app.app.MyApplication
 import com.apploop.face.changer.app.callBacks.CategoryModelInterface
 import com.apploop.face.changer.app.callBacks.SuitBottomSheetViewModelInterface
 import com.apploop.face.changer.app.databinding.ActivitySelectCategoryBinding
 import com.apploop.face.changer.app.helpers.EnumClass
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.manager.AnalyticsManager
 import com.apploop.face.changer.app.utils.Extension.africaList
 import com.apploop.face.changer.app.utils.Extension.fifaList
@@ -37,15 +35,7 @@ class SelectCategoryActivity : AppCompatActivity(), CategoryModelInterface,
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_category)
         statusBarColor(R.color.background)
 
-        (application as MyApplication).showAdIfAvailable(
-            this@SelectCategoryActivity,
-            object : MyApplication.OnShowAdCompleteListener {
-                override fun onShowAdComplete() {
-                    // Check if the consent form is currently on screen before moving to the main
-                    // activity.
-                }
-            }
-        )
+
 
         init()
     }
@@ -60,65 +50,65 @@ class SelectCategoryActivity : AppCompatActivity(), CategoryModelInterface,
         }
 
 
-        binding.shimmerFrameLayout.startShimmer()
-        AdsManager.Companion.instance!!.showAdMobBanner(this, binding.frameLayout){
-            if (it)
-            {
-                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-            }
-            else
-            {
-                binding.shimmerFrameLayout.visibility = View.GONE
-                binding.frameLayout.visibility = View.GONE
-            }
-        }
-        binding.shimmerFrameLayout1.startShimmer()
-        AdsManager.Companion.instance!!.showNativeAd(
-            binding.frameLayout1,
-            binding.frameLayout1,
-            layoutInflater,
-            R.layout.ad_media
-        )
-        {
-            if (it) {
-                binding.shimmerFrameLayout1.visibility = View.INVISIBLE
-            } else {
-                binding.shimmerFrameLayout1.visibility = View.GONE
-                binding.frameLayout1.visibility = View.GONE
-            }
-        }
+//        binding.shimmerFrameLayout.startShimmer()
+//        AdsManager.Companion.instance!!.showAdMobBanner(this, binding.frameLayout){
+//            if (it)
+//            {
+//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+//            }
+//            else
+//            {
+//                binding.shimmerFrameLayout.visibility = View.GONE
+//                binding.frameLayout.visibility = View.GONE
+//            }
+//        }
+//        binding.shimmerFrameLayout1.startShimmer()
+//        AdsManager.Companion.instance!!.showNativeAd(
+//            binding.frameLayout1,
+//            binding.frameLayout1,
+//            layoutInflater,
+//            R.layout.ad_media
+//        )
+//        {
+//            if (it) {
+//                binding.shimmerFrameLayout1.visibility = View.INVISIBLE
+//            } else {
+//                binding.shimmerFrameLayout1.visibility = View.GONE
+//                binding.frameLayout1.visibility = View.GONE
+//            }
+//        }
 
-        binding.shimmerFrameLayout2.startShimmer()
-        AdsManager.Companion.instance!!.showNativeAd(
-            binding.frameLayout2,
-            binding.frameLayout2,
-            layoutInflater,
-            R.layout.ad_media
-        )
-        {
-            if (it) {
-                binding.shimmerFrameLayout2.visibility = View.INVISIBLE
-            } else {
-                binding.shimmerFrameLayout2.visibility = View.GONE
-                binding.frameLayout2.visibility = View.GONE
-            }
-        }
+//        binding.shimmerFrameLayout2.startShimmer()
+//        AdsManager.Companion.instance!!.showNativeAd(
+//            binding.frameLayout2,
+//            binding.frameLayout2,
+//            layoutInflater,
+//            R.layout.ad_media
+//        )
+//        {
+//            if (it) {
+//                binding.shimmerFrameLayout2.visibility = View.INVISIBLE
+//            } else {
+//                binding.shimmerFrameLayout2.visibility = View.GONE
+//                binding.frameLayout2.visibility = View.GONE
+//            }
+//        }
 
-        binding.shimmerFrameLayout3.startShimmer()
-        AdsManager.Companion.instance!!.showNativeAd(
-            binding.frameLayout3,
-            binding.frameLayout3,
-            layoutInflater,
-            R.layout.ad_media
-        )
-        {
-            if (it) {
-                binding.shimmerFrameLayout3.visibility = View.INVISIBLE
-            } else {
-                binding.shimmerFrameLayout3.visibility = View.GONE
-                binding.frameLayout3.visibility = View.GONE
-            }
-        }
+//        binding.shimmerFrameLayout3.startShimmer()
+//        AdsManager.Companion.instance!!.showNativeAd(
+//            binding.frameLayout3,
+//            binding.frameLayout3,
+//            layoutInflater,
+//            R.layout.ad_media
+//        )
+//        {
+//            if (it) {
+//                binding.shimmerFrameLayout3.visibility = View.INVISIBLE
+//            } else {
+//                binding.shimmerFrameLayout3.visibility = View.GONE
+//                binding.frameLayout3.visibility = View.GONE
+//            }
+//        }
         categoryViewModel = CategoryViewModel(this)
         binding.categoryViewModel = categoryViewModel
         initSuitsLists()

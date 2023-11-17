@@ -34,11 +34,10 @@ class ShowStickersBottomSheet(val activity: Activity, val list: List<ObjStickerI
         val dialog = dialog as BottomSheetDialog
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
 
-        AdsManager.instance?.showNativeAd(
+        AdsManager.getInstance()?.loadNativeAdCallback(
+            requireActivity(),
             binding.frameLayout,
-            binding.frameLayout,
-            layoutInflater,
-            R.layout.ad_with_media
+            AdsManager.NativeAdType.MEDIUM_TYPE
         ) {
             if (it) {
                 binding.shimmerFrameLayout.visibility = View.INVISIBLE

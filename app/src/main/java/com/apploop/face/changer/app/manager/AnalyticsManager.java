@@ -2,15 +2,15 @@ package com.apploop.face.changer.app.manager;
 
 import android.os.Bundle;
 
+import com.apploop.face.changer.app.app.App;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.apploop.face.changer.app.app.MyApplication;
 
 public class AnalyticsManager {
     private static AnalyticsManager manager;
     private final FirebaseAnalytics firebaseAnalytics;
 
     private AnalyticsManager() {
-        firebaseAnalytics = FirebaseAnalytics.getInstance(MyApplication.Companion.applicationContext());
+        firebaseAnalytics = FirebaseAnalytics.getInstance(App.getContext());
     }
 
     public static AnalyticsManager getInstance() {

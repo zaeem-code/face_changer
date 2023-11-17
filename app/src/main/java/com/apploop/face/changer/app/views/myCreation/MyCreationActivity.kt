@@ -10,6 +10,7 @@ import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.callBacks.MyCreationInterface
 import com.apploop.face.changer.app.databinding.ActivityMyCreationBinding
 import com.apploop.face.changer.app.manager.AdsManager
+import com.apploop.face.changer.app.manager.OnAdLoaded
 import com.apploop.face.changer.app.utils.Extension.fetchImage
 import com.apploop.face.changer.app.utils.Extension.imageGallery
 import com.apploop.face.changer.app.utils.Extension.statusBarColor
@@ -28,11 +29,10 @@ class MyCreationActivity : AppCompatActivity(), MyCreationInterface {
 
     private fun init() {
         binding.shimmerFrameLayout.startShimmer()
-        AdsManager.Companion.instance!!.showNativeAd(
+        AdsManager.getInstance().loadNativeAdCallback(
+            this,
             binding.frameLayout,
-            binding.frameLayout,
-            layoutInflater,
-            R.layout.ad_media
+            AdsManager.NativeAdType.MEDIUM_TYPE
         )
         {
             if (it) {
@@ -49,7 +49,6 @@ class MyCreationActivity : AppCompatActivity(), MyCreationInterface {
 
         binding.ivBack.setOnClickListener {
             onBackPressed()
-            AdsManager.instance?.showInterstitialAd(this)
         }
     }
 
@@ -67,8 +66,6 @@ class MyCreationActivity : AppCompatActivity(), MyCreationInterface {
 
     override fun onBackPressed() {
         finish()
-        AdsManager.instance?.showInterstitialAd(this)
-
     }
 
 }

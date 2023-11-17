@@ -20,7 +20,7 @@ public class AppLifeCycleClass implements LifecycleObserver {
 
     public void init(){
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
-        context = App.Companion.applicationContext();
+        context = App.getContext();
     }
 
 
