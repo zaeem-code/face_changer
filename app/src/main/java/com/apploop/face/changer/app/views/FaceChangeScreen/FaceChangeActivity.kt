@@ -189,6 +189,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.OLD_MAN -> {
+                removeBorder()
                 UtilsCons.faceType = "OLD"
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvBackground.setTextColor(
@@ -214,6 +215,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.STICKERS -> {
+                removeBorder()
                 UtilsCons.faceType = "YOUNG"
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
                 binding.tvBackground.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
@@ -233,6 +235,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.KID -> {
+                removeBorder()
                 UtilsCons.faceType = "KID"
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvBackground.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
@@ -252,6 +255,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.SKIN_TONE -> {
+                removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
                         .show()
@@ -324,6 +328,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.ADD_STICKERS -> {
+                removeBorder()
                 binding.ivAddStickers.setColorFilter(
                     ContextCompat.getColor(
                         this,
@@ -368,13 +373,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
 
                 binding.faceChangeRV.layoutManager = GridLayoutManager(this, 3)
                 if (UtilsCons.faceType.contains("OLD")) {
-//                    ShowStickersBottomSheet(
-//                        this,
-//                        Extension.oldFaceChangeDetail,
-//                        this
-//                    ).apply {
-//                        show(supportFragmentManager, tag)
-//                    }
+
                     var suitsBottomSheetAdapter = ShowSkinToneAdapter(
                         Extension.oldFaceChangeDetail,
                         this@FaceChangeActivity,
@@ -383,13 +382,6 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                     binding.faceChangeRV.adapter = suitsBottomSheetAdapter
                     suitsBottomSheetAdapter.notifyDataSetChanged()
                 } else if (UtilsCons.faceType.contains("YOUNG")) {
-//                    ShowStickersBottomSheet(
-//                        this,
-//                        Extension.objFaceChangeDetail,
-//                        this
-//                    ).apply {
-//                        show(supportFragmentManager, tag)
-//                    }
 
                     var suitsBottomSheetAdapter = ShowSkinToneAdapter(
                         Extension.objFaceChangeDetail,
@@ -399,13 +391,6 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                     binding.faceChangeRV.adapter = suitsBottomSheetAdapter
                     suitsBottomSheetAdapter.notifyDataSetChanged()
                 } else {
-//                    ShowStickersBottomSheet(
-//                        this,
-//                        Extension.kidFaceChangeDetail,
-//                        this
-//                    ).apply {
-//                        show(supportFragmentManager, tag)
-//                    }
 
                     var suitsBottomSheetAdapter = ShowSkinToneAdapter(
                         Extension.kidFaceChangeDetail,
@@ -418,6 +403,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.OPACITY -> {
+                removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
                         .show()

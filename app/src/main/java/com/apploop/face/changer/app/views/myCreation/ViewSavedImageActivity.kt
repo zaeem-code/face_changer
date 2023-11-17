@@ -94,14 +94,10 @@ class ViewSavedImageActivity : AppCompatActivity() {
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
 
-        val faceChange =
-            dialogView.findViewById<View>(R.id.faceChangeLL) as LinearLayout
-        val menstyle =
-            dialogView.findViewById<View>(R.id.menStyleLL) as LinearLayout
-        val removebg =
-            dialogView.findViewById<View>(R.id.removeBgLL) as LinearLayout
-        val cross =
-            dialogView.findViewById<View>(R.id.crossRL) as RelativeLayout
+        val faceChange = dialogView.findViewById<View>(R.id.faceChangeLL) as LinearLayout
+        val menstyle = dialogView.findViewById<View>(R.id.menStyleLL) as LinearLayout
+        val removebg = dialogView.findViewById<View>(R.id.removeBgLL) as LinearLayout
+        val cross = dialogView.findViewById<View>(R.id.crossRL) as RelativeLayout
 
         cross.setOnClickListener {
             alertDialog.dismiss()
@@ -129,8 +125,6 @@ class ViewSavedImageActivity : AppCompatActivity() {
             UtilsCons.originalBitmap = BitmapFactory.decodeFile(path)
             UtilsCons.originalPath = Extension.imageFilePath
             alertDialog.dismiss()
-
-
         }
 
         removebg.setOnClickListener {
@@ -138,10 +132,8 @@ class ViewSavedImageActivity : AppCompatActivity() {
             val intent = Intent(this, com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
             val myUri = Uri.parse(path)
             intent.putExtra("image_uri", myUri.toString())
-//            intent.putExtra("path", Extension.imageFilePath)
             intent.putExtra("path", myUri.toString())
             startActivity(intent)
-
 
             UtilsCons.originalBitmap = null
             UtilsCons.originalPath = ""
@@ -152,5 +144,4 @@ class ViewSavedImageActivity : AppCompatActivity() {
             alertDialog.dismiss()
         }
     }
-
 }
