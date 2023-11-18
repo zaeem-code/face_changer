@@ -62,6 +62,7 @@ class SplashActivity : AppCompatActivity() {
                     "egtspll",
                     String.format("%s: %s", consentError.errorCode, consentError.message)
                 )
+                continueWithSplash()
             }
             Log.d("egtspll", "String.format cnsentError.errorCode, consentError.message)")
             if (GoogleMobileAdsConsentManager.getInstance(this).canRequestAds) {
