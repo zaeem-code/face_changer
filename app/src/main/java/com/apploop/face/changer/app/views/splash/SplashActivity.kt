@@ -7,7 +7,9 @@ import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.airbnb.lottie.LottieAnimationView
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.app.App
 import com.apploop.face.changer.app.manager.AdsManager
@@ -30,6 +32,8 @@ private const val LOG_TAG = "SplashActivity"
 /** Splash Activity that inflates splash activity xml. */
 class SplashActivity : AppCompatActivity() {
 
+    private lateinit var lottieAnimator: LottieAnimationView
+    private lateinit var adsText: TextView
     var appUpdateManager: AppUpdateManager? = null
     private val openAdManager = AppOpenManager.getInstance(App.getContext())
     private var tryAgainForAd = true
@@ -41,16 +45,14 @@ class SplashActivity : AppCompatActivity() {
 
         statusBarColor(R.color.background)
 
-
+        lottieAnimator=findViewById(R.id.animation_view)
+        adsText=findViewById(R.id.ads_txt)
 
         /// inApp update
         appUpdateManager = AppUpdateManagerFactory.create(this)
 
         updateApp()
     }
-
-
-
 
 
     private fun initView() {
@@ -79,7 +81,6 @@ class SplashActivity : AppCompatActivity() {
             return
         }
         mLastClickTime = SystemClock.elapsedRealtime()
-
 
         showOpenAd()
 
@@ -133,7 +134,6 @@ class SplashActivity : AppCompatActivity() {
 
         // load ads
         AdsManager.getInstance().loadInterstitialAd(this)
-
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

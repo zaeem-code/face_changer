@@ -175,6 +175,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
         sticker!!.id = Extension.viewId
 
         Extension.stickerViewId.add(Extension.viewId)
+
         sticker!!.setOnClickListener(View.OnClickListener {
             sticker!!.setControlItemsHidden(true)
         })
@@ -189,7 +190,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.OLD_MAN -> {
-                removeBorder()
+//                removeBorder()
                 UtilsCons.faceType = "OLD"
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvBackground.setTextColor(
@@ -203,19 +204,17 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                 binding.lvFaceChange.visibility = View.GONE
                 binding.lvOpacitySeekBarContainer.visibility = View.GONE
 
-                if (binding.lvStickersContainer.visibility == View.VISIBLE) {
-                    val touchListener =
-                        MultiTouchListener()
-                    binding.ivSuit.setOnTouchListener(touchListener)
-                    return
-                }
+//                if (binding.lvStickersContainer.visibility == View.VISIBLE) {
+//                    val touchListener = MultiTouchListener()
+//                    binding.ivSuit.setOnTouchListener(touchListener)
+//                    return
+//                }
                 binding.lvStickersContainer.visibility = View.VISIBLE
                 binding.lvBackgroundContainer.visibility = View.GONE
-                binding.ivSuit.setOnTouchListener(null)
             }
 
             EnumClass.STICKERS -> {
-                removeBorder()
+//                removeBorder()
                 UtilsCons.faceType = "YOUNG"
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
                 binding.tvBackground.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
@@ -224,18 +223,17 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                 binding.lvFaceChange.visibility = View.GONE
                 binding.lvOpacitySeekBarContainer.visibility = View.GONE
 
-                if (binding.lvStickersContainer.visibility == View.VISIBLE) {
-                    val touchListener = MultiTouchListener()
-                    binding.ivSuit.setOnTouchListener(touchListener)
-                    return
-                }
+//                if (binding.lvStickersContainer.visibility == View.VISIBLE) {
+//                    val touchListener = MultiTouchListener()
+//                    binding.ivSuit.setOnTouchListener(touchListener)
+//                    return
+//                }
                 binding.lvStickersContainer.visibility = View.VISIBLE
                 binding.lvBackgroundContainer.visibility = View.GONE
-                binding.ivSuit.setOnTouchListener(null)
             }
 
             EnumClass.KID -> {
-                removeBorder()
+//                removeBorder()
                 UtilsCons.faceType = "KID"
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
                 binding.tvBackground.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
@@ -244,14 +242,13 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                 binding.lvFaceChange.visibility = View.GONE
                 binding.lvOpacitySeekBarContainer.visibility = View.GONE
 
-                if (binding.lvStickersContainer.visibility == View.VISIBLE) {
-                    val touchListener = MultiTouchListener()
-                    binding.ivSuit.setOnTouchListener(touchListener)
-                    return
-                }
+//                if (binding.lvStickersContainer.visibility == View.VISIBLE) {
+//                    val touchListener = MultiTouchListener()
+//                    binding.ivSuit.setOnTouchListener(touchListener)
+//                    return
+//                }
                 binding.lvStickersContainer.visibility = View.VISIBLE
                 binding.lvBackgroundContainer.visibility = View.GONE
-                binding.ivSuit.setOnTouchListener(null)
             }
 
             EnumClass.SKIN_TONE -> {
