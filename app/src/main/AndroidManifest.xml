@@ -56,9 +56,17 @@
         <activity
             android:name="com.apploop.face.changer.app.views.RemoveBgScreen.RemoveBgActivity"
             android:exported="false" />
+
         <activity
-            android:name="com.apploop.face.changer.app.views.splash.Splash"
-            android:exported="false" />
+            android:name=".views.cropimage.ResultActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat" />
+
+        <activity
+            android:name=".views.cropimage.BasicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat" />
+
         <activity
             android:name="com.apploop.face.changer.app.views.category.CricketActivity"
             android:exported="false">
@@ -150,6 +158,18 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+<!--        <provider-->
+<!--            android:name="com.apploop.face.changer.app.provider.Provider"-->
+<!--            android:authorities="com.las.remove.unwanted.objects.fileprovider"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true"-->
+<!--            tools:replace="android:authorities">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+<!--                android:resource="@xml/path"-->
+<!--                tools:replace="android:resource" />-->
+<!--        </provider>-->
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

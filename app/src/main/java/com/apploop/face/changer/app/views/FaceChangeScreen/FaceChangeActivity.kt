@@ -150,7 +150,6 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
             return
         }
 
-        binding.ivSuit.setOnTouchListener(multiTouchListener)
         sticker = StickerImageView(
             this,
             onTouchSticker

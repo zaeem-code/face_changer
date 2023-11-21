@@ -25,12 +25,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-
+                
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Introduce to Editor!"
+                android:text="Introduction to Editor!"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
@@ -38,7 +37,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Keep space as shown below while crop the photo"
+                android:text="Keep space as shown below while cropping the photo"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 

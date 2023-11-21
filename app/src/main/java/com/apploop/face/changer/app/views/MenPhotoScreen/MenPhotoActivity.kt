@@ -129,7 +129,6 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
     }
 
     override fun onAddStickerBottomSheetButtonClicks(path: String) {
-        binding.ivSuit.setOnTouchListener(multiTouchListener)
         sticker = StickerImageView(
             this,
             onTouchSticker

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
@@ -32,6 +33,7 @@ import com.apploop.face.changer.app.utils.UtilsCons
 import com.apploop.face.changer.app.viewModels.SelectSuitViewModel
 import com.apploop.face.changer.app.viewModels.StickerViewModel
 import com.apploop.face.changer.app.views.saved.ImageAdsSavedActivity
+import com.apploop.face.changer.app.views.stickers.StickerActivity
 import java.util.Random
 
 class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
@@ -95,6 +97,22 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
 //                finish()
 //            }
         }
+
+        multiTouchListener.setOnMultiTouch(object : StickerActivity.OnStickerTouch {
+            override fun onTouch(action: Int) {
+                if (action == MotionEvent.ACTION_DOWN) {
+                    removeBorder()
+                } else if (action == MotionEvent.ACTION_UP) {
+                    removeBorder()
+                }
+            }
+        })
+
+        binding.ivSuit.setOnTouchListener(multiTouchListener)
+
+        binding.lvRoot.setOnClickListener {
+            removeBorder()
+        }
     }
     private val onTouchSticker: StickerView.OnTouchSticker =
         StickerView.OnTouchSticker { stickerImageView ->
@@ -121,6 +139,8 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
     }
 
     override fun onAddStickerBottomSheetButtonClicks(path: String) {
+
+        binding.ivSuit.setOnTouchListener(multiTouchListener)
         sticker = StickerImageView(
             this,
             onTouchSticker

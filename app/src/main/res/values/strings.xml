@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Face Changer</string>
+    <string name="app_name">Funny Face Changer Camera</string>
     <string name="photo_suit_editor">Man Hairstyle</string>
     <string name="try_diff_suits">Try different suits with your photo</string>
     <string name="my_creations">My Collection</string>

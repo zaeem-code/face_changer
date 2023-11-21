@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/closeIMG"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:src="@drawable/ucrop_ic_cross"
         android:layout_margin="@dimen/_10sdp"/>
 
@@ -27,6 +27,8 @@
             android:layout_margin="@dimen/_12sdp"
             app:cardCornerRadius="@dimen/_10sdp"
             android:layout_weight="1"
+            android:background="@color/white"
+            app:cardBackgroundColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +42,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_saved_image"
                     android:layout_width="match_parent"
+                    android:scaleType="centerCrop"
                     android:layout_height="match_parent" />
 
                 <ImageView
@@ -49,7 +52,7 @@
                     android:layout_gravity="end|bottom"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:text="Men's Jacket"
+
                     android:src="@drawable/men_style"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sdp"
@@ -65,6 +68,8 @@
             android:layout_margin="@dimen/_12sdp"
             app:cardCornerRadius="@dimen/_10sdp"
             android:layout_weight="1"
+            android:background="@color/white"
+            app:cardBackgroundColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,8 +83,8 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_saved_image1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"
+                    android:layout_height="match_parent" />
             </FrameLayout>
 
         </androidx.cardview.widget.CardView>

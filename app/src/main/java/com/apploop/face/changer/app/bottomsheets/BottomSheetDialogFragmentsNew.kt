@@ -3,9 +3,7 @@ package com.apploop.face.changer.app.bottomsheets
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.content.ActivityNotFoundException
-import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -14,6 +12,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +24,7 @@ import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.apploop.face.changer.app.BottomSheetFragmentListner
 import com.apploop.face.changer.app.BuildConfig
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.databinding.CusOpenCameraBottomSheetBinding
@@ -34,7 +34,8 @@ import com.apploop.face.changer.app.utils.Extension.createImageFile
 import com.apploop.face.changer.app.utils.UtilsCons
 import com.apploop.face.changer.app.views.FaceChangeScreen.FaceChangeActivity
 import com.apploop.face.changer.app.views.MenPhotoScreen.MenPhotoActivity
-import com.apploop.face.changer.app.views.RemoveBgScreen.RemoveBgActivity
+import com.apploop.face.changer.app.views.removeBackground.ImageRemoveBgActivity
+import com.apploop.face.changer.app.views.removeBackground.StoreManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.theartofdev.edmodo.cropper.CropImage
 import com.yalantis.ucrop.UCrop
@@ -48,6 +49,10 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
     }
 
     private var _binding: CusOpenCameraBottomSheetBinding? = null
+
+    //    private static final String ARG_PARAM1 = "param1";
+    //    private String type;
+    private var bottomSheetFragmentListner: BottomSheetFragmentListner? = null
     private val binding get() = _binding
     private val MY_CAMERA_PERMISSION_CODE = 100
     private val MY_GALLERY_PERMISSION_CODE = 101
@@ -73,7 +78,17 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        try {
+            bottomSheetFragmentListner = activity as BottomSheetFragmentListner
+        } catch (e: ClassCastException) {
+//            throw new ClassCastException(activity.toString()
+//                    + " must implement TextClicked");
+            Log.d("Error BottomS", e.message!!)
+        }
+
         init()
+
+
     }
 
     private fun init() {
@@ -96,7 +111,9 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
                 requestPermissions(arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),MY_CAMERA_PERMISSION_CODE)
             } else {
                 try {
-                    openCamera()
+                    bottomSheetFragmentListner!!.onCameraClick()
+                    closeBottomSheet()
+
                 } catch (e: Exception) {
                 }
             }
@@ -137,7 +154,8 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
             if (requestCode == MY_CAMERA_PERMISSION_CODE) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     try {
-                        openCamera()
+                        bottomSheetFragmentListner!!.onGalleryClick()
+                        closeBottomSheet()
                     } catch (e: Exception) {
                     }
                 } else {
@@ -146,7 +164,10 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
                 }
             } else if (requestCode == MY_GALLERY_PERMISSION_CODE) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    pickFromGallery()
+//                    pickFromGallery()
+                    bottomSheetFragmentListner!!.onGalleryClick()
+                    closeBottomSheet()
+
                 } else {
                     Toast.makeText(requireActivity(), "camera permission denied", Toast.LENGTH_LONG).show()
                 }
@@ -285,7 +306,7 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == AppCompatActivity.RESULT_OK) {
-            val intent = Intent(requireActivity(), com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
+//            val intent = Intent(requireActivity(), com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
             var uri: Uri? = null
             try {
                 uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -302,9 +323,12 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
                 e.localizedMessage
             }
 
-            intent.putExtra("image_uri", uri.toString())
-//            intent.putExtra("path", Extension.imageFilePath)
-            intent.putExtra("path", uri.toString())
+                CropImage.activity(uri)
+                    .setFixAspectRatio(true)
+                    .setAspectRatio(400, 540)
+                    .start(requireActivity())
+//            intent.putExtra("image_uri", uri.toString())
+//            intent.putExtra("path", uri.toString())
 
             UtilsCons.originalBitmap = null
             UtilsCons.originalPath = ""
@@ -315,7 +339,7 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
                 dismiss()
                 return@registerForActivityResult
             }
-            startActivity(intent)
+//            startActivity(intent)
             dismiss()
         }
 }
@@ -335,12 +359,17 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
 
                     UtilsCons.originalBitmap = bitmap
 
-                    val intent = Intent(requireActivity(), com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
-                    intent.putExtra("image_uri", uri.toString())
-                    intent.putExtra("path", uri.toString())
-                    startActivity(intent)
+//                    val intent = Intent(requireActivity(), com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
+//                    intent.putExtra("image_uri", uri.toString())
+//                    intent.putExtra("path", uri.toString())
+//                    startActivity(intent)
+//
 
-//                    UtilsCons.originalBitmap = null
+                    CropImage.activity(uri)
+                        .setFixAspectRatio(true)
+                        .setAspectRatio(400, 540)
+                        .start(requireActivity())
+
                     UtilsCons.originalPath = ""
                     UtilsCons.fromGallery = "yes"
                     dismiss()
@@ -348,9 +377,44 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
                     e.localizedMessage
                 }
 
+                val result = CropImage.getActivityResult(it.data)
+                if (it.resultCode == Activity.RESULT_OK && result != null) {
+                    UtilsCons.originalBitmap = result.bitmap
+                    if (UtilsCons.originalBitmap != null) {
+                        if (UtilsCons.chooseLayout.contains("PHOTO_REMOVE_BG")) {
+                            call()
+                        } else if (UtilsCons.chooseLayout.contains("PHOTO_MEN")) {
+                            val intent = Intent(requireActivity(), MenPhotoActivity::class.java)
+                            startActivity(intent)
+                            requireActivity().finish()
+                        } else {
+                            val intent = Intent(requireActivity(), FaceChangeActivity::class.java)
+                            startActivity(intent)
+                            requireActivity().finish()
+                        }
+                    }
+                } else if (it.resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                    val error = result!!.error
+                }
             }
         }
 
+    public fun closeBottomSheet(){
+        dismiss()
+    }
+
+    fun call() {
+        try {
+            StoreManager.setCurrentCropedBitmap(requireActivity(), null as Bitmap?)
+            StoreManager.setCurrentCroppedMaskBitmap(requireActivity(), null as Bitmap?)
+            ImageRemoveBgActivity.setFaceBitmap(UtilsCons.originalBitmap)
+            StoreManager.setCurrentOriginalBitmap(requireActivity(), UtilsCons.originalBitmap)
+            startActivity(Intent(requireActivity(), ImageRemoveBgActivity::class.java))
+            requireActivity().finish()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
     override fun getTheme(): Int {
         return R.style.SheetDialog
     }
