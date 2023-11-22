@@ -1,14 +1,18 @@
 package com.apploop.face.changer.app.views.myCreation
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -21,7 +25,14 @@ import com.apploop.face.changer.app.utils.Extension.alertDialog
 import com.apploop.face.changer.app.utils.Extension.share
 import com.apploop.face.changer.app.utils.Extension.statusBarColor
 import com.apploop.face.changer.app.utils.UtilsCons
+import com.apploop.face.changer.app.views.FaceChangeScreen.FaceChangeActivity
+import com.apploop.face.changer.app.views.MenPhotoScreen.MenPhotoActivity
 import com.apploop.face.changer.app.views.handCrop.HandCropActivity
+import com.apploop.face.changer.app.views.removeBackground.ImageRemoveBgActivity
+import com.apploop.face.changer.app.views.removeBackground.StoreManager
+import com.theartofdev.edmodo.cropper.CropImage
+import java.io.File
+import java.io.IOException
 
 class ViewSavedImageActivity : AppCompatActivity() {
 
@@ -72,6 +83,7 @@ class ViewSavedImageActivity : AppCompatActivity() {
         }
 
         binding.editIMG.setOnClickListener {
+
             EditCreation(path)
         }
 
@@ -104,8 +116,9 @@ class ViewSavedImageActivity : AppCompatActivity() {
 
         faceChange.setOnClickListener {
             UtilsCons.chooseLayout = "PHOTO_FACE"
-            val intent = Intent(this, com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
-            startActivity(intent)
+            val myUri = Uri.parse(path)
+            CropImage.activity(myUri).setInitialCropWindowPaddingRatio(0F).start(this@ViewSavedImageActivity)
+
             UtilsCons.originalBitmap = null
             UtilsCons.originalPath = ""
             UtilsCons.fromGallery = ""
@@ -116,8 +129,8 @@ class ViewSavedImageActivity : AppCompatActivity() {
 
         menstyle.setOnClickListener {
             UtilsCons.chooseLayout = "PHOTO_MEN"
-            val intent = Intent(this, com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
-            startActivity(intent)
+            val uri = Uri.parse(path)
+            CropImage.activity(uri).setInitialCropWindowPaddingRatio(0F).start(this)
             UtilsCons.originalBitmap = null
             UtilsCons.originalPath = ""
             UtilsCons.fromGallery = ""
@@ -142,5 +155,68 @@ class ViewSavedImageActivity : AppCompatActivity() {
 
             alertDialog.dismiss()
         }
+
+
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            try {
+                when (requestCode) {
+
+                    CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
+                        val result: CropImage.ActivityResult = CropImage.getActivityResult(data)
+
+                        var resultUri = result.uri
+                        var bitmap: Bitmap? = null
+                        try {
+                            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, resultUri)
+                            UtilsCons.originalBitmap = bitmap
+                        } catch (e: IOException) {
+                            e.printStackTrace()
+                        }
+
+                        if (UtilsCons.chooseLayout.contains("PHOTO_REMOVE_BG")) {
+                            call()
+                        } else if (UtilsCons.chooseLayout.contains("PHOTO_MEN")) {
+                            val intent = Intent(this@ViewSavedImageActivity, MenPhotoActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            val intent = Intent(this@ViewSavedImageActivity, FaceChangeActivity::class.java)
+                            startActivity(intent)
+                        }
+
+                        UtilsCons.originalPath = ""
+                        UtilsCons.fromGallery = ""
+//                        UtilsCons.originalBitmap = resultUri
+                        Log.e("originalBitmap", UtilsCons.originalBitmap.toString())
+                        UtilsCons.originalPath = Extension.imageFilePath
+                        Log.e("originalPath", UtilsCons.originalPath.toString())
+                    }
+
+                    CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE -> {
+                        Toast.makeText(this@ViewSavedImageActivity, "error", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: java.lang.Exception) {
+                Log.e("originalPathException", e.message.toString())
+                Toast.makeText(this@ViewSavedImageActivity, "" + e.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    fun call() {
+        try {
+            StoreManager.setCurrentCropedBitmap(this@ViewSavedImageActivity, null as Bitmap?)
+            StoreManager.setCurrentCroppedMaskBitmap(this@ViewSavedImageActivity, null as Bitmap?)
+            ImageRemoveBgActivity.setFaceBitmap(UtilsCons.originalBitmap)
+            StoreManager.setCurrentOriginalBitmap(this@ViewSavedImageActivity, UtilsCons.originalBitmap)
+            startActivity(Intent(this@ViewSavedImageActivity, ImageRemoveBgActivity::class.java))
+            finish()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
+
 }
