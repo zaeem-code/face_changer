@@ -49,8 +49,8 @@
                     android:id="@+id/tv_water_mark"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end|bottom"
-                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_gravity="start|bottom"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
 
                     android:src="@drawable/men_style"

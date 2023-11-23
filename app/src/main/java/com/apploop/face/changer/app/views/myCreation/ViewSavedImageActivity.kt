@@ -116,9 +116,9 @@ class ViewSavedImageActivity : AppCompatActivity() {
 
         faceChange.setOnClickListener {
             UtilsCons.chooseLayout = "PHOTO_FACE"
-            val myUri = Uri.parse(path)
-            CropImage.activity(myUri).setInitialCropWindowPaddingRatio(0F).start(this@ViewSavedImageActivity)
-
+//            val myUri = Uri.parse(path)
+            val intent = Intent(this@ViewSavedImageActivity, FaceChangeActivity::class.java)
+            startActivity(intent)
             UtilsCons.originalBitmap = null
             UtilsCons.originalPath = ""
             UtilsCons.fromGallery = ""
@@ -130,7 +130,8 @@ class ViewSavedImageActivity : AppCompatActivity() {
         menstyle.setOnClickListener {
             UtilsCons.chooseLayout = "PHOTO_MEN"
             val uri = Uri.parse(path)
-            CropImage.activity(uri).setInitialCropWindowPaddingRatio(0F).start(this)
+            val intent = Intent(this@ViewSavedImageActivity, MenPhotoActivity::class.java)
+            startActivity(intent)
             UtilsCons.originalBitmap = null
             UtilsCons.originalPath = ""
             UtilsCons.fromGallery = ""
@@ -141,11 +142,12 @@ class ViewSavedImageActivity : AppCompatActivity() {
 
         removebg.setOnClickListener {
             UtilsCons.chooseLayout = "PHOTO_REMOVE_BG"
-            val intent = Intent(this, com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
-            val myUri = Uri.parse(path)
-            intent.putExtra("image_uri", myUri.toString())
-            intent.putExtra("path", myUri.toString())
-            startActivity(intent)
+//            val intent = Intent(this, com.apploop.face.changer.app.views.handCrop.HandCropActivity::class.java)
+            call()
+//            val myUri = Uri.parse(path)
+//            intent.putExtra("image_uri", myUri.toString())
+//            intent.putExtra("path", myUri.toString())
+//            startActivity(intent)
 
             UtilsCons.originalBitmap = null
             UtilsCons.originalPath = ""
