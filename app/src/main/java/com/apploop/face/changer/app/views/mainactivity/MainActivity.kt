@@ -310,20 +310,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
                         }
 
                         if (UtilsCons.chooseLayout.contains("PHOTO_REMOVE_BG")) {
-
                             call()
                         } else if (UtilsCons.chooseLayout.contains("PHOTO_MEN")) {
-                            AdsManager.instance?.showInterstitialAd(this) {
-                                val intent = Intent(this@MainActivity, MenPhotoActivity::class.java)
-                                startActivity(intent)
-                            }
+
+                            val intent = Intent(this@MainActivity, MenPhotoActivity::class.java)
+                            startActivity(intent)
 
                         } else {
-                            AdsManager.instance?.showInterstitialAd(this) {
-                                val intent = Intent(this@MainActivity, FaceChangeActivity::class.java)
-                                startActivity(intent)
-                            }
 
+                            val intent = Intent(this@MainActivity, FaceChangeActivity::class.java)
+                            startActivity(intent)
                         }
 
                         UtilsCons.originalPath = ""

@@ -40,15 +40,15 @@ class PremiumActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
             )
+            binding.adsLayout.visibility=View.VISIBLE
+
             AdsManager.instance?.showInterstitialAd(this) {
                 binding.progressBar.visibility = View.GONE
                 window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                 finish()
-                startActivity(
-                    Intent(this@PremiumActivity, MainActivity::class.java).addFlags(
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    )
-                )
+                startActivity(Intent(this@PremiumActivity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
+
             }
         }
 
@@ -114,15 +114,18 @@ class PremiumActivity : AppCompatActivity() {
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 )
-                AdsManager.instance?.showInterstitialAd(this) {
+
+            binding.adsLayout.visibility=View.VISIBLE
+            AdsManager.instance?.showInterstitialAd(this) {
                     binding.progressBar.visibility = View.GONE
                     window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-                    finish()
-                    startActivity(
-                        Intent(this@PremiumActivity, MainActivity::class.java).addFlags(
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        )
+                finish()
+
+                startActivity(
+                        Intent(this@PremiumActivity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     )
                 }
+
+
     }
 }

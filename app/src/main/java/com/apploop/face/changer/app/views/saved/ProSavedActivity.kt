@@ -3,6 +3,7 @@ package com.apploop.face.changer.app.views.saved
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.app.App
 import com.apploop.face.changer.app.databinding.ActivityProSavedBinding
@@ -63,8 +64,12 @@ class ProSavedActivity : AppCompatActivity() {
         }
 
         binding.btnWatchAd.setOnClickListener {
+            binding.mainLay.visibility= View.GONE
+            binding.adsLayout.visibility=View.VISIBLE
             AdsManager.instance?.showInterstitialAd(this) {
                 startSavedActivity()
+//                binding.adsLayout.visibility=View.GONE
+
             }
 
         }

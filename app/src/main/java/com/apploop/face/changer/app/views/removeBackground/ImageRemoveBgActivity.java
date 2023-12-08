@@ -68,7 +68,7 @@ public class ImageRemoveBgActivity extends AppCompatActivity {
 
     RelativeLayout relative_layout_loading;
     ImageView done, imageViewCloseWings;
-    FrameLayout bannerAdView;
+    FrameLayout bannerAdView,ads_layout;
     ShimmerFrameLayout shimmerFrameLayout;
 
 
@@ -136,9 +136,12 @@ public class ImageRemoveBgActivity extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                ads_layout.setVisibility(View.VISIBLE);
                 AdsManager.Companion.getInstance().showInterstitialAd(ImageRemoveBgActivity.this, new OnAdLoaded() {
                     @Override
                     public void OnAdLoadedCallBack(Boolean loaded) {
+                        ads_layout.setVisibility(View.GONE);
                         UtilsCons.originalBitmap = cutBitmap;
                         Intent i = new Intent(ImageRemoveBgActivity.this, RemoveBgActivity.class);
                         startActivity(i);
@@ -172,6 +175,7 @@ public class ImageRemoveBgActivity extends AppCompatActivity {
         this.imageViewBackgroundCover = findViewById(R.id.imageViewBackgroundCover);
         bannerAdView = findViewById(R.id.bannerAdView);
         shimmerFrameLayout = findViewById(R.id.shimmerFrameLayout);
+        ads_layout=findViewById(R.id.ads_layout);
 
     }
 
