@@ -29,10 +29,11 @@ class MyCreationActivity : AppCompatActivity(), MyCreationInterface {
 
     private fun init() {
         binding.shimmerFrameLayout.startShimmer()
-        AdsManager.getInstance().loadNativeAdCallback(
-            this,
-            binding.frameLayout,
-            AdsManager.NativeAdType.MEDIUM_TYPE
+        AdsManager.Companion.instance!!.showNativeAd(
+            binding!!.frameLayout,
+            binding!!.frameLayout,
+            layoutInflater,
+            R.layout.ad_media
         )
         {
             if (it) {

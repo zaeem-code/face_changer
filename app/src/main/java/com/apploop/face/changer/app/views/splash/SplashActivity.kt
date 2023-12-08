@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.app.App
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.manager.AppOpenManager
 import com.apploop.face.changer.app.manager.GoogleMobileAdsConsentManager
 import com.apploop.face.changer.app.manager.OpenAdCallback
@@ -133,7 +132,6 @@ class SplashActivity : AppCompatActivity() {
     private fun openLoginActivity() {
 
         // load ads
-        AdsManager.getInstance().loadInterstitialAd(this)
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

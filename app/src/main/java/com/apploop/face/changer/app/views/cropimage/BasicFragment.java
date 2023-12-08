@@ -23,13 +23,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.apploop.face.changer.app.R;
-import com.apploop.face.changer.app.manager.AdsManager;
 import com.apploop.face.changer.app.manager.AnalyticsManager;
-import com.apploop.face.changer.app.utils.Constants;
 import com.apploop.face.changer.app.utils.UtilsCons;
 import com.apploop.face.changer.app.views.FaceChangeScreen.FaceChangeActivity;
 import com.apploop.face.changer.app.views.MenPhotoScreen.MenPhotoActivity;
-import com.apploop.face.changer.app.views.handCrop.HandCropActivity;
 import com.apploop.face.changer.app.views.removeBackground.ImageRemoveBgActivity;
 import com.apploop.face.changer.app.views.removeBackground.StoreManager;
 import com.isseiaoki.simplecropview.CropImageView;
@@ -42,7 +39,6 @@ import com.isseiaoki.simplecropview.util.Utils;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

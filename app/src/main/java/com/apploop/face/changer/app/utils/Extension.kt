@@ -52,7 +52,7 @@ object Extension {
     var bitmapSuit: Bitmap? = null
     var saveBitmapLast: Bitmap? = null
     var suitPath = "file:///android_asset/suits/s15.webp"
-    var Edit_Folder_name = "Man Jacket Editor"
+    var Edit_Folder_name = "Funny Face Changer Camera"
     var imageGallery: ArrayList<String?> = ArrayList()
     var mLastClickTime = 0L
     var stickerViewId = ArrayList<Int>()

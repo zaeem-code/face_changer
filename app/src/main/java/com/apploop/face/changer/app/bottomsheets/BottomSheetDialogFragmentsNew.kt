@@ -92,10 +92,12 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
     }
 
     private fun init() {
-        AdsManager.getInstance()?.loadNativeAdCallback(
-            requireActivity(),
-            binding?.frameLayout,
-            AdsManager.NativeAdType.MEDIUM_TYPE
+
+        AdsManager.Companion.instance!!.showNativeAd(
+            binding!!.frameLayout,
+            binding!!.frameLayout,
+            layoutInflater,
+            R.layout.ad_media
         )  {
             if (it) {
                 binding?.shimmerFrameLayout?.visibility = View.INVISIBLE
@@ -382,12 +384,15 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
                     UtilsCons.originalBitmap = result.bitmap
                     if (UtilsCons.originalBitmap != null) {
                         if (UtilsCons.chooseLayout.contains("PHOTO_REMOVE_BG")) {
+
                             call()
                         } else if (UtilsCons.chooseLayout.contains("PHOTO_MEN")) {
+
                             val intent = Intent(requireActivity(), MenPhotoActivity::class.java)
                             startActivity(intent)
                             requireActivity().finish()
                         } else {
+
                             val intent = Intent(requireActivity(), FaceChangeActivity::class.java)
                             startActivity(intent)
                             requireActivity().finish()

@@ -29,6 +29,7 @@ import com.apploop.face.changer.app.helpers.EnumClass
 import com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener
 import com.apploop.face.changer.app.helpers.stickerviewclass.StickerImageView
 import com.apploop.face.changer.app.helpers.stickerviewclass.StickerView
+import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Extension
 import com.apploop.face.changer.app.utils.Extension.faceChangeList
 import com.apploop.face.changer.app.utils.Extension.faceColors
@@ -467,8 +468,9 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.DONE -> {
-                removeBorder()
 
+
+                removeBorder()
                 Handler(Looper.getMainLooper()).postDelayed({
                     getBitmapFromView(binding.lvRoot)?.let {
                         binding.progressBar.visibility = View.VISIBLE
@@ -486,6 +488,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                         finish()
                     }
                 }, 2000)
+
             }
         }
     }

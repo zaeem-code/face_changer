@@ -29,7 +29,6 @@ class PremiumActivity : AppCompatActivity() {
         SharedPrefHelper.writeBoolean(Constants.IN_APP_KEY,true)
         SubscriptionBillingManager(this, this)
         init()
-        AdsManager.getInstance().loadInterstitialAdIfNotLoaded(this)
 
     }
 
@@ -41,7 +40,7 @@ class PremiumActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
             )
-            AdsManager.getInstance().showInterstitialAd(this) {
+            AdsManager.instance?.showInterstitialAd(this) {
                 binding.progressBar.visibility = View.GONE
                 window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                 finish()
@@ -115,7 +114,7 @@ class PremiumActivity : AppCompatActivity() {
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 )
-                AdsManager.getInstance().showInterstitialAd(this) {
+                AdsManager.instance?.showInterstitialAd(this) {
                     binding.progressBar.visibility = View.GONE
                     window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                     finish()

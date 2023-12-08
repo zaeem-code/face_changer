@@ -132,8 +132,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
         }
 
         binding.shimmerFrameLayout.startShimmer()
-        AdsManager.getInstance()?.loadNativeAdCallback(
-            this, binding.frameLayout, AdsManager.NativeAdType.REGULAR_TYPE
+        AdsManager.Companion.instance!!.showNativeAd(
+            binding.frameLayout,
+            binding.frameLayout,
+            layoutInflater,
+            R.layout.ad_with_media
         ) {
             if (it) {
                 binding.shimmerFrameLayout.visibility = View.INVISIBLE
@@ -307,13 +310,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
                         }
 
                         if (UtilsCons.chooseLayout.contains("PHOTO_REMOVE_BG")) {
+
                             call()
                         } else if (UtilsCons.chooseLayout.contains("PHOTO_MEN")) {
-                            val intent = Intent(this@MainActivity, MenPhotoActivity::class.java)
-                            startActivity(intent)
+                            AdsManager.instance?.showInterstitialAd(this) {
+                                val intent = Intent(this@MainActivity, MenPhotoActivity::class.java)
+                                startActivity(intent)
+                            }
+
                         } else {
-                            val intent = Intent(this@MainActivity, FaceChangeActivity::class.java)
-                            startActivity(intent)
+                            AdsManager.instance?.showInterstitialAd(this) {
+                                val intent = Intent(this@MainActivity, FaceChangeActivity::class.java)
+                                startActivity(intent)
+                            }
+
                         }
 
                         UtilsCons.originalPath = ""

@@ -51,11 +51,12 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
         statusBarColor(R.color.background)
         init()
         initClicks()
+
     }
 
     private fun init() {
         binding.shimmerFrameLayout.startShimmer()
-        AdsManager.getInstance()!!.showCustomBanner(this, binding.frameLayout,"") {
+        AdsManager.instance!!.showAdMobBanner(this, binding.frameLayout) {
             if (it) {
                 binding.shimmerFrameLayout.visibility = View.INVISIBLE
             } else {
@@ -69,6 +70,10 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
         if (UtilsCons.originalBitmap != null) {
             loadBitmap(binding.ivSuit, UtilsCons.originalBitmap)
         }
+
+
+
+
     }
 
     private fun initClicks() {
@@ -347,6 +352,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
             }
 
             EnumClass.DONE -> {
+
                 removeBorder()
                 Handler(Looper.getMainLooper()).postDelayed({
                     getBitmapFromView(binding.lvRoot)?.let {

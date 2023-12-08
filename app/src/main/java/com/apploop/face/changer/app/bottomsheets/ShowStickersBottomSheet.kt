@@ -11,10 +11,10 @@ import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.callBacks.AdapterPathInterface
 import com.apploop.face.changer.app.callBacks.AddStickerBottomSheetViewModelInterface
 import com.apploop.face.changer.app.databinding.CusSuitBottomSheetBinding
+import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.models.ObjStickerImageDetail
 import com.apploop.face.changer.app.views.adapters.ShowStickersBottomSheetAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.apploop.face.changer.app.manager.AdsManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -34,10 +34,11 @@ class ShowStickersBottomSheet(val activity: Activity, val list: List<ObjStickerI
         val dialog = dialog as BottomSheetDialog
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
 
-        AdsManager.getInstance()?.loadNativeAdCallback(
-            requireActivity(),
-            binding.frameLayout,
-            AdsManager.NativeAdType.MEDIUM_TYPE
+        AdsManager.Companion.instance!!.showNativeAd(
+            binding!!.frameLayout,
+            binding!!.frameLayout,
+            layoutInflater,
+            R.layout.ad_media
         ) {
             if (it) {
                 binding.shimmerFrameLayout.visibility = View.INVISIBLE

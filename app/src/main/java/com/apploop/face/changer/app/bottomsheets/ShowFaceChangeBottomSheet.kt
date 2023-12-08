@@ -14,7 +14,6 @@ import com.apploop.face.changer.app.databinding.CusSuitBottomSheetBinding
 import com.apploop.face.changer.app.models.ObjStickerImageDetail
 import com.apploop.face.changer.app.views.adapters.ShowStickersBottomSheetAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.apploop.face.changer.app.manager.AdsManager
 
 class ShowFaceChangeBottomSheet(
     val activity: Activity,

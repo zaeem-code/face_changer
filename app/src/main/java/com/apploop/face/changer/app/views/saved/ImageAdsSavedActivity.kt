@@ -27,7 +27,21 @@ class ImageAdsSavedActivity : AppCompatActivity() {
         statusBarColor(R.color.background)
         init()
 
-        AdsManager.getInstance().loadInterstitialAdIfNotLoaded(this)
+
+        binding.shimmerFrameLayout.startShimmer()
+        AdsManager.Companion.instance!!.showNativeAd(
+            binding.frameLayout,
+            binding.frameLayout,
+            layoutInflater,
+            R.layout.ad_media
+        ) {
+            if (it) {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+            } else {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+                binding.frameLayout.visibility = View.INVISIBLE
+            }
+        }
 
     }
 
@@ -63,16 +77,17 @@ class ImageAdsSavedActivity : AppCompatActivity() {
         binding.lvAd.setOnClickListener {
             SharedPrefHelper.writeBoolean("lastAds",true)
             binding.progressBar.visibility = View.VISIBLE
-            AdsManager.getInstance()?.showInterstitialAd(this) {
-                getBitmapFromView(binding.ivSavedImage)?.let {
-                    binding.progressBar.visibility = View.GONE
-                    val savedPath = createDirectoryAndSaveFile(it)
-                    val intent = Intent(this@ImageAdsSavedActivity, ProSavedActivity::class.java)
-                    intent.putExtra("savedPath", savedPath)
-                    startActivity(intent)
-                    finish()
-                }
+            getBitmapFromView(binding.ivSavedImage)?.let {
+                binding.progressBar.visibility = View.GONE
+                val savedPath = createDirectoryAndSaveFile(it)
+                val intent = Intent(this@ImageAdsSavedActivity, ProSavedActivity::class.java)
+                intent.putExtra("savedPath", savedPath)
+                startActivity(intent)
+                finish()
             }
+
+
+
         }
     }
 }

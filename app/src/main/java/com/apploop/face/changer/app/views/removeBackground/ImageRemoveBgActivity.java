@@ -32,6 +32,8 @@ import androidx.palette.graphics.Palette;
 
 
 import com.apploop.face.changer.app.R;
+import com.apploop.face.changer.app.manager.AdsManager;
+import com.apploop.face.changer.app.manager.OnAdLoaded;
 import com.apploop.face.changer.app.utils.ImageUtils;
 import com.apploop.face.changer.app.utils.SaveFileUtils;
 import com.apploop.face.changer.app.utils.UtilsCons;
@@ -96,18 +98,18 @@ public class ImageRemoveBgActivity extends AppCompatActivity {
         initUI();
 
         Init();
-//        shimmerFrameLayout.startShimmer();
-//        AdsManager.Companion.getInstance().showAdMobBanner(this, bannerAdView, new OnAdLoaded() {
-//            @Override
-//            public void OnAdLoadedCallBack(Boolean loaded) {
-//                if (loaded) {
-//                    shimmerFrameLayout.setVisibility(View.INVISIBLE);
-//                } else {
-//                    shimmerFrameLayout.setVisibility(View.GONE);
-//                    bannerAdView.setVisibility(View.GONE);
-//                }
-//            }
-//        });
+        shimmerFrameLayout.startShimmer();
+        AdsManager.Companion.getInstance().showAdMobBanner(this, bannerAdView, new OnAdLoaded() {
+            @Override
+            public void OnAdLoadedCallBack(Boolean loaded) {
+                if (loaded) {
+                    shimmerFrameLayout.setVisibility(View.INVISIBLE);
+                } else {
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    bannerAdView.setVisibility(View.GONE);
+                }
+            }
+        });
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
@@ -134,10 +136,17 @@ public class ImageRemoveBgActivity extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UtilsCons.originalBitmap = cutBitmap;
-                Intent i = new Intent(ImageRemoveBgActivity.this, RemoveBgActivity.class);
-                startActivity(i);
-                finish();
+                AdsManager.Companion.getInstance().showInterstitialAd(ImageRemoveBgActivity.this, new OnAdLoaded() {
+                    @Override
+                    public void OnAdLoadedCallBack(Boolean loaded) {
+                        UtilsCons.originalBitmap = cutBitmap;
+                        Intent i = new Intent(ImageRemoveBgActivity.this, RemoveBgActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                });
+
+
             }
         });
 
