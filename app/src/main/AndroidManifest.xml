@@ -36,6 +36,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.MenJacket"
+        android:allowClearUserData="true"
         tools:replace="android:icon,android:theme"
         tools:targetApi="31">
 

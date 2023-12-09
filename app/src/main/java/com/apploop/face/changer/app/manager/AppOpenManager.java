@@ -51,7 +51,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
      */
     public AppOpenManager(App myApplication) {
         this.myApplication = myApplication;
-        this.myApplication.registerActivityLifecycleCallbacks(this);
+//        this.myApplication.registerActivityLifecycleCallbacks(this);
 //        ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     }
 
