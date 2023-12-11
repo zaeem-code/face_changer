@@ -100,7 +100,7 @@
 
 
     <string name="admob_app_id" translatable="false">ca-app-pub-8617754893098646~1628536190</string>
-    <string name="admob_interstial_ad_id" translatable="false">ca-app-pub-8617754893098646/8668549274</string>
+    <string name="admob_interstial_ad_id" translatable="false">ca-app-pub-8617754893098646/8668549275</string>
     <string name="admob_banner_ad_id" translatable="false">ca-app-pub-8617754893098646/6306147800</string>
     <string name="admob_native_ad_unit" translatable="false">ca-app-pub-8617754893098646/9913633599</string>
     <string name="openAds" translatable="false">ca-app-pub-8617754893098646/8600551925</string>

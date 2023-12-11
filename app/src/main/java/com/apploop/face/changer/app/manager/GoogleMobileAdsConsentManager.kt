@@ -63,7 +63,6 @@ class GoogleMobileAdsConsentManager private constructor(context: Context) {
 
 //    val params = ConsentRequestParameters.Builder().setConsentDebugSettings(debugSettings).build()
     val params = ConsentRequestParameters.Builder()
-      .setTagForUnderAgeOfConsent(false)
       .build()
 
     // Requesting an update to consent information should be called on every app launch.

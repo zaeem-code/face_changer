@@ -40,7 +40,7 @@ class AdsManager {
         }
         MobileAds.initialize(context) {}
 
-        loadInterstitial()
+//        loadInterstitial()
 
     }
 
