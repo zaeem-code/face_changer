@@ -131,20 +131,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
             startActivity(Intent(this, PremiumActivity::class.java))
         }
 
-        binding.shimmerFrameLayout.startShimmer()
-        AdsManager.Companion.instance!!.showNativeAd(
-            binding.frameLayout,
-            binding.frameLayout,
-            layoutInflater,
-            R.layout.ad_with_media
-        ) {
-            if (it) {
-                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-            } else {
-                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-                binding.frameLayout.visibility = View.INVISIBLE
-            }
-        }
+//        binding.shimmerFrameLayout.startShimmer()
+//        AdsManager.instance?.showNativeAd(
+//            binding.frameLayout,
+//            binding.frameLayout,
+//            layoutInflater,
+//            R.layout.ad_with_media
+//        ) {
+//            if (it) {
+//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+//            } else {
+//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+//                binding.frameLayout.visibility = View.INVISIBLE
+//            }
+//        }
 
         mainActivityViewModel = MainActivityViewModel(this)
         binding.mainActivityViewModel = mainActivityViewModel

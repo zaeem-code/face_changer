@@ -55,15 +55,15 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
     }
 
     private fun init() {
-        binding.shimmerFrameLayout.startShimmer()
-        AdsManager.instance!!.showAdMobBanner(this, binding.frameLayout) {
-            if (it) {
-                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-            } else {
-                binding.shimmerFrameLayout.visibility = View.GONE
-                binding.frameLayout.visibility = View.GONE
-            }
-        }
+//        binding.shimmerFrameLayout.startShimmer()
+//        AdsManager.instance!!.showAdMobBanner(this, binding.frameLayout) {
+//            if (it) {
+//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+//            } else {
+//                binding.shimmerFrameLayout.visibility = View.GONE
+//                binding.frameLayout.visibility = View.GONE
+//            }
+//        }
 
         stickerViewModel = StickerViewModel(this)
         binding.stickerViewModel = stickerViewModel

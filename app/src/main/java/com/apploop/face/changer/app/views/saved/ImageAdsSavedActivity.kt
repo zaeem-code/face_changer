@@ -28,20 +28,20 @@ class ImageAdsSavedActivity : AppCompatActivity() {
         init()
 
 
-        binding.shimmerFrameLayout.startShimmer()
-        AdsManager.Companion.instance!!.showNativeAd(
-            binding.frameLayout,
-            binding.frameLayout,
-            layoutInflater,
-            R.layout.ad_media
-        ) {
-            if (it) {
-                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-            } else {
-                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-                binding.frameLayout.visibility = View.INVISIBLE
-            }
-        }
+//        binding.shimmerFrameLayout.startShimmer()
+//        AdsManager.Companion.instance!!.showNativeAd(
+//            binding.frameLayout,
+//            binding.frameLayout,
+//            layoutInflater,
+//            R.layout.ad_media
+//        ) {
+//            if (it) {
+//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+//            } else {
+//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+//                binding.frameLayout.visibility = View.INVISIBLE
+//            }
+//        }
 
     }
 
