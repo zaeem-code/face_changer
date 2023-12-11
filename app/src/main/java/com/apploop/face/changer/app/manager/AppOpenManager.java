@@ -9,9 +9,11 @@ import android.util.Log;
 
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.apploop.face.changer.app.R;
 import com.apploop.face.changer.app.app.App;
+import com.apploop.face.changer.app.app.MyApplication;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
@@ -34,13 +36,13 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
     private AppOpenAd.AppOpenAdLoadCallback loadCallback;
 
-    private final App myApplication;
+    private final MyApplication myApplication;
     public Boolean isFirstAdShown = false;
     public Boolean isFailedToLoad = false;
     private static AppOpenManager instance;
 
 
-    public static AppOpenManager getInstance(App myApplication)
+    public static AppOpenManager getInstance(MyApplication myApplication)
     {
         if (instance==null)
             instance = new AppOpenManager(myApplication);
@@ -49,10 +51,10 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
     /**
      * Constructor
      */
-    public AppOpenManager(App myApplication) {
+    public AppOpenManager(MyApplication myApplication) {
         this.myApplication = myApplication;
-//        this.myApplication.registerActivityLifecycleCallbacks(this);
-//        ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
+        this.myApplication.registerActivityLifecycleCallbacks(this);
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     }
 
     /**

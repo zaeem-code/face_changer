@@ -109,6 +109,17 @@
 
 
 
+
+    <!-- test ids-->
+<!--        <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>-->
+<!--        <string name="admob_banner_ad_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>-->
+<!--        <string name="admob_interstial_ad_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>-->
+<!--        <string name="admob_native_ad_unit" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--        <string name="openAds" translatable="false">ca-app-pub-3940256099942544/1033173712</string>-->
+<!--        <string name="reward_ad" translatable="false">ca-app-pub-3940256099942544/5224354917</string>-->
+
+
+
     <string name="indian_premium_league">Indian Premier League</string>
     <string name="pakistan_premium_league">Pakistan Premier League</string>
     <string name="bangladesh_premium_league">Bangladesh Premier League</string>

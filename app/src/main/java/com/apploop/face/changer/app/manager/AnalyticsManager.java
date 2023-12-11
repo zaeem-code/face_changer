@@ -3,6 +3,7 @@ package com.apploop.face.changer.app.manager;
 import android.os.Bundle;
 
 import com.apploop.face.changer.app.app.App;
+import com.apploop.face.changer.app.app.MyApplication;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class AnalyticsManager {
@@ -10,7 +11,7 @@ public class AnalyticsManager {
     private final FirebaseAnalytics firebaseAnalytics;
 
     private AnalyticsManager() {
-        firebaseAnalytics = FirebaseAnalytics.getInstance(App.getContext());
+        firebaseAnalytics = FirebaseAnalytics.getInstance(MyApplication.Companion.applicationContext());
     }
 
     public static AnalyticsManager getInstance() {

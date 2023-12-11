@@ -10,8 +10,8 @@ android {
         applicationId "com.apploop.face.changer.app"
         minSdk 23
         targetSdk 33
-        versionCode 9
-        versionName "1.9"
+        versionCode 10
+        versionName "2.0"
         resConfigs "en", "US"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -115,6 +115,7 @@ dependencies {
     def lifecycle_version = '2.3.1'
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+    
 
     implementation 'androidx.palette:palette:1.0.0'
 

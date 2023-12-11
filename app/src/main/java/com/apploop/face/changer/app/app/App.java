@@ -24,9 +24,8 @@ public class App extends Application {
 
         setUCropHttpClient();
         mContext = this;
-        AppOpenManager.getInstance(this).fetchAd();
+//        AppOpenManager.getInstance(this).fetchAd();
 
-        Objects.requireNonNull(AdsManager.Companion.getInstance()).initialize(this);
 
     }
 

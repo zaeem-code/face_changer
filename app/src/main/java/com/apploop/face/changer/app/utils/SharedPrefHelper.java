@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.apploop.face.changer.app.app.App;
+import com.apploop.face.changer.app.app.MyApplication;
 
 
 public class SharedPrefHelper {
@@ -13,7 +14,7 @@ public class SharedPrefHelper {
 
     private static SharedPreferences getPreferences() {
         if (preferences == null) {
-            preferences = App.getContext().getSharedPreferences("private-prefs", MODE);
+            preferences = MyApplication.Companion.applicationContext().getSharedPreferences("private-prefs", MODE);
         }
         return preferences;
     }
