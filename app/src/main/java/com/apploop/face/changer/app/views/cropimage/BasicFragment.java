@@ -25,7 +25,7 @@ import androidx.fragment.app.FragmentManager;
 import com.apploop.face.changer.app.R;
 import com.apploop.face.changer.app.manager.AnalyticsManager;
 import com.apploop.face.changer.app.utils.UtilsCons;
-import com.apploop.face.changer.app.views.FaceChangeScreen.FaceChangeActivity;
+import com.apploop.face.changer.app.views.faceChangeScreen.FaceChangeActivity;
 import com.apploop.face.changer.app.views.MenPhotoScreen.MenPhotoActivity;
 import com.apploop.face.changer.app.views.removeBackground.ImageRemoveBgActivity;
 import com.apploop.face.changer.app.views.removeBackground.StoreManager;

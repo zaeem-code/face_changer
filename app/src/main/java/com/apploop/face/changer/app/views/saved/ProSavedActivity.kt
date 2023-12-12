@@ -66,11 +66,14 @@ class ProSavedActivity : AppCompatActivity() {
         binding.btnWatchAd.setOnClickListener {
             binding.mainLay.visibility= View.GONE
             binding.adsLayout.visibility=View.VISIBLE
-            AdsManager.instance?.showInterstitialAd(this) {
-                startSavedActivity()
-//                binding.adsLayout.visibility=View.GONE
+//            AdsManager.instance?.showInterstitialAd(this) {
+//                startSavedActivity()
+////                binding.adsLayout.visibility=View.GONE
+//
+//            }
 
-            }
+            startSavedActivity()
+
 
         }
     }

@@ -232,11 +232,9 @@ class SplashActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 101) {
             if (resultCode != RESULT_OK) {
-//                continueWithSplash()
-                initView()
+                continueWithSplash()
             } else {
-//                continueWithSplash()
-                initView()
+                continueWithSplash()
             }
         }
     }

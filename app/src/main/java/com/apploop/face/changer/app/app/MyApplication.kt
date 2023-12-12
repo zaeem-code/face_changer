@@ -41,7 +41,6 @@ class MyApplication :
 
   override fun onCreate() {
     super.onCreate()
-    registerActivityLifecycleCallbacks(this)
     setUCropHttpClient()
     instance = this;
 

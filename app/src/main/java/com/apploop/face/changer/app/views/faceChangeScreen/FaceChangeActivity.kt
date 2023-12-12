@@ -1,4 +1,4 @@
-package com.apploop.face.changer.app.views.FaceChangeScreen
+package com.apploop.face.changer.app.views.faceChangeScreen
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -9,7 +9,6 @@ import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
-import android.widget.GridLayout
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -19,20 +18,18 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.apploop.face.changer.app.R
-import com.apploop.face.changer.app.bottomsheets.ShowStickersBottomSheet
 import com.apploop.face.changer.app.callBacks.AddStickerBottomSheetViewModelInterface
 import com.apploop.face.changer.app.callBacks.BackgroundBottomSheetInterface
 import com.apploop.face.changer.app.callBacks.BackgroundSkinToneInterface
 import com.apploop.face.changer.app.callBacks.StickerViewModelInterface
 import com.apploop.face.changer.app.databinding.ActivityFaceChangeBinding
 import com.apploop.face.changer.app.helpers.EnumClass
+import com.apploop.face.changer.app.helpers.EnumClass.*
 import com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener
 import com.apploop.face.changer.app.helpers.stickerviewclass.StickerImageView
 import com.apploop.face.changer.app.helpers.stickerviewclass.StickerView
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Extension
 import com.apploop.face.changer.app.utils.Extension.faceChangeList
-import com.apploop.face.changer.app.utils.Extension.faceColors
 import com.apploop.face.changer.app.utils.Extension.getBitmapFromView
 import com.apploop.face.changer.app.utils.Extension.initLists
 import com.apploop.face.changer.app.utils.Extension.loadBitmap
@@ -185,11 +182,11 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
     override fun onStickerButtonClicks(type: EnumClass) {
         when (type) {
 
-            EnumClass.BACK -> {
+            BACK -> {
                 onBackPressed()
             }
 
-            EnumClass.OLD_MAN -> {
+            OLD_MAN -> {
 //                removeBorder()
                 UtilsCons.faceType = "OLD"
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
@@ -213,7 +210,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                 binding.lvBackgroundContainer.visibility = View.GONE
             }
 
-            EnumClass.STICKERS -> {
+            STICKERS -> {
 //                removeBorder()
                 UtilsCons.faceType = "YOUNG"
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.purple_status))
@@ -232,7 +229,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                 binding.lvBackgroundContainer.visibility = View.GONE
             }
 
-            EnumClass.KID -> {
+            KID -> {
 //                removeBorder()
                 UtilsCons.faceType = "KID"
                 binding.tvStickers.setTextColor(ContextCompat.getColor(this, R.color.light_grey))
@@ -251,7 +248,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                 binding.lvBackgroundContainer.visibility = View.GONE
             }
 
-            EnumClass.SKIN_TONE -> {
+            SKIN_TONE -> {
                 removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
@@ -324,7 +321,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                 suitsBottomSheetAdapter.notifyDataSetChanged()
             }
 
-            EnumClass.ADD_STICKERS -> {
+            ADD_STICKERS -> {
                 removeBorder()
                 binding.ivAddStickers.setColorFilter(
                     ContextCompat.getColor(
@@ -399,7 +396,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                 }
             }
 
-            EnumClass.OPACITY -> {
+            OPACITY -> {
                 removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
@@ -467,7 +464,7 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                 binding.lvOpacitySeekBarContainer.visibility = View.VISIBLE
             }
 
-            EnumClass.DONE -> {
+            DONE -> {
 
 
                 removeBorder()
@@ -490,6 +487,68 @@ class FaceChangeActivity : AppCompatActivity(), StickerViewModelInterface,
                 }, 2000)
 
             }
+
+            CAMERA -> TODO()
+            GALLERY -> TODO()
+            MY_CREATION -> TODO()
+            FLIP_SUIT -> TODO()
+            FLIP_IMAGE -> TODO()
+            BLAZER -> TODO()
+            SUIT -> TODO()
+            FORMAL -> TODO()
+            JACKET -> TODO()
+            Police -> TODO()
+            EDIT -> TODO()
+            ERASE -> TODO()
+            RESTORE -> TODO()
+            AUTO_ERASE -> TODO()
+            ZOOM -> TODO()
+            UNDO -> TODO()
+            REDO -> TODO()
+            BACKGROUND -> TODO()
+            STICKER_COLOR -> TODO()
+            BACKGROUND_COLOR -> TODO()
+            BEARD -> TODO()
+            GOGGLES -> TODO()
+            HAIR -> TODO()
+            HAT -> TODO()
+            MUSTACHE -> TODO()
+            TIE -> TODO()
+            BLACK -> TODO()
+            RED -> TODO()
+            BLUE -> TODO()
+            GREEN -> TODO()
+            YELLOW -> TODO()
+            PURPLE -> TODO()
+            GRAY -> TODO()
+            BLACK1 -> TODO()
+            RED1 -> TODO()
+            BLUE1 -> TODO()
+            GREEN1 -> TODO()
+            YELLOW1 -> TODO()
+            PURPLE1 -> TODO()
+            GRAY1 -> TODO()
+            BACKGROUND_IMAGES -> TODO()
+            NONE -> TODO()
+            PHOTO_SUIT -> TODO()
+            PHOTO_REMOVE_BG -> TODO()
+            PHOTO -> TODO()
+            PHOTO_FACE -> TODO()
+            PHOTO_MEN -> TODO()
+            MOVE_SUIT -> TODO()
+            KURTA -> TODO()
+            BODY_BUILDER -> TODO()
+            T_SHIRT -> TODO()
+            CARD -> TODO()
+            CHRISTMAS -> TODO()
+            IPL -> TODO()
+            AFRICA -> TODO()
+            PSL -> TODO()
+            BPL -> TODO()
+            BBL -> TODO()
+            WT -> TODO()
+            FIFA -> TODO()
+            SUPER -> TODO()
         }
     }
 

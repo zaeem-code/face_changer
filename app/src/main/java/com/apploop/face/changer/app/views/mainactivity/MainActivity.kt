@@ -19,14 +19,11 @@ import com.apploop.face.changer.app.BottomSheetFragmentListner
 import com.apploop.face.changer.app.BuildConfig
 import com.apploop.face.changer.app.InAppBilling.SubscriptionBillingManager
 import com.apploop.face.changer.app.R
-import com.apploop.face.changer.app.api.apiRespoInterfaces.CallBackResponseJson
-import com.apploop.face.changer.app.api.viewModel.ViewModelVideos
 import com.apploop.face.changer.app.bottomsheets.CustomBSFragment
 import com.apploop.face.changer.app.callBacks.AdapterPathInterface
 import com.apploop.face.changer.app.callBacks.MainViewModelInterface
 import com.apploop.face.changer.app.databinding.ActivityMainBinding
 import com.apploop.face.changer.app.helpers.EnumClass
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Extension
 import com.apploop.face.changer.app.utils.Extension.isInternetAvailable
 import com.apploop.face.changer.app.utils.Extension.rateApp
@@ -35,21 +32,20 @@ import com.apploop.face.changer.app.utils.Extension.statusBarColor
 import com.apploop.face.changer.app.utils.SharedPrefHelper
 import com.apploop.face.changer.app.utils.UtilsCons
 import com.apploop.face.changer.app.viewModels.MainActivityViewModel
-import com.apploop.face.changer.app.views.FaceChangeScreen.FaceChangeActivity
+import com.apploop.face.changer.app.views.faceChangeScreen.FaceChangeActivity
 import com.apploop.face.changer.app.views.IntroduceDialog
 import com.apploop.face.changer.app.views.MenPhotoScreen.MenPhotoActivity
 import com.apploop.face.changer.app.views.myCreation.MyCreationActivity
 import com.apploop.face.changer.app.views.premium.PremiumActivity
 import com.apploop.face.changer.app.views.removeBackground.ImageRemoveBgActivity
 import com.apploop.face.changer.app.views.removeBackground.StoreManager
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.theartofdev.edmodo.cropper.CropImage
 import org.json.JSONObject
 import java.io.IOException
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInterface,
-    CallBackResponseJson, AdapterPathInterface, BottomSheetFragmentListner {
+     AdapterPathInterface, BottomSheetFragmentListner {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainActivityViewModel: MainActivityViewModel
@@ -63,7 +59,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         statusBarColor(R.color.background)
         init()
-        hitApis()
 
         SubscriptionBillingManager(this, this)
 
@@ -81,50 +76,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
         }
     }
 
-    private fun hitApis() {
-        if (Extension.iplList.isEmpty()) {
-            if (isInternetAvailable()) {
-                ViewModelVideos(this, this).getIplList()
-            }
-        }
-        if (Extension.pslList.isEmpty()) {
-            if (isInternetAvailable()) {
-                ViewModelVideos(this, this).getPslVideos()
-            }
-        }
-
-        if (Extension.africaList.isEmpty()) {
-            if (isInternetAvailable()) {
-                ViewModelVideos(this, this).getAfricaVideos()
-            }
-        }
-
-        if (Extension.bplList.isEmpty()) {
-            if (isInternetAvailable()) {
-                ViewModelVideos(this, this).getBplVideos()
-            }
-        }
-        if (Extension.bblList.isEmpty()) {
-            if (isInternetAvailable()) {
-                ViewModelVideos(this, this).getBblVideos()
-            }
-        }
-        if (Extension.wtList.isEmpty()) {
-            if (isInternetAvailable()) {
-                ViewModelVideos(this, this).getWtVideos()
-            }
-        }
-        if (Extension.fifaList.isEmpty()) {
-            if (isInternetAvailable()) {
-                ViewModelVideos(this, this).getFifaVideos()
-            }
-        }
-        if (Extension.superList.isEmpty()) {
-            if (isInternetAvailable()) {
-                ViewModelVideos(this, this).getSuperVideos()
-            }
-        }
-    }
 
     private fun init() {
         binding.ivPremium.setOnClickListener {
@@ -266,13 +217,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
         }
     }
 
-    override fun onSuccessResponse(result: JSONObject) {
-        Log.d("dash", "----success-------$result")
-    }
 
-    override fun onFailResponse(result: String) {
-        Log.d("dash", "---error--------$result")
-    }
 
     override fun onClick() {
         introduceDialog.closeDialog()

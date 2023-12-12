@@ -22,6 +22,7 @@ import com.apploop.face.changer.app.callBacks.AddStickerBottomSheetViewModelInte
 import com.apploop.face.changer.app.callBacks.StickerViewModelInterface
 import com.apploop.face.changer.app.databinding.ActivityMenPhotoBinding
 import com.apploop.face.changer.app.helpers.EnumClass
+import com.apploop.face.changer.app.helpers.EnumClass.*
 import com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener
 import com.apploop.face.changer.app.helpers.stickerviewclass.StickerImageView
 import com.apploop.face.changer.app.helpers.stickerviewclass.StickerView
@@ -168,11 +169,11 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
     override fun onStickerButtonClicks(type: EnumClass) {
         when (type) {
 
-            EnumClass.BACK -> {
+            BACK -> {
                 onBackPressed()
             }
 
-            EnumClass.ADD_STICKERS -> {
+            ADD_STICKERS -> {
                 binding.ivAddStickers.setColorFilter(ContextCompat.getColor(this, R.color.purple_status))
                 binding.ivColorStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
                 binding.ivOpacityStickers.setColorFilter(ContextCompat.getColor(this, R.color.light_grey))
@@ -184,7 +185,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
                 }
             }
 
-            EnumClass.BLACK -> {
+            BLACK -> {
 
                 removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
@@ -201,7 +202,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
                 sticker!!.applyColorFilter(Extension.hairColors[0])
             }
 
-            EnumClass.RED -> {
+            RED -> {
                 removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
@@ -218,7 +219,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
                 sticker!!.applyColorFilter(Extension.hairColors[1])
             }
 
-            EnumClass.BLUE -> {
+            BLUE -> {
                 removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
@@ -235,7 +236,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
                 sticker!!.applyColorFilter(Extension.hairColors[2])
             }
 
-            EnumClass.GREEN -> {
+            GREEN -> {
                 removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
@@ -252,7 +253,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
                 sticker!!.applyColorFilter(Extension.hairColors[3])
             }
 
-            EnumClass.YELLOW -> {
+            YELLOW -> {
                 removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
@@ -269,7 +270,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
                 sticker!!.applyColorFilter(Extension.hairColors[4])
             }
 
-            EnumClass.PURPLE -> {
+            PURPLE -> {
                 removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
@@ -286,7 +287,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
                 sticker!!.applyColorFilter(Extension.hairColors[5])
             }
 
-            EnumClass.GRAY -> {
+            GRAY -> {
                 removeBorder()
                 if (binding.lvRoot.childCount <= 2) {
                     Toast.makeText(applicationContext, "Please, Add Sticker", Toast.LENGTH_SHORT)
@@ -303,7 +304,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
                 sticker!!.applyColorFilter(Extension.hairColors[6])
             }
 
-            EnumClass.STICKER_COLOR -> {
+            STICKER_COLOR -> {
                 removeBorder()
                 if (binding.lvColorsCode.visibility == View.VISIBLE) {
                     binding.lvColorsCode.visibility = View.GONE
@@ -321,7 +322,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
                 binding.lvOpacitySeekBarContainer.visibility = View.GONE
             }
 
-            EnumClass.OPACITY -> {
+            OPACITY -> {
                 removeBorder()
                 if (binding.lvOpacitySeekBarContainer.visibility == View.VISIBLE) {
                     binding.lvOpacitySeekBarContainer.visibility = View.GONE
@@ -351,7 +352,7 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
                 binding.lvColorsCode.visibility = View.GONE
             }
 
-            EnumClass.DONE -> {
+            DONE -> {
 
                 removeBorder()
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -391,6 +392,64 @@ class MenPhotoActivity : AppCompatActivity(), StickerViewModelInterface,
 //                    finish()
 //                }
             }
+
+            CAMERA -> TODO()
+            GALLERY -> TODO()
+            MY_CREATION -> TODO()
+            FLIP_SUIT -> TODO()
+            FLIP_IMAGE -> TODO()
+            BLAZER -> TODO()
+            SUIT -> TODO()
+            FORMAL -> TODO()
+            JACKET -> TODO()
+            Police -> TODO()
+            EDIT -> TODO()
+            ERASE -> TODO()
+            RESTORE -> TODO()
+            AUTO_ERASE -> TODO()
+            ZOOM -> TODO()
+            UNDO -> TODO()
+            REDO -> TODO()
+            STICKERS -> TODO()
+            BACKGROUND -> TODO()
+            OLD_MAN -> TODO()
+            KID -> TODO()
+            SKIN_TONE -> TODO()
+            BACKGROUND_COLOR -> TODO()
+            BEARD -> TODO()
+            GOGGLES -> TODO()
+            HAIR -> TODO()
+            HAT -> TODO()
+            MUSTACHE -> TODO()
+            TIE -> TODO()
+            BLACK1 -> TODO()
+            RED1 -> TODO()
+            BLUE1 -> TODO()
+            GREEN1 -> TODO()
+            YELLOW1 -> TODO()
+            PURPLE1 -> TODO()
+            GRAY1 -> TODO()
+            BACKGROUND_IMAGES -> TODO()
+            NONE -> TODO()
+            PHOTO_SUIT -> TODO()
+            PHOTO_REMOVE_BG -> TODO()
+            PHOTO -> TODO()
+            PHOTO_FACE -> TODO()
+            PHOTO_MEN -> TODO()
+            MOVE_SUIT -> TODO()
+            KURTA -> TODO()
+            BODY_BUILDER -> TODO()
+            T_SHIRT -> TODO()
+            CARD -> TODO()
+            CHRISTMAS -> TODO()
+            IPL -> TODO()
+            AFRICA -> TODO()
+            PSL -> TODO()
+            BPL -> TODO()
+            BBL -> TODO()
+            WT -> TODO()
+            FIFA -> TODO()
+            SUPER -> TODO()
         }
     }
 }

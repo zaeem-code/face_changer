@@ -19,19 +19,16 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.databinding.ActivityViewSavedImageBinding
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Extension
 import com.apploop.face.changer.app.utils.Extension.alertDialog
 import com.apploop.face.changer.app.utils.Extension.share
 import com.apploop.face.changer.app.utils.Extension.statusBarColor
 import com.apploop.face.changer.app.utils.UtilsCons
-import com.apploop.face.changer.app.views.FaceChangeScreen.FaceChangeActivity
+import com.apploop.face.changer.app.views.faceChangeScreen.FaceChangeActivity
 import com.apploop.face.changer.app.views.MenPhotoScreen.MenPhotoActivity
-import com.apploop.face.changer.app.views.handCrop.HandCropActivity
 import com.apploop.face.changer.app.views.removeBackground.ImageRemoveBgActivity
 import com.apploop.face.changer.app.views.removeBackground.StoreManager
 import com.theartofdev.edmodo.cropper.CropImage
-import java.io.File
 import java.io.IOException
 
 class ViewSavedImageActivity : AppCompatActivity() {

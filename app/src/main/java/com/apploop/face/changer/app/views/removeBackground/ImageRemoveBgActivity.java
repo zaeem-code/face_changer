@@ -137,17 +137,22 @@ public class ImageRemoveBgActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ads_layout.setVisibility(View.VISIBLE);
-                AdsManager.Companion.getInstance().showInterstitialAd(ImageRemoveBgActivity.this, new OnAdLoaded() {
-                    @Override
-                    public void OnAdLoadedCallBack(Boolean loaded) {
-                        ads_layout.setVisibility(View.GONE);
-                        UtilsCons.originalBitmap = cutBitmap;
-                        Intent i = new Intent(ImageRemoveBgActivity.this, RemoveBgActivity.class);
-                        startActivity(i);
-                        finish();
-                    }
-                });
+//                ads_layout.setVisibility(View.VISIBLE);
+//                AdsManager.Companion.getInstance().showInterstitialAd(ImageRemoveBgActivity.this, new OnAdLoaded() {
+//                    @Override
+//                    public void OnAdLoadedCallBack(Boolean loaded) {
+//                        ads_layout.setVisibility(View.GONE);
+//                        UtilsCons.originalBitmap = cutBitmap;
+//                        Intent i = new Intent(ImageRemoveBgActivity.this, RemoveBgActivity.class);
+//                        startActivity(i);
+//                        finish();
+//                    }
+//                });
+
+                UtilsCons.originalBitmap = cutBitmap;
+                Intent i = new Intent(ImageRemoveBgActivity.this, RemoveBgActivity.class);
+                startActivity(i);
+                finish();
 
 
             }
