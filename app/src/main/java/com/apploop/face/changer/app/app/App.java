@@ -6,10 +6,7 @@ import android.app.Application;
 
 
 import com.apploop.face.changer.app.cropModule.UCropHttpClientStore;
-import com.apploop.face.changer.app.manager.AdsManager;
-import com.apploop.face.changer.app.manager.AppOpenManager;
 
-import java.util.Objects;
 
 import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;

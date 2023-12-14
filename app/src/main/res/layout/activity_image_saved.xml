@@ -91,10 +91,10 @@
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmerFrameLayout"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="@dimen/_90sdp"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <include layout="@layout/shimmer_banner_layout" />
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 

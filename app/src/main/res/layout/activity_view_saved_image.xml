@@ -201,10 +201,10 @@
             android:id="@+id/shimmerFrameLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60sdp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent">
 
 
-            <include layout="@layout/shimmer_banner_layout" />
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 

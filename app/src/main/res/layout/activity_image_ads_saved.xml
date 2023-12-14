@@ -205,10 +205,10 @@
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginVertical="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lv_save">
 
-            <include layout="@layout/shimmer_medium_layout" />
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 

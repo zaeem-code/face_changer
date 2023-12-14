@@ -14,8 +14,8 @@ android {
         applicationId "com.apploop.face.changer.app"
         minSdk 23
         targetSdk 34
-        versionCode 13
-        versionName "2.3"
+        versionCode 14
+        versionName "2.5"
         resourceConfigurations += ['en', 'US']
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -85,8 +85,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-messaging'
 
-    //Google Ads
-    implementation 'com.google.android.gms:play-services-ads:22.5.0'
+
 
     //Billing
     implementation 'com.android.billingclient:billing:6.0.1'

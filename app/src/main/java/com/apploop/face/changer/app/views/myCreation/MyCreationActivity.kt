@@ -2,15 +2,12 @@ package com.apploop.face.changer.app.views.myCreation
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.callBacks.MyCreationInterface
 import com.apploop.face.changer.app.databinding.ActivityMyCreationBinding
-import com.apploop.face.changer.app.manager.AdsManager
-import com.apploop.face.changer.app.manager.OnAdLoaded
 import com.apploop.face.changer.app.utils.Extension.fetchImage
 import com.apploop.face.changer.app.utils.Extension.imageGallery
 import com.apploop.face.changer.app.utils.Extension.statusBarColor

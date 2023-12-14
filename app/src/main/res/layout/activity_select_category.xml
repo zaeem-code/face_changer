@@ -337,10 +337,10 @@
                     android:layout_marginEnd="@dimen/_20sdp"
                     android:background="@drawable/cus_yellow_category_bg"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/lv_african">
 
-                    <include layout="@layout/shimmer_medium_layout" />
 
 
                 </com.facebook.shimmer.ShimmerFrameLayout>
@@ -553,13 +553,13 @@
                     android:layout_marginStart="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
+                    android:visibility="gone"
                     android:background="@drawable/cus_yellow_category_bg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/lv_formal">
 
 
-                    <include layout="@layout/shimmer_layout_without_media" />
 
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -860,11 +860,11 @@
                     android:layout_marginEnd="@dimen/_20sdp"
                     android:background="@drawable/cus_yellow_category_bg"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/lv_tShirt">
 
 
-                    <include layout="@layout/shimmer_layout_without_media" />
 
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -944,10 +944,10 @@
             android:id="@+id/shimmerFrameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent">
 
 
-            <include layout="@layout/shimmer_banner_layout" />
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 

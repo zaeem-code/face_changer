@@ -11,7 +11,6 @@ import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.callBacks.AdapterPathInterface
 import com.apploop.face.changer.app.callBacks.AddStickerBottomSheetViewModelInterface
 import com.apploop.face.changer.app.databinding.CusSuitBottomSheetBinding
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.models.ObjStickerImageDetail
 import com.apploop.face.changer.app.views.adapters.ShowStickersBottomSheetAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

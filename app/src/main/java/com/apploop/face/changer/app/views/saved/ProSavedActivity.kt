@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.apploop.face.changer.app.R
-import com.apploop.face.changer.app.app.App
 import com.apploop.face.changer.app.databinding.ActivityProSavedBinding
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Extension
 import com.apploop.face.changer.app.utils.Extension.createDirectoryAndSaveFile
 import com.apploop.face.changer.app.utils.Extension.getBitmapFromView

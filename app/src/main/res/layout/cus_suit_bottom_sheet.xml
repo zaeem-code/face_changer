@@ -44,10 +44,10 @@
             android:layout_height="@dimen/_60sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent">
 
 
-            <include layout="@layout/shimmer_layout_without_media" />
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 

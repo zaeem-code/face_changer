@@ -26,7 +26,6 @@ import com.apploop.face.changer.app.helpers.EnumClass.*
 import com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener
 import com.apploop.face.changer.app.helpers.stickerviewclass.StickerImageView
 import com.apploop.face.changer.app.helpers.stickerviewclass.StickerView
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Extension
 import com.apploop.face.changer.app.utils.Extension.getBitmapFromView
 import com.apploop.face.changer.app.utils.Extension.loadBitmap

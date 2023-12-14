@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.IntentSender
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.SystemClock
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +11,6 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.airbnb.lottie.LottieAnimationView
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.app.MyApplication
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.manager.GoogleMobileAdsConsentManager
 import com.apploop.face.changer.app.utils.Extension.statusBarColor
 import com.apploop.face.changer.app.utils.SharedPrefHelper
@@ -89,20 +87,8 @@ private const val LOG_TAG = "SplashActivity"
                 override fun onFinish() {
                     secondsRemaining = 0
 
-                    (application as MyApplication).showAdIfAvailable(
-                        this@SplashActivity,
-                        object : MyApplication.OnShowAdCompleteListener {
-                            override fun onShowAdComplete() {
-                                // Check if the consent form is currently on screen before moving to the main
-                                // activity.
-                                if (GoogleMobileAdsConsentManager.getInstance(this@SplashActivity).canRequestAds) {
-                                      continueWithSplash()
-                                    Log.d("egtspll", "CountDownTimer -------->  continueWithSplash")
+                    continueWithSplash()
 
-                                }
-                            }
-                        }
-                    )
                 }
             }
         countDownTimer.start()
@@ -115,24 +101,24 @@ private const val LOG_TAG = "SplashActivity"
 
 
             createTimer(COUNTER_TIME_MILLISECONDS)
-            googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(applicationContext)
-            googleMobileAdsConsentManager.gatherConsent(this) { consentError ->
-                if (consentError != null) {
-                    // Consent not obtained in current session.
-                    Log.d("egtspll", String.format("%s: %s", consentError.errorCode, consentError.message))
-                }
-                if (googleMobileAdsConsentManager.canRequestAds) {
-                    initializeMobileAdsSdk()
-                    Log.d("egtspll", "googleMobileAdsConsentManager -------->  initializeMobileAdsSdk")
-                }
-
-
-                if (secondsRemaining <= 0) {
-                    continueWithSplash()
-                    Log.d("egtspll", "time less then 0 --------> openLoginActivity")
-
-                }
-            }
+//            googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(applicationContext)
+//            googleMobileAdsConsentManager.gatherConsent(this) { consentError ->
+//                if (consentError != null) {
+//                    // Consent not obtained in current session.
+//                    Log.d("egtspll", String.format("%s: %s", consentError.errorCode, consentError.message))
+//                }
+//                if (googleMobileAdsConsentManager.canRequestAds) {
+//                    initializeMobileAdsSdk()
+//                    Log.d("egtspll", "googleMobileAdsConsentManager -------->  initializeMobileAdsSdk")
+//                }
+//
+//
+//                if (secondsRemaining <= 0) {
+//                    continueWithSplash()
+//                    Log.d("egtspll", "time less then 0 --------> openLoginActivity")
+//
+//                }
+//            }
 
 
 
@@ -146,10 +132,10 @@ private const val LOG_TAG = "SplashActivity"
         }
 
         // Initialize the Mobile Ads SDK.
-        AdsManager.Companion.instance?.initialize(this)
+//        AdsManager.Companion.instance?.initialize(this)
 
         // Load an ad.
-        (application as MyApplication).loadAd(this)
+//        (application as MyApplication).loadAd(this)
     }
 
     private fun continueWithSplash() {

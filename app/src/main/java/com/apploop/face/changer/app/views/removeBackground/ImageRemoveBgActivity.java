@@ -32,7 +32,6 @@ import androidx.palette.graphics.Palette;
 
 
 import com.apploop.face.changer.app.R;
-import com.apploop.face.changer.app.manager.AdsManager;
 import com.apploop.face.changer.app.manager.OnAdLoaded;
 import com.apploop.face.changer.app.utils.ImageUtils;
 import com.apploop.face.changer.app.utils.SaveFileUtils;

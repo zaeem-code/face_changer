@@ -2,16 +2,12 @@ package com.apploop.face.changer.app.views.saved
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.databinding.ActivityImageSavedBinding
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Constants
-import com.apploop.face.changer.app.utils.Extension.rateApp
-import com.apploop.face.changer.app.utils.Extension.share
 import com.apploop.face.changer.app.utils.Extension.statusBarColor
 import com.apploop.face.changer.app.utils.SharedPrefHelper
 import com.apploop.face.changer.app.views.mainactivity.MainActivity

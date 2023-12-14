@@ -72,11 +72,11 @@
             android:id="@+id/shimmerFrameLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/lv_root"
             app:layout_constraintTop_toBottomOf="@+id/topBar" >
 
 
-            <include layout="@layout/shimmer_layout_without_media" />
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 

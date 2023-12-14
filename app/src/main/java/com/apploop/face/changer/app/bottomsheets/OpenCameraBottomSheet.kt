@@ -22,9 +22,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.apploop.face.changer.app.BuildConfig
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.databinding.CusOpenCameraBottomSheetBinding
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Extension.createImageFile
-import com.apploop.face.changer.app.utils.UtilsCons
 import com.apploop.face.changer.app.views.ShowAssertsActivity
 import java.io.File
 

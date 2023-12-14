@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.databinding.ActivityImageAdsSavedBinding
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Extension.alertDiscardDialog
 import com.apploop.face.changer.app.utils.Extension.createDirectoryAndSaveFile
 import com.apploop.face.changer.app.utils.Extension.getBitmapFromView

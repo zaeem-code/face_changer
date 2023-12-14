@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import com.apploop.face.changer.app.InAppBilling.SubscriptionBillingManager
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.databinding.ActivityPremiumBinding
-import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Constants
 import com.apploop.face.changer.app.utils.Extension.statusBarColor
 import com.apploop.face.changer.app.utils.SharedPrefHelper
