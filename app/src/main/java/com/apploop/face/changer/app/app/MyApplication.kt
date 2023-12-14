@@ -11,6 +11,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDexApplication
+import com.apploop.face.changer.app.R
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -136,7 +137,7 @@ class MyApplication :
       val request = AdRequest.Builder().build()
       AppOpenAd.load(
         context,
-        "ca-app-pub-8617754893098646/8600551925",
+        getString(R.string.openAds),
         request,
         AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
         object : AppOpenAd.AppOpenAdLoadCallback() {
@@ -150,7 +151,7 @@ class MyApplication :
             isLoadingAd = false
             loadTime = Date().time
             Log.d("openAds", "onAdLoaded.")
-            Toast.makeText(context, "onAdLoaded", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "onAdLoaded", Toast.LENGTH_SHORT).show()
           }
 
           /**
@@ -161,7 +162,7 @@ class MyApplication :
           override fun onAdFailedToLoad(loadAdError: LoadAdError) {
             isLoadingAd = false
             Log.d("openAds", "onAdFailedToLoad: " + loadAdError.message)
-            Toast.makeText(context, "onAdFailedToLoad="+loadAdError.code, Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "onAdFailedToLoad="+loadAdError.code, Toast.LENGTH_SHORT).show()
           }
         }
       )

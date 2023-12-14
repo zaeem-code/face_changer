@@ -59,6 +59,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         statusBarColor(R.color.background)
         init()
+        SharedPrefHelper.writeBoolean("splashLoaded",false)
+
 
         SubscriptionBillingManager(this, this)
 

@@ -444,6 +444,8 @@ class RemoveBgActivity : AppCompatActivity() , StickerViewModelInterface,
                     if (binding.ivSuit.rotationY == -180f) 0f else -180f
                 binding.ivSuit.invalidate()
             }
+
+            else -> {}
         }
     }
 

@@ -58,12 +58,12 @@ class GoogleMobileAdsConsentManager private constructor(context: Context) {
         // Check your logcat output for the hashed device ID e.g.
         // "Use new ConsentDebugSettings.Builder().addTestDeviceHashedId("ABCDEF012345")" to use
         // the debug functionality.
-        .addTestDeviceHashedId("3BAEE3DE4A3EEB7615131077D9840E8A")
+        .addTestDeviceHashedId("9E802CC88B00B58F3A3D8F8F054F405A")
         .build()
 
-    val params = ConsentRequestParameters.Builder().setConsentDebugSettings(debugSettings).build()
-//    val params = ConsentRequestParameters.Builder()
-//      .build()
+//    val params = ConsentRequestParameters.Builder().setConsentDebugSettings(debugSettings).build()
+    val params = ConsentRequestParameters.Builder()
+      .build()
 
     // Requesting an update to consent information should be called on every app launch.
     consentInformation.requestConsentInfoUpdate(
