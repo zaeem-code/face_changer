@@ -99,12 +99,12 @@
 
 
 
-    <string name="admob_app_id" translatable="false">ca-app-pub-8617754893098646~1628536190</string>
-    <string name="admob_interstial_ad_id" translatable="false">ca-app-pub-8617754893098646/8668549274</string>
-    <string name="admob_banner_ad_id" translatable="false">ca-app-pub-8617754893098646/6306147800</string>
-    <string name="admob_native_ad_unit" translatable="false">ca-app-pub-8617754893098646/9913633599</string>
-    <string name="openAds" translatable="false">ca-app-pub-8617754893098646/8600551925</string>
-    <string name="reward_ad" translatable="false">ca-app-pub-8617754893098646/6042385932</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-8617754893098646~3080032869</string>
+    <string name="admob_interstial_ad_id" translatable="false">ca-app-pub-8617754893098646/7422602557</string>
+    <string name="admob_banner_ad_id" translatable="false">ca-app-pub-8617754893098646/6827706187</string>
+    <string name="admob_native_ad_unit" translatable="false">ca-app-pub-8617754893098646/8705145049</string>
+    <string name="openAds" translatable="false">ca-app-pub-8617754893098646/5838058147</string>
+    <string name="reward_ad" translatable="false">ca-app-pub-8617754893098646/9282479131</string>
 
 
 

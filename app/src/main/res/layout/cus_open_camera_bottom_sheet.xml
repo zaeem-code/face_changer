@@ -101,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,6 +111,7 @@
             <include layout="@layout/shimmer_layout_without_media" />
 
         </com.facebook.shimmer.ShimmerFrameLayout>
+
 
         <FrameLayout
             android:id="@+id/frame_layout"

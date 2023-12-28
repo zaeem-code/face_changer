@@ -28,6 +28,7 @@ import com.apploop.face.changer.app.BottomSheetFragmentListner
 import com.apploop.face.changer.app.BuildConfig
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.databinding.CusOpenCameraBottomSheetBinding
+import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Extension
 import com.apploop.face.changer.app.utils.Extension.createImageFile
 import com.apploop.face.changer.app.utils.UtilsCons
@@ -92,19 +93,19 @@ class CustomBSFragment() : BottomSheetDialogFragment() {
 
     private fun init() {
 
-//        AdsManager.Companion.instance!!.showNativeAd(
-//            binding!!.frameLayout,
-//            binding!!.frameLayout,
-//            layoutInflater,
-//            R.layout.ad_media
-//        )  {
-//            if (it) {
-//                binding?.shimmerFrameLayout?.visibility = View.INVISIBLE
-//            } else {
-//                binding?.shimmerFrameLayout?.visibility = View.INVISIBLE
-//                binding?.frameLayout?.visibility = View.INVISIBLE
-//            }
-//        }
+        AdsManager.Companion.instance!!.showNativeAd(
+            binding!!.frameLayout,
+            binding!!.frameLayout,
+            layoutInflater,
+            R.layout.ad_media
+        )  {
+            if (it) {
+                binding?.shimmerFrameLayout?.visibility = View.INVISIBLE
+            } else {
+                binding?.shimmerFrameLayout?.visibility = View.INVISIBLE
+                binding?.frameLayout?.visibility = View.INVISIBLE
+            }
+        }
 
         binding?.lvBlazer?.setOnClickListener {
             if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)

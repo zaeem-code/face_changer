@@ -235,7 +235,7 @@ public class SubscriptionBillingManager implements PurchasesUpdatedListener {
     private boolean verifyValidSignature(String signedData, String signature) {
         try {
             // To get key go to Developer Console > Select your app > Development Tools > Services & APIs.
-            String base64Key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgDu0qDpJbPccXzaC36uDF+Qju+VIBGztqjOcyF0oACkIF65Nfu5tbbrJ4gRWpCL6mNxANo7VXsCWmMqVeVfJHeYjD3TC4LBuDCEWeJ2+ela7yu11RnkpXYF0juxWI2TEXF8JQaSqmEnYADJ4H85Ly6lFLzDFXrheQvBZRBbYEcX8dM4OpoHSggYLtpL1ocJclQAiN/oqyBzd9diNrh3ZdoxndgU6g+ajTlJxs70fVROH5wuei7quxW3UREgPH2v8Y0HzZ2YaHIiwXH34ix3Rd3rUV69OtvHqI9hxHnsgqiK74W3n0KiQnyewiEetFZTd6kSnAdIUcf4BsoXRwOLoTwIDAQAB";
+            String base64Key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhiqPfb1kxIl67XVNmlafHlkl1Yf6dHI5+9+755Je+o6q576F1GjGrOleCV7V5zMjts67YE4sskZI9dJ5mObfCL80S1EugzUAWCZdH9FpFCCAlPBT65XG8+P0T44j+wOfOtRaYPNx4xls7Mm64KcEXSSQTBsBjLEB0OCWZHAToryqdCw+C3OYYRfGvZ7ZGlW4PrTOZtNW8zl5ILKXsNc0EBMpMUuk2U8IRyBQFZ8G0ZuaAI6CaEF7NBFdXKgTIX8LYO31JNSS+9q7xaImELdPbTzitvZZHtTcoo5h+k5BI+qk/AN4+khC/y87UeK2ih0tQ5/ui03d7gCwOF89MsQpMQIDAQAB";
             //Toast.makeText(context,"Signature: " + signature,Toast.LENGTH_SHORT).show();
             return Security.verifyPurchase(base64Key, signedData, signature);
         } catch (IOException e) {

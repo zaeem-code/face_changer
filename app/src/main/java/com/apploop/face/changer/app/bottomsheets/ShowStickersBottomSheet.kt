@@ -34,19 +34,19 @@ class ShowStickersBottomSheet(val activity: Activity, val list: List<ObjStickerI
         val dialog = dialog as BottomSheetDialog
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
 
-//        AdsManager.Companion.instance!!.showNativeAd(
-//            binding!!.frameLayout,
-//            binding!!.frameLayout,
-//            layoutInflater,
-//            R.layout.ad_media
-//        ) {
-//            if (it) {
-//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-//            } else {
-//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-//                binding.frameLayout.visibility = View.INVISIBLE
-//            }
-//        }
+        AdsManager.Companion.instance!!.showNativeAd(
+            binding!!.frameLayout,
+            binding!!.frameLayout,
+            layoutInflater,
+            R.layout.ad_media
+        ) {
+            if (it) {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+            } else {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+                binding.frameLayout.visibility = View.INVISIBLE
+            }
+        }
 
         binding.rvSuits.layoutManager = GridLayoutManager(activity, 3)
         suitsBottomSheetAdapter = ShowStickersBottomSheetAdapter(list, activity, listener, this)

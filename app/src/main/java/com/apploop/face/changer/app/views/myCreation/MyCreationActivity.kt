@@ -29,20 +29,20 @@ class MyCreationActivity : AppCompatActivity(), MyCreationInterface {
 
     private fun init() {
         binding.shimmerFrameLayout.startShimmer()
-//        AdsManager.Companion.instance!!.showNativeAd(
-//            binding!!.frameLayout,
-//            binding!!.frameLayout,
-//            layoutInflater,
-//            R.layout.ad_media
-//        )
-//        {
-//            if (it) {
-//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-//            } else {
-//                binding.shimmerFrameLayout.visibility = View.GONE
-//                binding.frameLayout.visibility = View.GONE
-//            }
-//        }
+        AdsManager.Companion.instance!!.showNativeAd(
+            binding!!.frameLayout,
+            binding!!.frameLayout,
+            layoutInflater,
+            R.layout.ad_media
+        )
+        {
+            if (it) {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+            } else {
+                binding.shimmerFrameLayout.visibility = View.GONE
+                binding.frameLayout.visibility = View.GONE
+            }
+        }
         fetchImage()
         binding.rvMyCreations.layoutManager = GridLayoutManager(this, 2)
         myCreationAdapter = MyCreationAdapter(imageGallery, this, this)

@@ -98,18 +98,18 @@ public class ImageRemoveBgActivity extends AppCompatActivity {
         initUI();
 
         Init();
-//        shimmerFrameLayout.startShimmer();
-//        AdsManager.Companion.getInstance().showAdMobBanner(this, bannerAdView, new OnAdLoaded() {
-//            @Override
-//            public void OnAdLoadedCallBack(Boolean loaded) {
-//                if (loaded) {
-//                    shimmerFrameLayout.setVisibility(View.INVISIBLE);
-//                } else {
-//                    shimmerFrameLayout.setVisibility(View.GONE);
-//                    bannerAdView.setVisibility(View.GONE);
-//                }
-//            }
-//        });
+        shimmerFrameLayout.startShimmer();
+        AdsManager.Companion.getInstance().showAdMobBanner(this, bannerAdView, new OnAdLoaded() {
+            @Override
+            public void OnAdLoadedCallBack(Boolean loaded) {
+                if (loaded) {
+                    shimmerFrameLayout.setVisibility(View.INVISIBLE);
+                } else {
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    bannerAdView.setVisibility(View.GONE);
+                }
+            }
+        });
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
@@ -137,22 +137,19 @@ public class ImageRemoveBgActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                ads_layout.setVisibility(View.VISIBLE);
-//                AdsManager.Companion.getInstance().showInterstitialAd(ImageRemoveBgActivity.this, new OnAdLoaded() {
-//                    @Override
-//                    public void OnAdLoadedCallBack(Boolean loaded) {
-//                        ads_layout.setVisibility(View.GONE);
-//                        UtilsCons.originalBitmap = cutBitmap;
-//                        Intent i = new Intent(ImageRemoveBgActivity.this, RemoveBgActivity.class);
-//                        startActivity(i);
-//                        finish();
-//                    }
-//                });
+                ads_layout.setVisibility(View.VISIBLE);
+                AdsManager.Companion.getInstance().showInterstitialAd(ImageRemoveBgActivity.this, new OnAdLoaded() {
+                    @Override
+                    public void OnAdLoadedCallBack(Boolean loaded) {
+                        ads_layout.setVisibility(View.GONE);
+                        UtilsCons.originalBitmap = cutBitmap;
+                        Intent i = new Intent(ImageRemoveBgActivity.this, RemoveBgActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                });
 
-                UtilsCons.originalBitmap = cutBitmap;
-                Intent i = new Intent(ImageRemoveBgActivity.this, RemoveBgActivity.class);
-                startActivity(i);
-                finish();
+
 
 
             }

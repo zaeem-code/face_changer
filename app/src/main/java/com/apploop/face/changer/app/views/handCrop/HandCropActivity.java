@@ -22,6 +22,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -29,6 +30,8 @@ import androidx.databinding.DataBindingUtil;
 
 import com.apploop.face.changer.app.R;
 import com.apploop.face.changer.app.databinding.ActivityHandCropBinding;
+import com.apploop.face.changer.app.manager.AdsManager;
+import com.apploop.face.changer.app.manager.OnAdLoaded;
 import com.apploop.face.changer.app.utils.UtilsCons;
 import com.apploop.face.changer.app.views.faceChangeScreen.FaceChangeActivity;
 import com.apploop.face.changer.app.views.MenPhotoScreen.MenPhotoActivity;
@@ -154,42 +157,30 @@ public class HandCropActivity extends AppCompatActivity implements View.OnClickL
             case R.id.done:
                 if (FreeCropView.points.size() == 0) {
 
-//                    binding.progressBar.setVisibility(View.VISIBLE);
-//                    getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-//                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                    getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
-                    originalBitmap = freeCrop;
-                    if (UtilsCons.chooseLayout.contains("PHOTO_REMOVE_BG")) {
-                        call();
-                    } else if (UtilsCons.chooseLayout.contains("PHOTO_MEN")) {
-                        Intent intent = new Intent(HandCropActivity.this, MenPhotoActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Intent intent = new Intent(HandCropActivity.this, FaceChangeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-//                    AdsManager.Companion.getInstance().showInterstitialAd(HandCropActivity.this, new OnAdLoaded() {
-//                        @Override
-//                        public void OnAdLoadedCallBack(Boolean loaded) {
-//                            binding.progressBar.setVisibility(View.GONE);
-//                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-//
-//                            originalBitmap = freeCrop;
-//                            if (UtilsCons.chooseLayout.contains("PHOTO_REMOVE_BG")) {
-//                                call();
-//                            } else if (UtilsCons.chooseLayout.contains("PHOTO_MEN")) {
-//                                Intent intent = new Intent(HandCropActivity.this, MenPhotoActivity.class);
-//                                startActivity(intent);
-//                                finish();
-//                            } else {
-//                                Intent intent = new Intent(HandCropActivity.this, FaceChangeActivity.class);
-//                                startActivity(intent);
-//                                finish();
-//                            }
-//                        }
-//                    });
+                    AdsManager.Companion.getInstance().showInterstitialAd(HandCropActivity.this, new OnAdLoaded() {
+                        @Override
+                        public void OnAdLoadedCallBack(Boolean loaded) {
+                            binding.progressBar.setVisibility(View.GONE);
+                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                            originalBitmap = freeCrop;
+                            if (UtilsCons.chooseLayout.contains("PHOTO_REMOVE_BG")) {
+                                call();
+                            } else if (UtilsCons.chooseLayout.contains("PHOTO_MEN")) {
+                                Intent intent = new Intent(HandCropActivity.this, MenPhotoActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Intent intent = new Intent(HandCropActivity.this, FaceChangeActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
+                    });
                     return;
                 }
                 boolean fc = FreeCropView.isCropImage();

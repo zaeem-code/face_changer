@@ -37,21 +37,21 @@ class ImageSavedActivity : AppCompatActivity() {
 
 
 
-//        binding.shimmerFrameLayout.startShimmer()
-//        AdsManager.Companion.instance!!.showNativeAd(
-//            binding!!.frameLayout,
-//            binding!!.frameLayout,
-//            layoutInflater,
-//            R.layout.ad_media
-//        )
-//        {
-//            if (it) {
-//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-//            } else {
-//                binding.shimmerFrameLayout.visibility = View.GONE
-//                binding.frameLayout.visibility = View.GONE
-//            }
-//        }
+        binding.shimmerFrameLayout.startShimmer()
+        AdsManager.Companion.instance!!.showNativeAd(
+            binding!!.frameLayout,
+            binding!!.frameLayout,
+            layoutInflater,
+            R.layout.ad_media
+        )
+        {
+            if (it) {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+            } else {
+                binding.shimmerFrameLayout.visibility = View.GONE
+                binding.frameLayout.visibility = View.GONE
+            }
+        }
         path = intent.extras!!.getString("savedPath")!!
         Thread {
             binding.ivSavedImage.post(Runnable {

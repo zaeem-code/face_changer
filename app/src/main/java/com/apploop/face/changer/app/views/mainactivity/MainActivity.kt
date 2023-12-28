@@ -24,6 +24,7 @@ import com.apploop.face.changer.app.callBacks.AdapterPathInterface
 import com.apploop.face.changer.app.callBacks.MainViewModelInterface
 import com.apploop.face.changer.app.databinding.ActivityMainBinding
 import com.apploop.face.changer.app.helpers.EnumClass
+import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Extension
 import com.apploop.face.changer.app.utils.Extension.isInternetAvailable
 import com.apploop.face.changer.app.utils.Extension.rateApp
@@ -84,20 +85,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MainViewModelInt
             startActivity(Intent(this, PremiumActivity::class.java))
         }
 
-//        binding.shimmerFrameLayout.startShimmer()
-//        AdsManager.instance?.showNativeAd(
-//            binding.frameLayout,
-//            binding.frameLayout,
-//            layoutInflater,
-//            R.layout.ad_with_media
-//        ) {
-//            if (it) {
-//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-//            } else {
-//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-//                binding.frameLayout.visibility = View.INVISIBLE
-//            }
-//        }
+        binding.shimmerFrameLayout.startShimmer()
+        AdsManager.instance?.showNativeAd(
+            binding.frameLayout,
+            binding.frameLayout,
+            layoutInflater,
+            R.layout.ad_with_media
+        ) {
+            if (it) {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+            } else {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+                binding.frameLayout.visibility = View.INVISIBLE
+            }
+        }
 
         mainActivityViewModel = MainActivityViewModel(this)
         binding.mainActivityViewModel = mainActivityViewModel

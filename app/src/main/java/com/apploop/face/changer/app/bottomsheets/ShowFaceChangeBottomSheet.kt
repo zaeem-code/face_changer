@@ -11,6 +11,7 @@ import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.callBacks.AdapterPathInterface
 import com.apploop.face.changer.app.callBacks.AddStickerBottomSheetViewModelInterface
 import com.apploop.face.changer.app.databinding.CusSuitBottomSheetBinding
+import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.models.ObjStickerImageDetail
 import com.apploop.face.changer.app.views.adapters.ShowStickersBottomSheetAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -32,14 +33,14 @@ class ShowFaceChangeBottomSheet(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        AdsManager.instance?.showNativeAd(binding.frameLayout, binding.frameLayout, layoutInflater, R.layout.ad_with_media) {
-//            if (it) {
-//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-//            } else {
-//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-//                binding.frameLayout.visibility = View.INVISIBLE
-//            }
-//        }
+        AdsManager.instance?.showNativeAd(binding.frameLayout, binding.frameLayout, layoutInflater, R.layout.ad_with_media) {
+            if (it) {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+            } else {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+                binding.frameLayout.visibility = View.INVISIBLE
+            }
+        }
 
         binding.rvSuits.layoutManager = GridLayoutManager(activity, 4)
         suitsBottomSheetAdapter = ShowStickersBottomSheetAdapter(list, activity, listener, this)

@@ -40,13 +40,6 @@ class SuitsBottomSheet(
         )
 
 
-
-
-
-
-
-
-
         return binding.root
     }
 
@@ -59,6 +52,8 @@ class SuitsBottomSheet(
 
         suitBottomSheetViewModel = SuitBottomSheetViewModel(listener)
         binding.suitBottomSheetViewModel = suitBottomSheetViewModel
+
+
 
 
 

@@ -19,6 +19,7 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.apploop.face.changer.app.R
 import com.apploop.face.changer.app.databinding.ActivityViewSavedImageBinding
+import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Extension
 import com.apploop.face.changer.app.utils.Extension.alertDialog
 import com.apploop.face.changer.app.utils.Extension.share
@@ -45,21 +46,21 @@ class ViewSavedImageActivity : AppCompatActivity() {
 
     private fun init() {
 
-//        binding.shimmerFrameLayout.startShimmer()
-//        AdsManager.Companion.instance!!.showNativeAd(
-//            binding!!.frameLayout,
-//            binding!!.frameLayout,
-//            layoutInflater,
-//            R.layout.ad_media
-//        )
-//        {
-//            if (it) {
-//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-//            } else {
-//                binding.shimmerFrameLayout.visibility = View.GONE
-//                binding.frameLayout.visibility = View.GONE
-//            }
-//        }
+        binding.shimmerFrameLayout.startShimmer()
+        AdsManager.Companion.instance!!.showNativeAd(
+            binding!!.frameLayout,
+            binding!!.frameLayout,
+            layoutInflater,
+            R.layout.ad_media
+        )
+        {
+            if (it) {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+            } else {
+                binding.shimmerFrameLayout.visibility = View.GONE
+                binding.frameLayout.visibility = View.GONE
+            }
+        }
 
         path = intent.extras!!.getString("fullImagePath")!!
         Thread {

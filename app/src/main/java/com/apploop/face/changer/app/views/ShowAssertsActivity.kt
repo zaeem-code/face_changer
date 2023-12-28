@@ -11,6 +11,7 @@ import com.apploop.face.changer.app.callBacks.AdapterPathInterface
 import com.apploop.face.changer.app.callBacks.SuitBottomSheetViewModelInterface
 import com.apploop.face.changer.app.callBacks.SuitBottomSheetViewModelInterfaceApi
 import com.apploop.face.changer.app.databinding.ActivityShowAssertsAcitivtyBinding
+import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.models.ObjSuitImageOption
 import com.apploop.face.changer.app.models.SuitList
 import com.apploop.face.changer.app.utils.Extension
@@ -52,21 +53,21 @@ class ShowAssertsActivity : AppCompatActivity(),
     }
 
     private fun init() {
-//        binding.shimmerFrameLayout.startShimmer()
-//        AdsManager.Companion.instance!!.showNativeAd(
-//            binding.frameLayout,
-//            binding.frameLayout,
-//            layoutInflater,
-//            R.layout.ad_media
-//        )
-//        {
-//            if (it) {
-//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-//            } else {
-//                binding.shimmerFrameLayout.visibility = View.GONE
-//                binding.frameLayout.visibility = View.GONE
-//            }
-//        }
+        binding.shimmerFrameLayout.startShimmer()
+        AdsManager.Companion.instance!!.showNativeAd(
+            binding.frameLayout,
+            binding.frameLayout,
+            layoutInflater,
+            R.layout.ad_media
+        )
+        {
+            if (it) {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+            } else {
+                binding.shimmerFrameLayout.visibility = View.GONE
+                binding.frameLayout.visibility = View.GONE
+            }
+        }
         binding.ivBack.setOnClickListener {
             onBackPressed()
         }

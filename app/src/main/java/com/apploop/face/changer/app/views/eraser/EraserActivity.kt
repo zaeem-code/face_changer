@@ -20,6 +20,7 @@ import com.apploop.face.changer.app.helpers.EnumClass
 import com.apploop.face.changer.app.helpers.eraser.DrawingView
 import com.apploop.face.changer.app.helpers.eraser.ImageUtilsEraser
 import com.apploop.face.changer.app.helpers.onTouch.MultiTouchListener
+import com.apploop.face.changer.app.manager.AdsManager
 import com.apploop.face.changer.app.utils.Extension.bitmapSuit
 import com.apploop.face.changer.app.utils.Extension.getBitmapFromView
 import com.apploop.face.changer.app.utils.Extension.statusBarColor
@@ -71,17 +72,17 @@ class EraserActivity : AppCompatActivity(), EraseViewModelInterface {
 
 
 
-//        AdsManager.Companion.instance!!.showAdMobBanner(this, binding.frameLayout){
-//            if (it)
-//            {
-//                binding.shimmerFrameLayout.visibility = View.INVISIBLE
-//            }
-//            else
-//            {
-//                binding.shimmerFrameLayout.visibility = View.GONE
-//                binding.frameLayout.visibility = View.GONE
-//            }
-//        }
+        AdsManager.Companion.instance!!.showAdMobBanner(this, binding.frameLayout){
+            if (it)
+            {
+                binding.shimmerFrameLayout.visibility = View.INVISIBLE
+            }
+            else
+            {
+                binding.shimmerFrameLayout.visibility = View.GONE
+                binding.frameLayout.visibility = View.GONE
+            }
+        }
 
 
 
